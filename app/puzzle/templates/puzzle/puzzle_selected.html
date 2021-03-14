@@ -1,0 +1,93 @@
+{% extends 'main.html' %}
+
+{% load static %}
+
+
+{% block meta %}
+    <title>Pan Barnaba - puzzle</title>
+    <meta name=”description” content=”Pan Barnaba i zagadkowa hipoteza. autor: Katarzyna Kalista. Puzzle" />
+{% endblock %}
+
+
+{% block title_box %}
+    <div class="d-inline-block ">
+        <div class="row justify-content-center ">
+            <h2>Twój czas wykonania</h2>
+        </div>
+        <div class="row justify-content-center border rounded-pill p-2 PB2" id="counter" value="0">
+        </div>
+    </div>
+{% endblock %}
+
+{% block left %}
+    <span class="d-none" id="finish" >0</span>
+    <span class="d-none" id="finalTime" >0</span>
+    <span class="d-none" id="level">{{ level }}</span>
+    <span class="d-none" id="game_id">{{ puzzle }}</span>
+    <span class="d-none" id="method">std</span>
+    <span class="d-none" id="gameType">puzzle</span>
+    <div class = "container">
+        <div class = "row justify-content-md-center">
+            <div class="col-md-6">
+                <span class="d-flex justify-content-center PB2 PB_bg_logo m-4 justify-content-centre widith-100">Rozwiąż</span>
+                    <div class="container justify-content-center align-items-center PB_image " >
+                        <div class="row PB_row">
+                            {% for item in parts %}
+                            
+                                {% if forloop.counter0 in rows %}
+                                    <div class="col PB_col justify-content-center align-items-center">
+                                {% endif %}
+                                    <div class="PB_image_part_{{ level }}">
+                                        <img 
+                                            src="{% static 'images/puzzle/parts/'|add:item.0 %}" 
+                                            class="card-img-top {% if item.0 == '' %} d-none {% endif %} " 
+                                            data-fix="{{ item.1 }}"
+                                            data-actual="{{ item.0 }}" 
+                                            name="ppart" 
+                                            alt="...">
+                                    </div>
+                                {% if forloop.counter0 in rowsend %}
+                                    </div>
+                                {% endif %}  
+                            {% endfor %}
+                         </div>
+                    </div>
+            </div>
+            <div class="col-6">
+                <span class="d-flex justify-content-center  PB2 PB_bg_logo m-4 widith-100">Wzorzec</span>
+                <div class="container justify-content-center align-items-center PB_image">
+                    <img src="{% static 'images/puzzle/'|add:puzzle %}" class="card-img-top"  alt="...">
+                </div>
+            </div>
+
+        </div>
+    </div>
+    {% endblock %}
+    {% block right %}
+        <!-- <div class = "row justify-content-md-center"> -->
+            <div class="col">
+                <!-- <hr class="my-4">  -->
+                <spam class="d-flex justify-content-center PB2 PB_bg_logo m-4 justify-content-centre">
+                    Jak grać?
+                </spam>
+                <ul class="list-group w-75">
+                    <li class="list-group-item">
+                        kliknij w obrazek sąsiadujący z pusym fragmentem, aby zamienić je miejscami
+                    </li>
+                    <li class="list-group-item">
+                        albo używaj klawiszy strzałek do przemieszczania szarego fragmentu
+                    </li>
+                </ul>
+
+            </div>
+        <!-- </div> -->
+    <!-- </div> -->
+    <br>
+    {% include 'scoring/score_list.html' %}
+    
+{% endblock %}
+
+{% block add_ins %}
+    <script src=" {% static 'js/timer.js' %} "></script> 
+    <script src=" {% static 'js/puzzle.js' %} "></script> 
+{% endblock %}

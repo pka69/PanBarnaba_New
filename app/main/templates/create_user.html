@@ -1,0 +1,25 @@
+{% extends 'main.html' %}
+
+
+{% block full %}
+<div class='container'>
+        
+        <p class="m-3">nie musisz podawać imienia, nazwiska i adresu mailowego aby móc zapisywać swoje osiągnięcia.
+            <br>
+            Ale nie podając nam adresu email nie dasz rady odzyskać hasła jeśli go zapomniesz.
+            <br>
+            Generalnie potrzebujesz tylko nazwę użytkjownika i hasło
+            <hr>
+        </p>
+        <div class="mb-3 p-3 shadow">
+            <span class="d-flex justify-content-center PB2 PB_bg_logo m-4 justify-content-centre widith-100">
+                formularz dodawania użytkownika
+            </span>
+            <form action="" method='post' class="PB_Form">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input type="submit" value="Dodaj">
+            </form>
+        </div>
+    </div>
+{% endblock %}

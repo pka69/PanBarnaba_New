@@ -1,0 +1,20 @@
+<div class="container">
+    <span class="m-2 d-flex justify-content-center PB3">Klucz Szyfrujący</span>
+    <table class="encrypt_table">
+        <tr>
+           {% for item in key_view %}
+               <td class="{% if item != '-' %}cell_key{% else %}cell_none{% endif %}"> {{ item }}</td>
+           {% endfor %}
+       </tr>
+    </table>
+    <br>
+    <p>Jak korzystać z klucza szyfrującego? To proste. Jeżeli litera z tekstu występuje w kluczu, to zastąp ją literą z którą jest w jednej parze <br>
+        Na przykład <b>{{ key_view.1 }}</b> nalezy zastąpić <b>{{ key_view.0 }}</b>.  <br>
+        A <b>{{ key_view.3 }}</b> nalezy zastąpić <b>{{ key_view.4 }}</b>.  <br>
+        Baw się dobrze!
+
+    </p>
+   <span class="d-flex justify-content-center m-2 PB3">Odszyfruj...</span>
+   <span class="d-flex justify-content-center m-2 PB2 shadow" id="encrypt">{{ encrypt }}</span>
+   
+</div>  

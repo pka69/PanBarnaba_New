@@ -1,0 +1,14 @@
+Droga {{ author.username }}
+
+pojawiła się w bazie nowa wiadomość od użytkownika.
+
+Poniżej treść wiadomości:
+
+{{ title }}
+{{content }}
+
+{{ mail }}
+
+{% if picture %}
+    Do wiadomości został załączony rysunek.
+{% endif %}

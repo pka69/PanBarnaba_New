@@ -1,0 +1,144 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block meta %}
+    <title>Pan Barnaba - gra w życie</title>
+    <meta name=”description” content=”Pan Barnaba i zagadkowa hipoteza. autor: Katarzyna Kalista. algorytm gra życie (game of life algorithm)">
+{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet"  href="{% static 'css/PB_maths.css' %}"/>
+ {% endblock %}
+
+{% block left %}
+<div class="container">
+    <span class="d-flex PB2 PB_bg_logo m-4 justify-content-centre widith-100">algorytm życia - czym jest?</span>
+    <p>
+        Gra w życie (Life, The game of life) – 
+        jeden z pierwszych i najbardziej znanych przykładów automatu komórkowego, 
+        wymyślony w roku 1970 przez brytyjskiego matematyka 
+        Johna Conwaya.
+    </p>
+    <p>
+        Od momentu publikacji zawsze wzbudzała duże zainteresowanie z powodu 
+        zaskakującego sposobu, w jaki struktury potrafią ewoluować. 
+        To właśnie jej pojawienie się wzbudziło zainteresowanie automatami 
+        komórkowymi wśród studentów, którzy traktowali ją jako rozrywkę oraz 
+        fizyków, którzy zwrócili uwagę na możliwości automatów w zakresie 
+        symulatorów fizycznych. Dzisiaj matematyków, ekonomistów i naukowców 
+        z innych dziedzin interesuje sposób, w jaki przy zastosowaniu tylko 
+        kilku prostych reguł powstają skomplikowane struktury.
+    </p>
+    <h2 class="title">
+        Powstanie gry
+    </h2>
+    <p>
+    Conway zainspirowany pracami nad układami sąsiadów i regułami zmian, 
+    eksperymentował nad stworzeniem takiego automatu pod koniec lat 60. 
+    XX wieku. Reguły, które w ostateczności przyczyniły się do powstania gry 
+    Życie zostały wybrane, ponieważ pozwalały na równowagę pomiędzy zbyt 
+    szybkim rozrastaniem się struktur i zbyt wolnym pojawianiem się szybko 
+    znikających obiektów.
+    </p>
+    <h2 class="title">
+        Opis reguł gry
+    </h2>
+    <p>
+    Gra toczy się na nieskończonej planszy (płaszczyźnie) podzielonej na 
+    kwadratowe komórki. Każda komórka ma ośmiu „sąsiadów” (tzw. sąsiedztwo 
+    Moore’a), czyli komórki przylegające do niej bokami i rogami. 
+    Każda komórka może znajdować się w jednym z dwóch stanów: 
+    może być albo „żywa” (włączona), albo „martwa” (wyłączona). 
+    Stany komórek zmieniają się w pewnych jednostkach czasu. 
+    Stan wszystkich komórek w pewnej jednostce czasu jest używany do 
+    obliczenia stanu wszystkich komórek w następnej jednostce. 
+    Po obliczeniu wszystkie komórki zmieniają swój stan dokładnie w tym 
+    samym momencie. Stan komórki zależy tylko od liczby jej żywych sąsiadów. 
+    W grze w życie nie ma graczy w dosłownym tego słowa znaczeniu. 
+    Udział człowieka sprowadza się jedynie do ustalenia stanu początkowego 
+    komórek.
+    </p>
+    <h2 class="title">
+        Reguły gry według Conwaya
+    </h2>
+    <p>
+        <ul>
+            <li>Martwa komórka, która ma dokładnie 3 żywych sąsiadów, staje się żywa w następnej jednostce czasu (rodzi się)</li>
+            <li>Żywa komórka z 2 albo 3 żywymi sąsiadami pozostaje nadal żywa; przy innej liczbie sąsiadów umiera (z „samotności” albo „zatłoczenia”)</li>
+        </ul>
+    </p>
+    <h2 class="title">
+        Alternatywne reguły
+    </h2>
+    <p>
+        To że Conway zaproponował powyższe reguły nie znaczy, że nie można ekserymentować z innymi zasadami. <br>
+    żeby było prościej do zapisu reguły przyjęto następująca notację ułamkową: 23/3 - to zapis reguły Conwaya. Przed ukośnikiem umieszczamy ilu sąsiadów pozwala przeżyć a po ukośniku ilu sąsiadów powoduje narodziny komorki. 
+    Znane są też inne podejścia: 
+    <ul>
+            <li>23/3 - zapis reguły Conwaya</li>
+            <li>/2 - nasionka, czyli wzrost intensywny</li>
+            <li>/234 - kornonki - wzrost przypomina koronki serwety</li>
+            <li>012345678/3 - Płatki, Życie bez śmierci, wzory przypominają drabiny</li>
+            <li>1/1 - narośl, tworzy interesujące formy, startuje nawet od pojedynczej komórki.</li>
+            <li>12345/3 - labirynt, bo wzory przypominają labirynt</li>
+            <li>34/34 - Trzy Cztery.Początkowo sądzono, że ma ona tendencje do stabilizacji, ale dzięki symulacji komputerowej okazało się, że większe wzory eksplodują. Dużo małych oscylatorów i statki</li>
+            <li>34678/3678 - Dzień i Noc. Dużo wzorów o złożonym zachowaniu. Wzory można odwracać – uczynić wszystkie żywe komórki martwymi i na odwrót, a będzie on działał identycznie.</li>
+        </ul>
+        Jest jeszcze wiele innych kombinacji. Możecie potestować własne ustawienia. <br>
+        powięcej informacji można się udać <a href="https://pl.wikipedia.org/wiki/Gra_w_%C5%BCycie" target="_blank">tutaj</a>
+    </p>
+    <div class="lifeGrid" name="example">
+        <a href="{% url 'game_of_life_go' %}">
+            <button class="btn btn-secondary btn-lg">Zobacz jak to działa !</button>
+        </a>
+    </div>
+    <br>
+</div>
+{% endblock %}
+
+{% block right %}
+<div class="container-fluid">
+    <input type="text" class="d-none" name="gols" data-gols="{{ gols }}" value="{{ gols }}">
+    <input type="text" class="d-none" name="repeater" data-repeater_x="{{ repeater.0 }}" data-repeater_y="{{ repeater.1 }}" value="{{ repeater }}">
+    <input type="text" class="d-none" name="example" data-example="{{ example }}" value="{{ example }}">
+    <input type="text" class="d-none" name="rows" data-rows="{{ rows }}" value="{{ rows }}">
+    <input type="text" class="d-none" name="cols" data-rows="{{ cols }}" value="{{ cols }}">
+    <input type="text" class="d-none" name="finish" if="finish" value="1">
+    <span class="d-flex PB2 PB_bg_logo my-4 text-center widith-100">przykładowa formacja</span>
+    <div class="d-flex justify-content-between border-bottom pb-2">
+        <a href="/maths/life/?actual={{ gols.0.0 }}&step=-1">
+            <button class="btn btn-secondary btn-md"> poprzedni </button>
+        </a>
+        <p class="text-center"><span class="PB3">{{ gols.0.0 }}</span></p>
+        <a href="/maths/life/?actual={{ gols.0.0 }}&step=1">
+            <button class="btn btn-secondary btn-md"> następny </button>
+        </a>
+    </div>
+    <div class="lifeGrid" name="example">
+        <table class="tableGrid">
+        {% for row in gols.0.1 %}
+            <tr class="col m-0 p-0">
+            {% for item in gols.0.2 %}
+                <td class="cellGrid">
+                    <div class="cell deadCell" > </div>
+                </td>
+            {% endfor %}
+            </tr>
+        {% endfor %} 
+        {% for row in example.0 %}
+            <tr class="col" >
+            {% for item in row %}
+                    <td class="cell_hidden" >{{ item }}</td>
+            {% endfor %}
+            </tr>
+        {% endfor %}
+        </table>
+    </div>
+    <br>
+    
+</div>
+
+{% endblock %}
+{% block add_ins %}
+    <script src=" {% static 'js/life.js' %} "></script> 
+{% endblock %}

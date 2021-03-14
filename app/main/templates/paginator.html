@@ -1,0 +1,27 @@
+{% load define_action %}
+
+{% sum records.number 4 as r_max %}
+{% sub records.number 4 as r_min %}
+<nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+        {% if records.has_previous %}
+            <li class="page-item"><a class="page-link" href="?page=1">&laquo;</a></li>
+            <li class="page-item"><a class="page-link" href="?page={{ records.previous_page_number }}">&lang;</a></li>
+            {% if r_min > 0 %} <li class="page-item disabled"><span class="page-link">...</span></li> {% endif %}
+       
+        {% endif %}
+        {% for i in records.paginator.page_range %}
+            {% if records.number == i %}
+                <li class="page-item active"><span class="page-link">{{ i }} </span></li>
+            {% elif i >= r_min and i <= r_max %}
+                <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+            {% endif %}
+        {% endfor %}
+        {% if records.has_next %}
+            {% if r_max < records.paginator.num_pages %} <li class="page-item disabled"><span class="page-link">...</span></li> {% endif %}
+            <li class="page-item"><a class="page-link" href="?page={{ records.next_page_number }}">&rang;</a></li>
+            <li class="page-item"><a class="page-link" href="?page={{ records.paginator.num_pages }}">&raquo;</a></li>
+        {% endif %}
+    </ul>
+</nav>
+<br>

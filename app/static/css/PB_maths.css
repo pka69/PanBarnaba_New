@@ -1,0 +1,160 @@
+.content {
+    padding: 0 5px;
+    font-size: 1.2em;
+    line-height: 1.5em;
+    margin-bottom: 5px;
+}
+.title {
+    color: inherit;
+    text-decoration: none;
+    margin-top: 20px;
+    color: #333;
+}
+.lifeGrid {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    spacing:0;
+    padding:0;
+    display:flex;
+    justify-content:space-around;
+}
+.tableGrid {
+    cellspacing:0;
+    cellpadding:0;
+}
+
+.cellGrid {
+    width: 15px;
+    height: 15px;
+    border: 1px;
+    border-style: solid;
+    border-color: darkgray;
+    /* margin: 0px;
+    padding: 0px; */
+}
+.cell {
+    width: 12px;
+    height: 12px;
+    border: 1px;
+    margin: 1px;
+    border-radius: 5px;
+    
+}
+.cell2 {
+    width: 12px;
+    height: 12px;
+    border: 1px;
+    margin: 1px;
+    border-radius: 5px;
+    
+}
+.cell_hidden {
+    display: none;
+}
+.liveCell {
+    background-color: darkgray;
+}
+
+.deadCell {
+    background-color: white;
+}
+
+.cell_n {
+    border: 1px;
+    border-style: dashed;
+    border-color: black;
+    background-color: lightgray;
+    position: absolute;
+    left: 0;
+    right: 0;
+    padding: 5px;
+    font-family: 'Bree Serif', serif;
+    cursor: pointer;
+}
+.cell_9 {
+    width: 40px;
+    position: relative;
+    text-align: center; 
+    font-size: 1.3rem;
+    height: 40px;
+    padding: 3px;
+    cursor: pointer;
+}
+
+.cell_selected {
+    background-color: rgb(254,200,126);
+}
+
+.numbers_table {
+  margin-left: auto;
+  margin-right: auto;
+  border-collapse: collapse;
+  text-align:center; 
+}
+
+.cellWall {
+    width: 20px;
+    height: 20px;
+    border: 1px;
+    border-style: none;
+    border-color: #be3030;
+    border-spacing: 0;
+    padding: 0px;
+    /* margin: 0px;
+    padding: 0px; */
+}
+.cell3 {
+    width: 20px;
+    height: 20px;
+    /* border: 1px; */
+    /* margin: 1px; */
+    /* border-radius: 5px; */
+    
+}
+
+.liveWall {
+    /* background-color: red; */
+    background-image: url('../images/wall2.png');
+    background-size: cover;
+    padding: 0px;
+}
+
+.startLab {
+    background-image: url('../images/icons8-cat-24.png');
+    background-size: cover;
+    padding: 0px;
+}
+
+.endLab {
+    background-image: url('../images/stop.png');
+    background-size: cover;
+    padding: 0px;
+}
+.roadLight {
+    border-radius: 6px;
+    background-color: rgb(253,195,113);
+    color:rgb(89,13,15);
+    border-color: rgb(89,13,15);
+    border: solid 1px;
+    font-size: 10px;
+    text-align: center;
+    text-justify: auto;
+    line-height: 13px;
+}
+.roadStep {
+    border-radius: 6px;
+    background-color: white;
+    color:rgb(89,13,15);
+    border-color: rgb(89,13,15);
+    border: solid 1px;
+    font-size: 10px;
+    text-align: center;
+    text-justify: auto;
+    line-height: 13px;
+}
+.deadWall {
+    background-color: white;
+    background-image: none;
+    padding:1px;
+}

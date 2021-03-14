@@ -1,0 +1,39 @@
+{% load static %}
+{% load define_action %}
+{% load humanize %}
+<article class="article">
+    <div class="row">
+        {% if item.picture %}
+            <div class="article-photo col-md-2">
+                {% if item.picture|web_adress %}
+                    <a href="{{ item.picture }}" target="_blank">
+                        <img class="rounded float-start" src="{{ item.picture }}">
+                     </a>
+                {% else %}
+                     <a href="{% static item.picture %}" blank="true">
+                        <img class="rounded float-start" src="{% static item.picture %}">
+                    </a>
+                {% endif %}
+            </div>
+        {% endif %}
+        <div class="article-content col">
+            <div class="article-excerpt">
+                {% autoescape off %}
+                    {{ item.content_html }}
+                {% endautoescape %}
+            </div>
+            {% if item.external_link %}
+            <div class="float float-reverse col-md-2 text-end w-100">
+                <a href="{{ item.external_link }}" class="article-btn">
+                    przejdź
+                </a>
+            </div>
+            {% endif %}
+        </div>
+        
+    </div>
+    <div class="article-footer text-end border-top mt-2">
+        {{ item.fulldate|naturaltime }} | {{ item.owner.username }}
+    </div>
+    
+</article>

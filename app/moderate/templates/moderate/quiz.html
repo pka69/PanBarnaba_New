@@ -1,0 +1,169 @@
+{% extends 'main.html' %}
+{% load static %}
+{% load humanize %}
+{% load define_action %}
+
+{% block NAV1 %}
+    <span> S T R E F A &nbsp;&nbsp; M O D E R A T O R A</span>
+{% endblock %}
+
+{% block full %}
+    <div class='container-fluid justify-content-center p-2' >
+        <span class="d-flex justify-content-center PB2 PB_bg_logo m-2 justify-content-centre widith-100">
+            zarządzanie listą pytań <span class="PB1"></span>
+        </span>
+         <div class="container d-flex flex-row mb-3">
+            <div class="dropdown p-2 mx-4">
+                <button class="btn bg_color_ocean93 dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                    Wszystkie poziomy
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    {% for item in qlevels %}
+                        <li><a class="dropdown-item" href="/moderate/quiz/{{ item.0 }}">{{ item.1 }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="p-2 mx-4">  
+                <button type="button" class="btn bg_color_ocean93" data-bs-toggle="modal" data-bs-target="#AddMod">
+                    Dodaj pytanie
+                </button>
+            </div>
+            <div class="p-2 mx-4">
+                kliknij w ID aby edytować pytanie
+            </div>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+            <div class="col-sm center">
+                <table class="table  table-striped table-bordered">
+                    <thead class="PB_table_header">
+                        <tr class="align-items-center ">
+                            <th></th>
+                            <th class="text-center ">id</th>
+                            <th class="text-center">poziom</th>
+                            <th class="text-center">grupa</th>
+                            <th class="text-center">typ</th>
+                            <th class="text-center">pytanie</th>
+                            <th class="text-center">ile podpowiedzi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for item in quiz_list %}
+                        <tr class="align-items-center">
+                            <td class="text-center">
+                                <a href="/moderate/quiz_delete_item/{{ item.id }}/{{ default_qlevel }}/">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                                        <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                                    </svg>
+                            </a>
+                            </td>
+                            <td class="text-center" name="quiz_ID">
+                                <button 
+                                    type="button" 
+                                    class="border rounded-pill PB2" 
+                                    data-bs-toggle="modal" 
+                                    data-bs-target="#AddMod" 
+                                    data-id="{{ item.id }}"
+                                    data-qlevel="{{ item.qlevel }}"
+                                    data-qgroup="{{ item.qgroup }}"
+                                    data-qtype="{{ item.qtype }}"
+                                    data-question="{{ item.question }}">
+                                    {{ item.id }}
+                                </button>
+                            </td>
+                            <td class="text-center">
+                                    {{ item.get_qlevel_display }}
+                            </td>
+                            <td class="text-center">
+                                    {{ item.qgroup }}
+                            </td>
+                            <td class="text-center">
+                                    {{ item.get_qtype_display }}
+                            </td>
+                            <td class="text-center">
+                                    {{ item.question }}
+                            </td>
+                            <td class="text-center">
+                                    {{ item.ans }}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    {% if quiz_list.has_other_pages %}
+        {% with records=quiz_list %}
+            {% include 'paginator.html' %}
+        {% endwith %}
+    {% endif %}
+
+    <!-- Modal -->
+    <div class="modal fade" id="AddMod" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content bg_color_ocean93">
+            <form action="" method="post">
+                {% csrf_token %}
+                <input type="number" class="d-none" id="id" name="id" value="">
+                <div class="modal-header PB2">
+                    <h5 class="modal-title p-2 w-100" id="ModalTitle">Dodaj nowe pytanie <span class="PB1"> </span></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="qgroup" class="form-label">grupa</label>
+                            <input type="text" class="form-control" id="qgroup" name="qgroup" aria-describedby="" value="{{ default_qgroup }}">
+                        </div>
+                        <div class="mb-3">
+                            <label for="select" class="form-label">poziom trudności</label>
+                            <div class="p-2 m-2 px-4 shadow" id="select">
+                            {% for item in qlevels %}
+                                <div class="form-check form-check-inline">
+                                    <input value={{ item.0 }} {% if item.0 is default_qlevel %}checked{% endif %} 
+                                            class="form-check-input" type="radio" 
+                                            id="qlevel_{{ item.0 }}" name="qlevel">
+                                    <label class="form-check-label" for="qlevel_{{ item.0 }}">
+                                        {{ item.1 }}
+                                    </label>
+                                </div>
+                            {% endfor %}
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="content" class="form-label">treść pytania</label>
+                            <textarea class="form-control" id="question" name="question" rows="5"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <div class="p-2 m-2 px-4 shadow">
+                                <div class="p-2 border-bottom border-dark ">rodzaj odpowiedzi</div>
+                                <div class="form-check form-check-inline">
+                                    <input value=0 class="form-check-input" type="radio" name="qtype" id="qtype1" checked>
+                                    <label class="form-check-label" for="qtype1">
+                                        tylko jedna poprawna odpowiedź
+                                    </label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input value=1 class="form-check-input" type="radio" name="qtype" id="qtype2" >
+                                    <label class="form-check-label" for="qtype2">
+                                        kilka poprawnych odpowiedzi
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Wyjdź</button>
+                    <button class="btn btn-primary" type="submit" >Zapisz i dodaj odpowiedzi</button>
+                </div>
+             </form>
+        </div>
+    </div>
+    </div>
+    <br>
+{% endblock %}
+
+{% block add_ins %}
+    <script src=" {% static 'js/moderate_quiz.js' %} "></script> 
+{% endblock %}

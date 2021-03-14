@@ -1,0 +1,83 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block meta %}
+    <title>Pan Barnaba - szyfr Kaczor</title>
+    <meta name=”description” content=”Pan Barnaba i zagadkowa hipoteza. autor: Katarzyna Kalista. Szyfrowanie - szyfr Kaczor" />
+{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet"  href="{% static 'css/PB_encrypt.css' %}"/>
+{% endblock %}
+
+{% block full %}
+<div class='container'>
+    {% if PB_Stories %}
+        <div class="container">
+            <!-- działa! {{ PB_Stories }} -->
+            {% for bubble in PB_Stories %}
+                {% include 'bubble.html' %}
+            {% endfor %}
+        </div>
+    {% endif %}
+    <span class="d-flex justify-content-center PB2 PB_bg_logo m-2 justify-content-centre widith-100">
+        Na czym polega ten szyfr?
+    </span>
+    <div class="mx-2 p-2 shadow justify-content-center">
+        <p>
+            Aby sie bawić tym szyfrem potrzebne popatrz na poniższy rysunek. Mamy coś na kształt krzyżówki.
+            Kazdej literze w komórce w szyfrowanym tekście odpowiada symbol literowo-cyfrowy:
+            Pierwsza litera z wiersza i numer kolumny wskazuje konkreną literę
+        </p>
+        <div class="d-flex justify-content-center align-items-center">
+            <div>
+                <table class="mx-2 PB3">
+                    <tr>
+                        <td class="text-center border border-dark p-1 bg-warning">1</td>
+                        <td class="text-center border border-dark p-1 bg-warning">2</td>
+                        <td class="text-center border border-dark p-1 bg-warning">3</td>
+                        <td class="text-center border border-dark p-1 bg-warning">4</td>
+                        <td class="text-center border border-dark p-1 bg-warning">5</td>
+                        <td class="text-center border border-dark p-1 bg-warning">6</td>
+                        <td class="text-center border border-dark p-1 bg-warning">7</td>
+                        <td class="text-center border border-dark p-1 bg-warning">8</td>
+                    </tr>
+                    {% for item in KACZOR %}
+                    <tr >
+                        {% for char in item %}
+                            <td class="border border-dark py-1 px-3 {% if forloop.counter == 1 %}bg-secondary{% endif %}">{{ char }}</td>
+                        {% endfor %}
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+        <p class="mt-3 mx-2">
+            Każdą literlę można zapisać jej symbolem:
+        </p>
+        <ul class="PB3 m-3 list-group border-0">
+            <li class="list-group-item m-1 py-0 border-0">A1 to odpowiednik 'A'</li>
+            <li class="list-group-item m-1 py-0 border-0">C7 to odpowiednik 'J'</li>
+            <li class="list-group-item m-1 py-0 border-0">R4 to odpowiednik 'U'</li>
+            <li class="list-group-item m-1 py-0 border-0">Z1 to oczywiście 'Z'</li>
+        </ul>
+        <p>
+            Na przykład <span class="PB2">PAN BARNABA Z ANTKIEM</span> zaszyfrowany tą metodą będzie wyglądać tak:
+        </p>
+        <p>
+            O2 A1 K4 &nbsp;&nbsp;A2 A1 R1 K4 A1 A2 A1
+        </p>
+        <p>Do wyboru masz trzy poziomy trudności. Od zadań łatwych (dwu/trzy wyrazowych) do bardzo trudnych (długie cytaty).  <br>
+            Sam zdecyduj od czego chcesz zacząć
+        </p>
+    </div>
+    {% include 'encrypt/next_or_back.html' %}
+    <br>
+</div>
+
+{% endblock %}
+
+{% block add_ins %}
+    <script src=" {% static 'js/timer.js' %} "></script> 
+    <script src=" {% static 'js/encrypt.js' %} "></script> 
+{% endblock %}

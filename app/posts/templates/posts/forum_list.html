@@ -1,0 +1,58 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block meta %}
+    <title>Pan Barnaba - forum</title>
+    <meta name=”description” content=”Pan Barnaba i zagadkowa hipoteza. autor: Katarzyna Kalista. Forum użytkowników" />
+{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet"  href="{% static 'css/PB_forum.css' %}"/>
+ {% endblock %}
+ 
+{% block full %}
+    <div class='container my-2'>
+        {% if PB_Stories %}
+            <div class="container">
+                <!-- działa! {{ PB_Stories }} -->
+                {% for bubble in PB_Stories %}
+                    {% include 'bubble.html' %}
+                {% endfor %}
+            </div>
+        {% endif %}
+        <div class="container mb-2 p-2 PB2">
+            {% for option in ftypes %}
+                <a href="/posts/forum/{{ option }}">
+                    <button type="button" class="btn btn-{% if option == ftype %}secondary{% else %}outline-secondary{% endif %}">
+                        {{ option }}
+                    </button>
+                </a>
+            {% endfor %}
+        </div>
+        <div class="my-3 secondary">
+            <form action="" method="POST">
+                {% csrf_token %}
+                <label for="content" class="form-label">o czym myślisz?</label>
+                <input type="text" class="form-control" name="content" id="main_content" autocomplete="none">
+                <input type="text" class="form-control d-none" name="subgroup", value="{{ ftype }}">
+                <input type="number" class="form-control d-none" name="user", value="{{ request.user.id }}">
+                <button type"submit" class="d-none" name="submit" value="add_post"></button>
+            </form>
+        </div>
+        {% for item in posts %}
+            {% include 'posts/forum.html' %}
+        {% endfor %}
+        {% if posts.has_other_pages %}
+        
+        {% with records=posts %}
+            {% include 'paginator.html' %}
+        {% endwith %}
+    {% endif %}
+
+    </div>
+
+{% endblock %}
+
+{% block add_ins %}
+    <script src=" {% static 'js/forum.js' %} "></script> 
+{% endblock %}

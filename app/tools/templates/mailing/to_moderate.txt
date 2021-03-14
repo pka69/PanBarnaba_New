@@ -1,0 +1,16 @@
+Drogi moderatorze
+
+pojawiły się w bazie nowe posty wymagające zatwierdzenia.
+
+        {% for item in posts %}
+                {{ forloop.counter }} - {{ item.content }}
+        {% endfor %}
+
+
+Uprzejmie proszę sprawdź czy nie powinieneś ich przeglądnąc i zaakceptować. 
+Oczywiście mogł to zrobić inny moderator, ale na wszelki wypadek sprawdź
+
+możesz to zrobić wchodząc na adres: panbarnaba.pl/moderate/2.
+
+Pozdrawiam
+Pan Barnaba

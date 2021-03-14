@@ -1,0 +1,33 @@
+{% extends 'mailing/mail_base.html' %}
+
+{% block mail %}
+<h2>Drogi moderatorze</h2>
+
+<p>pojawiły się w bazie nowe posty wymagające zatwierdzenia.</p>
+<br>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>id</th>
+            <th>treść</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in posts %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ item.content }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<br>
+
+<p>Uprzejmie proszę sprawdź czy nie powinieneś ich przeglądnąc i zaakceptować. </p>
+<p>Oczywiście mogł to zrobić inny moderator, ale na wszelki wypadek sprawdź.</p>
+<br>
+możesz to zrobić <a href="panbarnaba.pl/moderate/2">tutaj</a>.
+<br>
+Pozdrawiam <br>
+<i>Pan Barnaba</i>
+{% endblock %}

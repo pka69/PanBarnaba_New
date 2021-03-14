@@ -1,0 +1,312 @@
+{% load static %}
+{% load humanize %}
+<!DOCTYPE html>
+<html lang="pl-PL">
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-2C3E7LJL4V"></script>
+     <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-2C3E7LJL4V');
+    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1 , shrink-to-fit=no" />
+    {% block meta %}
+        <title>Pan Barnaba</title>
+        <meta name=”description” content=”Pan Barnaba i zagadkowa hipoteza. autor: Katarzyna Kalista. Gry i zabawy dla dzieci. Ciekawe algorytmy. Forum. Ceny. Wieści z sieci” />
+    {% endblock %}
+    <meta name="keywords" content="książka, KatarzynaKalista, sudoku, puzzle, quiz, szyfrowanie, gameOfLife, dzieci, PanBarnaba" />
+    <meta name="author" content="Piotr Kalista" />
+    <meta name="copyright" content="Copyright owner" />
+    <meta name="robots" content="index, follow"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Pridi:wght@200;300;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Courgette&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link rel="stylesheet"  href="{% static 'css/PanBarnaba.css' %}"/>
+    <link rel="stylesheet"  href="{% static 'css/PB_colors.css' %}"/>
+    <link rel="shortcut icon" href="{% static 'images/icons8-cat-24.png' %}" type="image/x-icon">
+    {% block head %}
+    {% endblock %}
+</head> 
+<body>
+    <div class="navbar navbar-md PB_navbar"> 
+    {% comment %} bg_color_grey29 {% endcomment %}
+            <div class="d-inline-block PB_bg_logo w-50 mx-4">
+                <div class="PB_border_logo ">
+                    <h1 class="text-center PB1 PB_letter_space">
+                        {% block NAV1 %}
+                        <span> PAN BARNABA</span>
+                        {% endblock %}
+                    </h1>
+                    <hr> 
+                    {% if main_name %}
+                        <p class="display-1 text-center PB2 ">{{ main_name }}</p>
+                    {% else %}
+                        <p  class="display-1 text-center PB2">zaprasza</p>
+                    {% endif %}
+                </div>
+            </div>
+            {% block title_box %}
+                {% if premier_time %}
+                    <div class="d-inline-block mx-4">
+                        <div class="row justify-content-center ">
+                            <h2 class="PB1">Premiera nadchodzi!</h2>
+                        </div>
+                        <div class="row justify-content-center border rounded-pill p-2 PB2" id="countdown">
+
+                        </div>
+                        {% comment %} <h4 class="display-5 text-center PB2"></h4> {% endcomment %}
+                        <p class="d-none" id="premier_time" 
+                            data-year="{{ premier_time.0 }}"
+                            data-month="{{ premier_time.1 }}"
+                            data-day="{{ premier_time.2 }}"
+                            data-hour="{{ premier_time.3 }}"
+                            data-minute="{{ premier_time.4 }}"
+                            >{{ premier_time }}</p>
+                    </div>
+                {% else %}
+                    <div class="d-inline-block ">
+                        <div class="row justify-content-center border rounded-pill p-2 PB2">
+                            <h2>
+                                {% if title %} 
+                                    &nbsp;&nbsp;{{ title }} &nbsp;&nbsp;
+                                {% else %}
+                                    Książka już jest w księgarniach!
+                                {% endif %}    
+                                </h2>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endblock %}
+            <div class="d-inline-block">
+                <p>                      </p>
+            </div> 
+    </div>
+    {% block navbar %}
+        <nav class="navbar navbar-expand-md navbar-light bg_color_grey29" >
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/">
+                    <img src="{% static 'images/icons8-cat-24.png' %}" width="25" height="25" alt="">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                {% if submenu %}
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            {% for menu_0, menu_1, menu_2 in submenu %}
+                                {% if menu_2 %}
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" id="{{ menu_0 }}" role="button" data-bs-toggle="dropdown" aria-expanded="false">{{ menu_0 }}</a>
+                                        <ul class="dropdown-menu" aria-labelledby="{{ menu_0 }}">
+                                            {% for menu1_0, menu1_1, menu1_2 in menu_2 %}
+                                                <li><a class="dropdown-item" href="{{ menu1_1 }}">{{ menu1_0 }}</a></li>
+                                            {% endfor %}
+                                        </ul>
+                                    </li>
+                                {% else %}
+                                    <li class="nav-item">
+                                        <a class="nav-link" href=" {{ menu_1 }}">{{ menu_0 }}</a>
+                                    </li>
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
+                <a href='/bubbleSwitch/?next={{ request.path }}'> 
+                    <button class="btn btn-outline-secondary btn-sm">
+                        {% if request.session.bubbles == 'no' %}Włacz{% else %}Wyłącz{% endif %} podpowiedzi Pana Barnaby
+                    </button>
+                </a>
+            </div>
+        </nav>
+    {% endblock %}
+    {% block message %}
+        <div class="container-fluid">
+            <!-- message -->
+            {% include 'messages.html' %}
+        </div>
+    {% endblock %}
+    {% block full %}  
+        <div class="container-fluid grid_bg">
+            <div class = 'row'>
+                <div class="col-md-9 p-2 border-end border-2">
+                    {% if PB_Stories %}
+                        <div class="container">
+                            {% for bubble in PB_Stories %}
+                                {% include 'bubble.html' %}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                    {% block left %}
+                        {% with static_folder='images/menu/' %}
+                            <span class="d-flex justify-content-center PB2 PB_bg_logo m-2 justify-content-centre widith-100">
+                                Zagrajmy
+                            </span>
+                            <div class="row justify-content-center">
+                                <div class="card-group">    
+                                    {% for item in games %}
+                                        {% include 'card.html' %}
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <span class="d-flex justify-content-center PB2 PB_bg_logo m-2 justify-content-centre widith-100">
+                                Fascynujący świat matematyki
+                            </span>
+                            <div class="row justify-content-center">
+                                <div class="card-group"> 
+                                    {% for item in maths %}
+                                        {% include 'card.html' %}
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        {% endwith %}
+                    {% endblock %}
+                </div>
+                <div class="col-md-3 p-2">
+                    {% block right %}
+                        {% if news %}
+                            <div class="rightContent-info">
+                                <span class="d-flex justify-content-center PB2 PB_bg_logo m-2 justify-content-centre widith-100">
+                                    ostatni news
+                                </span>
+                                {% with item=news %}
+                                    {% include 'posts/post_sm.html' %}
+                                {% endwith %}
+                                <div class="d-flex flex-row-reverse py-1">
+                                    <a href="{% url 'news' %}">
+                                        <span class="p-2">więcej...</span>
+                                    </a>
+                                </div>
+                            </div>
+                        {% endif %}
+                        {% if forum %}
+                            <div class="rightContent-info">
+                                <span class="d-flex justify-content-center PB2 PB_bg_logo m-2 justify-content-centre widith-100">
+                                    ostatni wpis na forum
+                                </span>
+                                {% with item=forum %}
+                                    {% include 'posts/post_sm.html' %}
+                                {% endwith %}
+                                <div class="d-flex flex-row-reverse py-1">
+                                    <a href="{% url 'forum' %}">
+                                        <span class="p-2">więcej...</span>
+                                    </a>
+                                </div>
+                            </div>
+                        {% endif %}
+                        <!-- {% if bookstore %}
+                            <div class="rightContent-info">
+                                <span class="d-flex justify-content-center PB2 PB_bg_logo m-2 justify-content-centre widith-100">
+                                    gdzie można kupić
+                                </span>
+                                <div class="d-flex flex-row">
+                                        <div class="p-2">
+                                            {{ bookstore.p_date }}
+                                            <a href="{{ bookstore.external_link }}" target="_blank">
+                                                <img class="mr-lg-4 mr-2" style="width: 16px;" src="{{ bookstore.picture }}">
+                                                {{bookstore.content}} - książka
+                                            </a>
+                                        </div>
+                                    <div class="p-2">- {{ bookstore.dec_content }} PLN</div>
+                                </div>
+                                {% if ebookstore %}
+                                    <div class="d-flex flex-row">
+                                            <div class="p-2">
+                                                {{ ebookstore.p_date }}
+                                                <a href="{{ ebookstore.external_link }}" target="_blank">
+                                                    <img class="mr-lg-4 mr-2" style="width: 16px;" src="{{ ebookstore.picture }}">
+                                                    {{ebookstore.content}} - ebook 
+                                                </a>
+                                            </div>
+                                        <div class="p-2">- {{ ebookstore.dec_content }} PLN</div>
+                                    </div>
+                                {% endif %}
+                                <div class="d-flex flex-row-reverse py-1">
+                                    <a href="{% url 'bookpricelist' %}">
+                                        <span class="p-2">więcej...</span>
+                                    </a>
+                                </div>
+                            </div>
+                        {% endif %} -->
+                            <div class="rightContent-info">
+                                <!-- <script type="text/javascript" src="https://buybox.click/js/bb-widget.min.js" async=""></script>
+                                <div class="bb-widget" id="buybox-436v" data-bb-id="14039" data-bb-oid="148787367" ></div> -->
+                                <script type="text/javascript" src="https://buybox.click/js/bb-widget.min.js" async=""></script>
+                                <div class="bb-widget" id="buybox-ngoh" data-bb-id="14039" data-bb-oid="148787367" ></div>
+                                <div class="d-flex flex-row-reverse py-1">
+                                    <a href="{% url 'bookpricelist' %}">
+                                        <span class="p-2">więcej...</span>
+                                    </a>
+                                </div>
+                            </div>
+                           
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+    {% endblock %}
+    <hr>
+    {% block footer %}
+    <footer class = 'container-fluid fixed-bottom bg-white'>
+        <hr class="my-1"> 
+        <div class="row">
+            <div class="col-md-3 justify-content-start">
+                <p>&copy;{{ copyright }} ver. {{ version }}</p>
+            </div>
+            {% comment %} <a href='https://pngtree.com/so/black-and-white'>black and white png from pngtree.com</a> {% endcomment %}
+            <div class="col-md-9 justify-content-end">
+                <div class="d-flex justify-content-end">
+                {% if request.user.is_authenticated %}
+                    
+                    <div class="d-inline-block mx-2">
+                        <p>
+                            Twój Nick: {{ request.user.username }}
+                        </p>
+                        <p> </p>
+                    </div>
+                    <div class='d-inline-block mx-2'>
+                            <a href="{% url 'logout' %}"><button class="button">Logout</button></a>
+                    </div>
+                    <div class="d-inline-block mx-2">
+                        <a href="{% url 'changepass' request.user.id %}"><button>Zmień hasło</button></a>
+                    </div>
+                {% else %}
+                    <div class="d-inline-block mx-2">
+                        <span>
+                            użytkownik: nieznany
+                        </span>
+                    </div>
+                    <div class="d-inline-block mx-2">
+                        <a href="{% url 'login' %}"><button>Login</button></a>
+                    </div>
+                    <div class="d-inline-block mx-2">
+                        <a href="{% url 'createuser' %}"><button>Dodaj konto</button></a>
+                    </div>
+                    
+                {% endif %}
+                </div>
+            </div>
+        </div>
+    </footer>
+    {% endblock %}
+    
+</body>
+{% block add_ins %}
+
+{% endblock %}
+{% if premier_time %}
+    <script src=" {% static 'js/counter.js' %} "></script> 
+{% endif %}
+<!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script> -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous"></script>
+</html>

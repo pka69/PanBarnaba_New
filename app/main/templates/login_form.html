@@ -1,0 +1,17 @@
+{% extends 'main.html' %}
+
+
+{% block full %}
+<div class='container' >
+        <div class="display-5 m-4 text-center PB2">
+                    <h2><span>formularz logowania</span></h2>
+        </div>
+        <form action="" method='post' >
+            {% csrf_token %}
+            {{ form }}
+            <input type="submit" value="Zaloguj">
+            <input type="text" class="d-none" name="next" value="{{ next }}" />
+        </form>
+
+    </div>
+{% endblock %}

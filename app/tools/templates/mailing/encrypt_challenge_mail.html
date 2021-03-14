@@ -1,0 +1,17 @@
+{% extends 'mailing/mail_base.html' %}
+{% load static %}
+
+{% block mail %}
+<h2>Witaj,</h2>
+
+<p>{{ user.username }} ma dla Ciebie zadanie</p>
+<br>na stronie panbarnaba.pl zostawił CI zaszyfrowaną wiadomość.
+<hr>
+<p>Wiadomość jest przeznaczona tylko dla Ciebie. <br>
+    Aby móc ją wyświetlić i podjąc próbę odszyfrowania przejdź <a href="{{ path }}">Tutaj</a><br>
+    Jeżeli link nie działa, wklej do przeglądarki następujący adres {{path }}</p>
+<br>
+<p>Miłej zabawy</p>
+<br>
+<img src="{% static 'images/icons8-cat-24.png' %}"  width="30" height="30" alt="Pan Barnaba"><i>Pan Barnaba</i>
+{% endblock %}

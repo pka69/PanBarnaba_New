@@ -1,0 +1,132 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block meta %}
+    <title>Pan Barnaba - szyfr Divider</title>
+    <meta name=”description” content=”Pan Barnaba i zagadkowa hipoteza. autor: Katarzyna Kalista. Szyfrowanie - szyfr ułamkowy (divider)” />
+{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet"  href="{% static 'css/PB_encrypt.css' %}"/>
+{% endblock %}
+
+{% block title_box %}
+    <div class="d-inline-block ">
+        <div class="row justify-content-center ">
+            <h2>Twój czas wykonania</h2>
+        </div>
+        <div class="row justify-content-center border rounded-pill p-2 PB2" id="counter" value="0">
+        </div>
+    </div>
+{% endblock %}
+
+{% block full %}
+<div class='container'>
+    <span class="d-none" id="finish" >0</span>
+    <span class="d-none" id="finalTime" >0</span>
+    <span class="d-none" id="level">{{ level }}</span>
+    <span class="d-none" id="key">{{ key }}</span>
+    <span class="d-none" id="game_id">{{ quotation }}</span>
+    <span class="d-none" id="method">{{ method }}</span>
+    <span class="d-none" id="gameType">encrypt</span>
+    <span class="d-flex justify-content-center PB2 PB_bg_logo m-2 justify-content-centre widith-100">
+        zaczynamy!
+    </span>
+    <div class="container">
+         <span class="m-2 d-flex justify-content-center PB3">Klucz Szyfrujący</span>
+         <div class="d-flex justify-content-center align-items-center mx-2">
+            <div>
+                <table class="mx-2 PB3">
+                    <tr class="border-bottom border-dark">
+                        <td class="p-2">A</td>
+                        <td class="p-2">B</td>
+                        <td class="p-2">C</td>
+                        <td class="p-2">D</td>
+                        <td class="p-2">E</td>
+                        
+                    </tr>
+                    <tr>
+                        <td class="text-center" colspan="5">1</td>
+                    </tr>
+                </table>
+            </div>
+            <div>
+                <table class="mx-2 PB3">
+                    <tr class="border-bottom border-dark">
+                        <td class="p-2">F</td>
+                        <td class="p-2">G</td>
+                        <td class="p-2">H</td>
+                        <td class="p-2">I</td>
+                        <td class="p-2">J</td>
+                    </tr>
+                    <tr>
+                        <td class="text-center" colspan="5">2</td>
+                    </tr>
+                </table>
+            </div>
+            <div>
+                <table class="mx-2 PB3">
+                    <tr class="border-bottom border-dark">
+                        <td class="p-2">K</td>
+                        <td class="p-2">L</td>
+                        <td class="p-2">M</td>
+                        <td class="p-2">N</td>
+                        <td class="p-2">O</td>
+                    </tr>
+                    <tr>
+                        <td class="text-center" colspan="5">3</td>
+                    </tr>
+                </table>
+            </div>
+            <div>
+                <table class="mx-2 PB3">
+                    <tr class="border-bottom border-dark">
+                        <td class="p-2">Q</td>
+                        <td class="p-2">P</td>
+                        <td class="p-2">R</td>
+                        <td class="p-2">S</td>
+                        <td class="p-2">T</td>
+                    </tr>
+                    <tr>
+                        <td class="text-center" colspan="5">4</td>
+                    </tr>
+                </table>
+            </div>
+            <div>
+                <table class="mx-2 PB3">
+                    <tr class="border-bottom border-dark">
+                        <td class="p-2">U</td>
+                        <td class="p-2">V</td>
+                        <td class="p-2">W</td>
+                        <td class="p-2">X</td>
+                        <td class="p-2">Y</td>
+                        <td class="p-2">Z</td>
+                    </tr>
+                    <tr>
+                        <td class="text-center" colspan="5">5</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <br>
+        <span class="d-flex justify-content-center m-2 PB3">Odszyfruj...</span>
+        <span class="d-flex justify-content-center m-2 PB2" id="encrypt">{{ encrypt }}</span>
+        <br>
+        <div class="form-floating mb-3">
+            <input type="text" autocomplete="off" class="form-control" id="answer" style="height: {{ rows }}px"></textarea>
+            <label for="answer">wprowadź odszyfrowany tekst</label>
+        </div>
+        <div class="d-flex justify-content-center">
+            <div class="border rounded-pill  p-2 PB2 d-none" id="end_site"></div>
+            <span class="d-none PB4 PB_bg_error rounded-pill p-2" id="wrong" > coś sie nie zgadza. Poszukaj błedu. </span>
+        </div>
+    </div>  
+    {% include 'encrypt/next_or_back.html' %}
+    {% include 'scoring/score_list.html' %}
+<br>
+{% endblock %}
+
+{% block add_ins %}
+    <script src=" {% static 'js/timer.js' %} "></script> 
+    <script src=" {% static 'js/encrypt.js' %} "></script> 
+{% endblock %}

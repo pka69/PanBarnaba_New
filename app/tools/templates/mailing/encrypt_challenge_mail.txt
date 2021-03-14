@@ -1,0 +1,12 @@
+Witaj,
+
+{{ user.username }} ma dla Ciebie zadanie
+
+na stronie panbarnaba.pl zostawił CI zaszyfrowaną wiadomość.
+
+Wiadomość jest przeznaczona tylko dla Ciebie. <br>
+Aby móc ją wyświetlić i podjąc próbę odszyfrowania przejdź <a href="{{ path }}">Tutaj</a><br>
+Jeżeli link nie działa, wklej do przeglądarki następujący adres {{path }}</p>
+
+Miłej zabawy
+Pan Barnaba

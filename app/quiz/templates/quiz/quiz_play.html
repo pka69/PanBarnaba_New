@@ -1,0 +1,72 @@
+{% extends 'main.html' %}
+
+{% load static %}
+
+{% block meta %}
+    <title>Pan Barnaba - quiz</title>
+    <meta name=”description” content=”Pan Barnaba i zagadkowa hipoteza. autor: Katarzyna Kalista. Quiz" />
+{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet"  href="{% static 'css/PB_quiz.css' %}"/>
+{% endblock %}
+
+{% block title_box %}
+    <div class="d-inline-block ">
+        <div class="row justify-content-center ">
+            <h2>Twój czas wykonania</h2>
+        </div>
+        <div class="row justify-content-center border rounded-pill p-2 PB2" id="counter" value="0">
+        </div>
+    </div>
+{% endblock %}
+
+{% block full %}
+    <span class="d-none" id="finish" >0</span>
+    <span class="d-none" id="result" >0</span>
+    <span class="d-none" id="finalTime" >0</span>
+    <span class="d-none" id="level">{{ qlevel }}</span>
+    <span class="d-none" id="gameType">quiz</span>
+    <span class="d-none" id="method">std</span>
+    <span class="d-none" id="game_id">{{ qgroup }}</span>
+    <div class = "container">
+        <span class="d-flex justify-content-center PB2 PB_bg_logo m-4 justify-content-centre widith-100">
+                    {{ set_name }} 
+                </span>
+        {% for item in quiz %}
+            <div class="shadow m-2 p-1 {% if forloop.counter > 1 %}d-none{% endif %}">
+                <p class="question" data-qtype="{{ item.qtype }}" data-id="{{ item.id }}">{{ item.question }}</p>
+                {% for ans in item.answers.all %}
+                    <div class="answer form-check">
+                        <input 
+                            class="form-check-input" 
+                            type="{% if item.qtype == 0 %}radio{% else %}checkbox{% endif %}" 
+                            name="qusetion_{{ item.id }}" 
+                            id="answer_{{ item.id }}_{{ ans.id }}"
+                            data-question="{{ item.id }}"
+                            data-correct="{{ ans.correct }}">
+                        <label class="form-check-label ps-5" for="answer_{{ item.id }}_{{ ans.id }}">
+                            {{ ans.answer }}
+                        </label>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endfor %}
+        <hr>
+        <div class="justify-content-center">
+            <button type="button"  name="next_button" class="btn btn-secondary btn-lg">Następne</button>
+        </div>
+        <div class="justify-content-center">
+            <a href="/quiz/next/{{ qlevel}}/{{ qgroup }}"   type="button"  name="next_game" class="btn btn-secondary btn-lg d-none">kolejny quiz?</a>
+        </div>
+        <div class="row justify-content-center border rounded-pill  m-4 PB2" id="end_site"></div>
+        <br>
+    </div>
+    {% include 'scoring/score_list.html' %}
+    <br>
+{% endblock %}
+
+{% block add_ins %}
+    <script src=" {% static 'js/timer.js' %} "></script> 
+    <script src=" {% static 'js/quiz.js' %} "></script> 
+{% endblock %}

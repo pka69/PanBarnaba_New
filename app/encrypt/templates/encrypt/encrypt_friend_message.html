@@ -1,0 +1,63 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block meta %}
+    <title>Pan Barnaba - szyfr GADERYPOLUKI</title>
+    <meta name=”description” content=”Pan Barnaba i zagadkowa hipoteza. autor: Katarzyna Kalista. Szyfrowanie - szyfr GADERYPOLUKI” />
+{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet"  href="{% static 'css/PB_encrypt.css' %}"/>
+{% endblock %}
+
+{% block full %}
+<div class='container'>
+    {% if PB_Stories %}
+        <div class="container">
+            <!-- działa! {{ PB_Stories }} -->
+            {% for bubble in PB_Stories %}
+                {% include 'bubble.html' %}
+            {% endfor %}
+        </div>
+    {% endif %}
+    <span class="d-flex justify-content-center PB2 PB_bg_logo m-4 widith-100">Do dzieła...</span>
+    <span class="d-flex PB3 mx-4 my-2" name="method_selected"></span>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <div class="dropdown p-2 mx-4" name="methods">
+            <select class="form-select my-3" aria-label="Default select method" id="method_select" name="method_select">
+                <option value="" selected>Wybierz metodę szyfrowania</option>
+                {% for item in methods %}
+                <option value="{{ item }}" name="method_list" >{{ item }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="dropdown p-2 mx-4" name="key_list">
+            <select class="form-select d-none my-3" aria-label="Default select key" id="key" name="key">
+                <option value="" selected>Wybierz klucz szyfrowania</option>
+                {% for item in sylabowy %}
+                <option value="{{ item }}" name="keys"> {{ item }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="mx-4 my-2 d-none" name="emailBox">
+            <label for="email" class="form-label">adres mailowy do wysyłki</label>
+            <input type="email" class="form-control" id="email" name="email" aria-describedby="" required>
+        </div>
+        <div class="form-floating mx-4 my-2 d-none" name="to_encrypt">
+            <textarea type="text" autocomplete="off" class="form-control" name="to_encrypt" id="to_encrypt" style="height: 200px"></textarea>
+            <label for="answer">wprowadź wiadomość do zaszyfrowania</label>
+        </div>
+        <input type="text" class="d-none" id="method_id" name="method_id" >
+        <input type="text" class="d-none" id="key_id" name="key_id">
+        <div class="d-flex justify-content-center mx-4 my-2">
+            <button type="submit" class="btn btn-outline-secondary d-none" name="submit">Wyślij</button>
+        </div>
+    </form>
+    <br>
+</div>
+
+{% endblock %}
+{% block add_ins %}
+    <script src=" {% static 'js/encrypt_message.js' %} "></script> 
+{% endblock %}

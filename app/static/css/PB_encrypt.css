@@ -1,0 +1,315 @@
+.cell_key {
+    width: 50px;
+    height: 50px;
+    position: relative;
+    text-align: center; 
+    font-size: 1.5rem;
+    cursor: pointer;
+    border: 1px;
+    border-style: dashed;
+    border-color: black;
+    background-color: rgb(254,200,126);
+    
+    left: 0;
+    right: 0;
+    padding: 5px;
+    font-family: 'Bree Serif', serif;
+    cursor: pointer;
+}
+
+.cell_none {
+    background-color: white;
+    font-size: 3rem;
+}
+
+.encrypt_table {
+  margin-left: auto;
+  margin-right: auto;
+  border-collapse: collapse;
+  text-align:center; 
+
+}
+
+.brownie_a {
+  width: 2rem;
+  margin-right: 5px;
+  border-bottom: 1px solid black;
+  border-right: 1px solid black;
+  text-align:left;
+  padding-left: 3px;
+  padding-right: 3px;
+  font-family: bold;
+  display: inline-block;
+}
+.brownie_b {
+  width: 2rem;
+  margin-right: 5px;
+  border-bottom: 1px solid black;
+  border-right: 1px solid black;
+  text-align:right;
+  padding-left: 3px;
+  padding-right: 3px;
+  font-family: bold;
+  display: inline-block;
+}
+.brownie_c {
+  width: 2rem;
+  margin-right: 5px;
+  border-bottom: 1px solid black;
+  border-right: 1px solid black;
+  border-left: 1px solid black;
+  text-align:left;
+  padding-left: 3px;
+  padding-right: 3px;
+  font-family: bold;
+  display: inline-block;
+}
+.brownie_d {
+  width: 2rem;
+  margin-right: 5px;
+  border-bottom: 1px solid black;
+  border-right: 1px solid black;
+  border-left: 1px solid black;
+  text-align:right;
+  padding-left: 3px;
+  padding-right: 3px;
+  font-family: bold;
+  display: inline-block;
+}
+.brownie {
+  margin-right: 0px;
+  margin-left: 0px;
+  text-align: center;
+}
+.brownie_e {
+  width: 2rem;
+  margin-right: 5px;
+  border-bottom: 1px solid black;
+  border-left: 1px solid black;
+  text-align:left;
+  padding-left: 3px;
+  padding-right: 3px;
+  font-family: bold;
+  display: inline-block;
+}
+.brownie_f {
+  width: 2rem;
+  margin-right: 5px;
+  border-bottom: 1px solid black;
+  border-left: 1px solid black;
+  text-align:right;
+  padding-left: 3px;
+  padding-right: 3px;
+  font-family: bold;
+  display: inline-block;
+}
+.brownie_g {
+  width: 2rem;
+  margin-right: 5px;
+  border-bottom: 1px solid black;
+  border-top: 1px solid black;
+  border-right: 1px solid black;
+  text-align:left;
+  padding-left: 3px;
+  padding-right: 3px;
+  font-family: bold;
+  display: inline-block;
+}
+.brownie_h {
+  width: 2rem;
+  margin-right: 5px;
+  border-bottom: 1px solid black;
+  border-top: 1px solid black;
+  border-right: 1px solid black;
+  text-align:right;
+  padding-left: 3px;
+  padding-right: 3px;
+  font-family: bold;
+  display: inline-block;
+}
+.brownie_i {
+  width: 2rem;
+  margin-right: 5px;
+  border-bottom: 1px solid black;
+  border-top: 1px solid black;
+  border-right: 1px solid black;
+  border-left: 1px solid black;
+  text-align:left;
+  padding-left: 3px;
+  padding-right: 3px;
+  font-family: bold;
+  display: inline-block;
+}
+.brownie_j {
+  width: 2rem;
+  margin-right: 5px;
+  border-bottom: 1px solid black;
+  border-top: 1px solid black;
+  border-right: 1px solid black;
+  border-left: 1px solid black;
+  text-align:right;
+  padding-left: 3px;
+  padding-right: 3px;
+  font-family: bold;
+  display: inline-block;
+}
+.brownie_k {
+  width: 2rem;
+  margin-right: 5px;
+  border-bottom: 1px solid black;
+  border-top: 1px solid black;
+  border-left: 1px solid black;
+  text-align:left;
+  padding-left: 3px;
+  padding-right: 3px;
+  font-family: bold;
+  display: inline-block;
+}
+.brownie_l {
+  width: 2rem;
+  margin-right: 5px;
+  border-bottom: 1px solid black;
+  border-top: 1px solid black;
+  border-left: 1px solid black;
+  text-align:right;
+  padding-left: 3px;
+  padding-right: 3px;
+  font-family: bold;
+  display: inline-block;
+}
+
+.brownie_m {
+  width: 2rem;
+  margin-right: 5px;
+  border-top: 1px solid black;
+  border-right: 1px solid black;
+  text-align:left;
+  padding-left: 3px;
+  padding-right: 3px;
+  font-family: bold;
+  display: inline-block;
+}
+.brownie_n {
+  width: 2rem;
+  margin-right: 5px;
+  border-top: 1px solid black;
+  border-right: 1px solid black;
+  text-align:right;
+  padding-left: 3px;
+  padding-right: 3px;
+  font-family: bold;
+  display: inline-block;
+}
+.brownie_o {
+  width: 2rem;
+  margin-right: 5px;
+  border-top: 1px solid black;
+  border-right: 1px solid black;
+  border-left: 1px solid black;
+  text-align:left;
+  padding-left: 3px;
+  padding-right: 3px;
+  font-family: bold;
+  display: inline-block;
+}
+.brownie_p {
+  width: 2rem;
+  margin-right: 5px;
+  border-top: 1px solid black;
+  border-right: 1px solid black;
+  border-left: 1px solid black;
+  text-align:right;
+  padding-left: 3px;
+  padding-right: 3px;
+  font-family: bold;
+  display: inline-block;
+}
+.brownie_r {
+  width: 2rem;
+    margin-right: 5px;
+  border-top: 1px solid black;
+  border-left: 1px solid black;
+  text-align:left;
+  padding-left: 3px;
+  padding-right: 3px;
+  font-family: bold;
+  display: inline-block;
+}
+.brownie_s {
+  width: 2rem;
+  margin-right: 5px;
+  border-top: 1px solid black;
+  border-left: 1px solid black;
+  text-align:right;
+  padding-left: 3px;
+  padding-right: 3px;
+  font-family: bold;
+  display: inline-block;
+}
+
+.brownie_t {
+  width: 1.7rem;
+  margin-right: 5px;
+  border-bottom: 1px solid black;
+  border-right: 1px solid black;
+  text-align:center;
+  padding-left: 3px;
+  padding-right: 3px;
+  font-family: bold;
+  display: inline-block;
+  margin-left: 5px;
+  transform: rotate(45deg);
+}
+.brownie_u {
+  width: 1.7rem;
+  margin-right: 5px;
+  border-bottom: 1px solid black;
+  border-right: 1px solid black;
+  text-align:center;
+  padding-left: 3px;
+  padding-right: 3px;
+  font-family: bold;
+  display: inline-block;
+  margin-left: 5px;
+  transform: rotate(135deg);
+}
+.brownie_y {
+  width: 1.7rem;
+  margin-right: 5px;
+  border-bottom: 1px solid black;
+  border-right: 1px solid black;
+  text-align:center;
+  padding-left: 3px;
+  padding-right: 3px;
+  font-family: bold;
+  display: inline-block;
+  margin-left: 5px;
+  transform: rotate(-45deg);
+}
+.brownie_w {
+  width: 1.7rem;
+  margin-right: 5px;
+  border-bottom: 1px solid black;
+  border-right: 1px solid black;
+  text-align:center;
+  padding-left: 3px;
+  padding-right: 3px;
+  font-family: bold;
+  display: inline-block;
+  margin-left: 5px;
+  transform: rotate(225deg);
+}
+.brownie_z {
+  width: 1.5rem;
+  border: 1px solid black;
+  text-align:center;
+  font-family: bold;
+  display: inline-block;
+  border-radius: 1rem;
+}
+.rot45 {
+  transform: rotate(45deg);
+}
+.rot_45 {
+  transform: rotate(-45deg);
+}

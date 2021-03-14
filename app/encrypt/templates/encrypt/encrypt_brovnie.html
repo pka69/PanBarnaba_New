@@ -1,0 +1,66 @@
+<div class="container">
+    <span class="m-2 d-flex justify-content-center PB3">Klucz Szyfrujący</span>
+    <div class="d-flex justify-content-center align-items-center">
+       <div>
+           <table class="mx-2 PB3">
+               <tr class="border-bottom border-dark">
+                   <td class="p-2">A</td>
+                   <td class="p-2 border-end border-dark">B</td>
+                   <td class="p-2">C</td>
+                   <td class="p-2">D</td>
+                   <td class="p-2 border-start border-dark">E</td>
+                   <td class="p-2">F</td>
+               </tr>
+               <tr class="border-bottom border-dark">
+                   <td class="p-2">G</td>
+                   <td class="p-2 border-end border-dark">H</td>
+                   <td class="p-2">I</td>
+                   <td class="p-2">J</td>
+                   <td class="p-2 border-start border-dark">K</td>
+                   <td class="p-2">L</td>
+               </tr>
+               <tr>
+                   <td class="p-2">M</td>
+                   <td class="p-2 border-end border-dark">N</td>
+                   <td class="p-2">O</td>
+                   <td class="p-2">P</td>
+                   <td class="p-2 border-start border-dark">R</td>
+                   <td class="p-2">S</td>
+               </tr> 
+           </table>
+       </div>
+       <div class="mx-2">
+           <table class="mx-2 PB3 rot45">
+               <tr class="border-bottom border-dark">
+                   <td class="px-3 py-2 border-end border-dark rot_45">T</td>
+                   <td class="px-3 py-2 rot_45">U</td>
+               </tr>
+               <tr>
+                   <td class="px-3 py-2 border-end border-dark rot_45">Y</td>
+                   <td class="px-3 py-2 rot_45">W</td>
+               </tr>
+           </table>
+       </div>
+       <div class="mx-2 PB3">
+           <span class="border rounded-circle border-dark px-3 py-2">Z</span>
+       </div>
+   </div>
+   <br>
+   <p>Jak korzystać z klucza szyfrującego? To proste. Jeżeli litera z tekstu występuje w kluczu, to zastąp ją literą z którą jest w jednej parze <br>
+    Na przykład <b>A</b> wygląda tak . <span class="brownie_a m-2 py-1">&#8226;</span> <br>
+    A <b>Z</b> wygląda tak <span class="brownie_z m-2 py-1">&#8226;</span>.  <br>
+    Baw się dobrze!
+
+</p>
+<span class="d-flex justify-content-center m-2 PB3">Odszyfruj...</span>
+<div class="shadow m-2 p-2">
+    {% for item in encrypt %}
+        {% if item in key %}
+            <span class="brownie_{{ item }} m-2 py-1">&#8226;</span>
+        {% else %}
+            <span class="m-2 py-1">{{ item }}</span>
+        {% endif %}
+    {% endfor %}
+</div>
+<br>
+</div>  

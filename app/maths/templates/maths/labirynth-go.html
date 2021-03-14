@@ -1,0 +1,141 @@
+{% extends 'main.html' %}
+{% load static %}
+{% load define_action %}
+
+{% block meta %}
+    <title>Pan Barnaba - labirynt</title>
+    <meta name=”description” content=”Pan Barnaba i zagadkowa hipoteza. autor: Katarzyna Kalista. algorytm labirynt" />
+{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet"  href="{% static 'css/PB_maths.css' %}"/>
+ {% endblock %}
+
+{% block full %}
+<div class="container-fluid grid_bg px-5">
+    {% if PB_Stories %}
+        <div class="container">
+            <!-- działa! {{ PB_Stories }} -->
+            {% for bubble in PB_Stories %}
+                {% include 'bubble.html' %}
+            {% endfor %}
+        </div>
+    {% endif %}
+    <span class="d-flex PB2 PB_bg_logo m-4 justify-content-centre widith-100">Wymyśl labirynt, z którym nie poradzi sobie komputer!</span>
+    <div class="row" >
+        <div class="col-lg-9 justify-content-centre px-5">
+            <input type="text" class="d-none" name="rows" data-rows="{{ rows }}" value="{{ rows }}">
+            <input type="text" class="d-none" name="cols" data-rows="{{ cols }}" value="{{ cols }}">
+            <div class="lifeGrid my-2" name="example">
+                <table class="tableGrid">
+                    {% for row in matrix.0 %}
+                        <tr class="col m-0 p-0">
+                        {% for item in matrix.1 %}
+                            <td class="cellWall">
+                                <div class="cell3 liveWall" 
+                                    data-x="{{ forloop.parentloop.counter0 }}" 
+                                    data-y="{{ forloop.counter0 }}" data-value="1"> 
+                                    <div name="Step"></div>
+                                </div>
+                                
+                                </td>
+                        {% endfor %}
+                        </tr>
+                    {% endfor %} 
+                </table>
+            </div>
+            <div class="container">
+                <div class="d-flex justify-content-center my-3">
+                    <button class="btn btn-secondary btn-sm" id="oneStep"> wykonaj jeden krok</button>
+                    <button class="btn btn-outline-secondary btn-sm mx-5" id="startRoad"> Uruchom szukanie drogi</button>
+                    <button class="btn btn-secondary btn-sm" id="reset">Wyczyść</button>
+                    <!-- <button class="btn btn-secondary btn-sm mx-5" name="clean" id="clean"> zresetuj planszę </button> -->
+                    <a href="{% url 'labirynth_go' %}">
+                        <button class="btn btn-secondary btn-sm mx-5">Zacznij labirynt od nowa!</button>
+                    </a>
+                </div>
+            </div>
+            <div class="container">
+                <div class="d-flex justify-content-center my-3 PB2">
+                    <button class="btn btn-outline-secondary btn-lg mx-5 d-none disabled" name="noSteps"> </button>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 px-5">
+            <div class="shadow p-2 d-flex justify-content-start">
+                <span id="msg">Status: wycinaj korytarze/uzupelniaj mur</span>
+            </div>
+            <div class="shadow p-2 d-flex justify-content-left">
+                 
+                 <button class="btn btn-outline-secondary m-3" id="start">
+                     <div class="cell3 startLab"></div>
+                 </button>
+                 <h5 class=" m-1 justify-content-centre">
+                    Wstaw punkt początkowy
+                </h5>
+             </div> 
+             <div class="d-flex shadow p-2 justify-content-start">
+                 
+                 <button class="btn btn-outline-secondary m-3" id="end">
+                    <div class="cell3 endLab"></div>
+                </button>
+                <h5 class="d-flex justify-content-center  m-1 justify-content-centre">
+                    Wskaż miejsce do którego trzeba znaleźć drogę
+                </h5>
+             </div>
+             <div class="col-md shadow p-2">
+                 <h5 class="d-flex justify-content-center  m-1 justify-content-centre">
+                     pojedyńczy cykl (w milisekundach):
+                 </h5>
+                 <table class="numbers_table">
+                     <tbody >
+                         {% for item in speed %}
+                             <td class="cell_n cell_9 {% if item == '125' %}cell_selected{% endif %}" name="speed">
+                                 {{ item }}
+                             </td>
+                         {% endfor %}
+                     </tbody>
+                 </table>
+             </div>
+              <!-- <div class="col-md shadow p-2">
+                 <h5 class="d-flex justify-content-center  m-1 justify-content-centre">
+                     ustaw planszę nieskończoną:
+                 </h5>
+                 <div class="form-check form-switch">
+                     <input class="form-check-input" type="checkbox" id="aroundX">
+                     <label class="form-check-label" for="aroundX">w pionie (pierwszy wiersz jest sąsiadem ostatniego</label>
+                 </div>
+                 <div class="form-check form-switch">
+                     <input class="form-check-input" type="checkbox" id="aroundY">
+                     <label class="form-check-label" for="aroundX">w poziomie (pierwsza kolumna jest sąsiadem ostatniej</label>
+                 </div>
+             </div> -->
+         </div>
+    </div>
+   
+    <br>
+    <br>
+    <br>
+</div>
+<div class="modal fade " id="resultMessage" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered  modal-xl">
+        <div class="modal-content PB_border_logo m-2">
+            <div class="modal-header PB3">
+                <h5 class="modal-title p-2 w-75 text-center" id="ModalTitle"> <span> Porażka ...</span></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="Close1"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <span class="PB3" id="message">ten labirynt nie ma rozwiązania...</span>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="Close2">Zamknij</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block add_ins %}
+    <script src=" {% static 'js/labirynth.js' %} "></script> 
+{% endblock %}

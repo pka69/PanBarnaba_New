@@ -1,0 +1,38 @@
+{% extends 'main.html' %}
+{% load static %}
+{% load humanize %}
+{% load define_action %}
+
+{% block meta %}
+    <title>Pan Barnaba - quiz</title>
+    <meta name=”description” content=”Pan Barnaba i zagadkowa hipoteza. autor: Katarzyna Kalista. Quiz" />
+{% endblock %}
+
+{% block full %}
+<div class="container">
+    {% if PB_Stories %}
+        <div class="container">
+            <!-- działa! {{ PB_Stories }} -->
+            {% for bubble in PB_Stories %}
+                {% include 'bubble.html' %}
+            {% endfor %}
+        </div>
+    {% endif %}
+    <span class="d-flex justify-content-center PB2 PB_bg_logo m-4 justify-content-centre widith-100">
+        lista dostępnych zestawów
+    </span>
+    {% for item in quiz_list %}
+        <dl class="row">
+            <dt class="col-sm-3 text-end p-1">{{ item.0 }}</dt>
+            <dd class="col-sm-5" type="button">
+                {% for quiz in item.1 %}
+                    <a class="list-group-item list-group-item-action" href="/quiz/{{ item.2 }}/{{ quiz }}">
+                        <p class="px-2 py-1 " type="button">zestaw {{ quiz }} </p>
+                    </a>
+                {% endfor %}
+             </dd>
+        </dl>
+    {% endfor %}
+</div>
+
+{% endblock %}

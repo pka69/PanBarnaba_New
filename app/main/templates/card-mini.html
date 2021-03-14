@@ -1,0 +1,13 @@
+{% load static %}
+<div class="col">
+    <div class="card m-4 PB_card_mini ">
+        <a href="{{ item.2 }}" >
+            <div class="PB_card_mini_img mx-2">
+                <img src="{% static static_folder|add:item.1 %}" class="card-img-top "  alt="Picture">
+            </div>
+            <div class="card-body">
+                <h2 class="PB_cardtext_mini"> {{ item.0 }} </h2>
+            </div>
+        </a>
+    </div>
+</div>

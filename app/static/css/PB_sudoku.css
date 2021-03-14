@@ -1,0 +1,128 @@
+
+.sudoku_table {
+  margin-left: auto;
+  margin-right: auto;
+  border-collapse: collapse;
+  text-align:center; 
+
+}
+.s_conflict {
+   animation: blinkingConflict 1s infinite
+}
+@keyframes blinkingConflict{
+        0%		{ background-color: black;
+                    color:white;}
+        50%		{ background-color: white;
+        color:black;}
+	}
+.cell_active {
+    /* border-radius: 50%;
+    border:#254878 solid; */
+    animation: blinkingBackground 2s infinite
+}
+@keyframes blinkingBackground{
+		0%		{ background-color: #10c018;}
+		25%		{ background-color: #1056c0;}
+		50%		{ background-color: #ef0a1a;}
+		75%		{ background-color: #254878;}
+		100%	{ background-color: #04a1d5;}
+	}
+.cell {
+    border: 1px;
+    border-style: dashed;
+    border-color: lightgray;
+    background-color: aliceblue;
+    padding: 5px;
+    font-family: 'Bree Serif', serif;
+}
+.cell-hidden {
+    border: 0px;
+    border-style: none;
+    border-color: transparent;
+    background-color: transparent;
+    padding: 5px;
+    font-family: 'Bree Serif', serif;
+}
+.cell p {
+    position: absolute;
+    left: 0;
+    right: 0;
+}
+
+
+.cell_n {
+    border: 1px;
+    border-style: dashed;
+    border-color: black;
+    background-color: rgb(254,200,126);
+    position: absolute;
+    left: 0;
+    right: 0;
+    padding: 5px;
+    font-family: 'Bree Serif', serif;
+    cursor: pointer;
+}
+.cell_4 {
+    width: 75px;
+    position: relative;
+    text-align: center; 
+    font-size: 2rem;
+    height: 75px;
+    cursor: pointer;
+}
+.cell_9 {
+    /* width: 30px;
+    position: relative;
+    text-align: center; 
+    font-size: 1.rem;
+    height: 30px; */
+    width: 50px;
+    position: relative;
+    text-align: center; 
+    font-size: 1.5rem;
+    height: 50px;
+    cursor: pointer;
+}
+.cell_Samurai {
+    width: 40px;
+    position: relative;
+    text-align: center; 
+    font-size: 1.3rem;
+    height: 40px;
+    padding: 3px;
+    cursor: pointer;
+}
+.fix {
+    background-color:rgb(163,160,155);
+    color:white;
+    font-family: 'Bree Serif', serif;
+}
+.s_border_T {
+    border-top: 2px solid  black ;
+}
+.s_border_B{
+    border-bottom: 2px solid  black ;
+}
+.s_border_L {
+    border-left: 2px solid  black ;
+}
+.s_border_R {
+    border-right: 2px solid  black ;
+}
+.s_border_TL {
+    border-top: 2px solid  black ;
+    border-left: 2px solid  black ;
+}
+.s_border_TR {
+    border-top: 2px solid  black ;
+    border-right: 2px solid  black ;
+}
+
+.s_border_BL{
+    border-left: 2px solid  black ;
+    border-bottom: 2px solid  black ;
+}
+.s_border_BR {
+    border-bottom: 2px solid  black ;
+    border-right: 2px solid  black ;
+}

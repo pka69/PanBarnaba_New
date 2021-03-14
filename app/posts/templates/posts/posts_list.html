@@ -1,0 +1,33 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block meta %}
+    <title>Pan Barnaba - Wieści z sieci</title>
+    <meta name=”description” content=”Pan Barnaba i zagadkowa hipoteza. autor: Katarzyna Kalista. Wieści z sieci"/>
+    {% endblock %}
+
+{% block head %}
+    <link rel="stylesheet"  href="{% static 'css/PB_posts.css' %}"/>
+ {% endblock %}
+{% block full %}
+    <div class='container my-5'>
+        {% if PB_Stories %}
+            <div class="container">
+                <!-- działa! {{ PB_Stories }} -->
+                {% for bubble in PB_Stories %}
+                    {% include 'bubble.html' %}
+                {% endfor %}
+            </div>
+        {% endif %}
+        {% for item in posts %}
+            {% include 'posts/post.html' %}
+        {% endfor %}
+
+        {% if posts.has_other_pages %}
+            {% with records=posts %}
+                {% include 'paginator.html' %}
+            {% endwith %}
+        {% endif %}
+    </div>
+
+{% endblock %}

@@ -1,0 +1,115 @@
+{% extends 'main.html' %}
+
+{% load static %}
+
+{% block meta %}
+    <title>Pan Barnaba - sudoku</title>
+    <meta name=”description” content=”Pan Barnaba i zagadkowa hipoteza. autor: Katarzyna Kalista. Sudoku. Sudoku Samurai" />
+{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet"  href="{% static 'css/PB_sudoku.css' %}"/>
+{% endblock %}
+
+{% block title_box %}
+    <div class="d-inline-block ">
+        <div class="row justify-content-center ">
+            <h2>Twój czas wykonania</h2>
+        </div>
+        <div class="row justify-content-center border rounded-pill p-2 PB2" id="counter" value="0">
+        </div>
+    </div>
+{% endblock %}
+
+{% block left %}
+    <span class="d-none" id="finish" >0</span>
+    <span class="d-none" id="finalTime" >0</span>
+    <span class="d-none" id="level">{{ level }}</span>
+    <span class="d-none" id="size">{{ size|add:1 }}</span>
+    <span class="d-none" id="game_id">{{ slug }}</span>
+    <span class="d-none" id="method">std</span>
+    <span class="d-none" id="gameType">sudoku</span>
+    <span class="d-none">{{ slug }}</span>
+    <div class = "container">
+        <div class = "row">
+            <div class="col">
+                <span class="d-flex justify-content-center PB2 PB_bg_logo m-4 justify-content-centre widith-100">
+                    Rozwiąż 
+                </span>
+                <table class="sudoku_table">
+                    <tbody >
+                        {% for item in items %}
+                            {% if item.y == 0 %} <tr class="d-flex flex-row"> {% endif %}
+                                <td class="cell cell_{{ level }} 
+                                        
+                                        {% if item.hidden %} 
+                                            cell-hidden 
+                                        {% else %}
+                                            {% if item.border %} s_border_{{ item.border }} {% endif %}                                        
+                                            {% if item.fix %} fix {% endif %}
+                                        {% endif %}">
+                                    <p  
+                                        class="{% if item.hidden %} d-none {% endif %}"
+                                        data-x="{{ item.x }}" data-y="{{item.y }}"
+                                        data-blocks="{% for block in item.blocks.all %}{{ block.name }},{% endfor %}"
+                                        data-fix="{{ item.fix }}" data-value="{{ item.value }}"
+                                        data-border="{{ item.border }}"
+                                        data-hidden="{{ item.hidden }}"
+                                        > {% if item.fix %} {{ item.value }} {% endif %}
+                                    </p>
+                                </td>
+                            {% if item.y ==  size %} </tr> {% endif %}
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class = "row justify-content-md-center">
+            <div class="col">
+                <span class="d-flex justify-content-center  m-1 justify-content-centre">
+                    wybierz liczby
+                </span>
+                <table class="sudoku_table">
+                    <tbody >
+                        {% for item in numbers %}
+                            <td class="cell_n cell_{{ level }}">
+                                {{ item }}
+                            </td>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <br>
+    </div>
+    {% endblock %}
+    {% block right %}
+        <div class = "row justify-content-md-center">
+            <div class="col">
+                <!-- <hr class="my-4">  -->
+                <span class="d-flex justify-content-center PB2 PB_bg_logo m-4 justify-content-centre">
+                    Jak grać?
+                </span>
+                <ul class="list-group w-75">
+                    <li class="list-group-item">
+                        strzałkami, klawiszem <span>Tab</span> lub myszką zmieniaj aktywny element
+                    </li>
+                    <li class="list-group-item">
+                        wprowadź z klawiatury wartość lub kliknij w numerek powyżej
+                    </li>
+                    <li class="list-group-item">
+                        aby usunąc wpisaną wartość wprowadź nową, naciśnij spacje albo  <span>Del</span>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    
+    {% include 'scoring/score_list.html' %}
+    
+{% endblock %}
+
+{% block add_ins %}
+    <script src=" {% static 'js/timer.js' %} "></script> 
+    <script src=" {% static 'js/sudoku.js' %} "></script> 
+{% endblock %}

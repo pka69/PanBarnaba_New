@@ -1,0 +1,144 @@
+{% extends 'main.html' %}
+{% load static %}
+
+
+{% block meta %}
+    <title>Pan Barnaba - gra w życie</title>
+    <meta name=”description” content=”Pan Barnaba i zagadkowa hipoteza. autor: Katarzyna Kalista. algorytm gra życie (game of life algorithm)">
+{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet"  href="{% static 'css/PB_maths.css' %}"/>
+ {% endblock %}
+
+{% block full %}
+
+<div class="container-fluid grid_bg px-5">
+    {% if PB_Stories %}
+        <div class="container">
+            <!-- działa! {{ PB_Stories }} -->
+            {% for bubble in PB_Stories %}
+                {% include 'bubble.html' %}
+            {% endfor %}
+        </div>
+    {% endif %}
+    <span class="d-flex PB2 PB_bg_logo my-4 justify-content-centre widith-100">algorytm życia - sprawdź jak to działa?</span>
+    <input type="text" class="d-none" name="rows" data-rows="{{ rows }}" value="{{ rows }}">
+    <input type="text" class="d-none" name="cols" data-rows="{{ cols }}" value="{{ cols }}">
+    <input type="text" class="d-none" name="finish" if="finish" value="1">
+
+    <div class="row" >
+        <div class="col-lg-10 px-2">
+            <div class="lifeGrid my-2" name="example">
+                <table class="tableGrid">
+                    {% for row in matrix.0 %}
+                        <tr class="col m-0 p-0">
+                        {% for item in matrix.1 %}
+                            <td class="cellGrid">
+                                <div class="cell2 deadCell" data-x="{{ row }}" data-y="{{ item }}" > </div>
+                            </td>
+                        {% endfor %}
+                        </tr>
+                    {% endfor %} 
+                </table>
+            </div>
+            <div class="container">
+                <div class="d-flex justify-content-center my-3">
+                    <button class="btn btn-secondary btn-lg mx-5" name="oneStep"> wykonaj jeden cykl życia</button>
+                    <button class="btn btn-outline-secondary btn-lg mx-5" name="start"> Uruchom algorytm życia</button>
+                    <button class="btn btn-secondary btn-lg mx-5" name="reset"> zresetuj planszę </button>
+                </div>
+            </div>
+            <div class="container">
+                <div class="d-flex justify-content-center my-3">
+                    <button class="btn btn-outline-secondary btn-lg mx-5 d-none disabled" name="noSteps"> </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-2 px-2">
+           <div class="shadow p-2">
+                <h5 class="d-flex justify-content-center  m-1 justify-content-centre">
+                    Liczba sąsiadów pozwalająca przeżyć:
+                </h5>
+                <table class="numbers_table">
+                    <tbody >
+                        {% for item in numbers %}
+                            <td class="cell_n cell_9 {% if item in live %}cell_selected{% endif %}" name="live">
+                                {{ item }}
+                            </td>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <h5 class="d-flex justify-content-center  m-1 justify-content-centre">
+                    Liczba sąsiadów pozwalająca ożyć:
+                </h5>
+                <table class="numbers_table">
+                    <tbody >
+                        {% for item in numbers %}
+                            <td class="cell_n cell_9 {% if item in born %}cell_selected{% endif %}" name="born">
+                                {{ item }}
+                            </td>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div> 
+            <div class="shadow p-2">
+                <h5 class="d-flex justify-content-center  m-1 justify-content-centre">
+                    generuj żywe komórki losowo:
+                </h5>
+                <table class="numbers_table">
+                    <tbody >
+                        {% for item in generator %}
+                            <td class="cell_n cell_9" name="generator">
+                                {{ item }}
+                            </td>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                
+                <span class="d-flex justify-content-center  m-1 justify-content-centre">
+                    możesz też sam budzić komórkę do życia klikając w nią
+                </span>
+            </div>
+            <div class="col-md shadow p-2">
+                <h5 class="d-flex justify-content-center  m-1 justify-content-centre">
+                    pojedyńczy cykl (w milisekundach):
+                </h5>
+                <table class="numbers_table">
+                    <tbody >
+                        {% for item in speed %}
+                            <td class="cell_n cell_9 {% if item == '125' %}cell_selected{% endif %}" name="speed">
+                                {{ item }}
+                            </td>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+             <!-- <div class="col-md shadow p-2">
+                <h5 class="d-flex justify-content-center  m-1 justify-content-centre">
+                    ustaw planszę nieskończoną:
+                </h5>
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="aroundX">
+                    <label class="form-check-label" for="aroundX">w pionie (pierwszy wiersz jest sąsiadem ostatniego</label>
+                </div>
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="aroundY">
+                    <label class="form-check-label" for="aroundX">w poziomie (pierwsza kolumna jest sąsiadem ostatniej</label>
+                </div>
+            </div> -->
+        </div>
+         <div class="col-lg-1 px-2">
+             
+         </div>
+    </div>
+
+</div>
+<br>
+<br>
+{% endblock %}
+{% block add_ins %}
+    <!-- <script src=" {% static 'js/timer.js' %} "></script>  -->
+    <script src=" {% static 'js/life.js' %} "></script> 
+{% endblock %}

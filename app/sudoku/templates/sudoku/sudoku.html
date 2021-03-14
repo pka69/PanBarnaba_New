@@ -1,0 +1,36 @@
+{% extends 'main.html' %}
+
+{% load static %}
+
+{% block meta %}
+    <title>PanBarnaba - sudoku</title>
+    <meta name=”description” content=”Pan Barnaba i zagadkowa hipoteza. autor: Katarzyna Kalista. Sudoku. Sudoku Samurai" />
+{% endblock %}
+
+{% block full %}
+<div class='container'>
+    {% if PB_Stories %}
+        <div class="container">
+            <!-- działa! {{ PB_Stories }} -->
+            {% for bubble in PB_Stories %}
+                {% include 'bubble.html' %}
+            {% endfor %}
+        </div>
+    {% endif %}
+    {% with static_folder='images/sudoku/' %}
+        <span class="d-flex PB2 PB_bg_logo m-4 justify-content-centre widith-100">Wybierz rodzaj</span>
+                        <div class="card-group">  
+                            <div class="row">
+                            {% for item in sudoku %}
+                                {% include 'card.html' %}
+                            {% endfor %}
+                            </div>  
+                        </div>
+    {% endwith %}
+</div>
+
+{% endblock %}
+
+{% comment %} {% block add_ins %}
+    <script src=" {% static 'js/level_selector.js' %} "></script> 
+{% endblock %} {% endcomment %}

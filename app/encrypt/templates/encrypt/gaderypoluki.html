@@ -1,0 +1,61 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block meta %}
+    <title>Pan Barnaba - szyfr GADERYPOLUKI</title>
+    <meta name=”description” content=”Pan Barnaba i zagadkowa hipoteza. autor: Katarzyna Kalista. Szyfrowanie - szyfr GADERYPOLUKI” />
+{% endblock %}
+
+{% block full %}
+<div class='container'>
+    {% if PB_Stories %}
+        <div class="container">
+            <!-- działa! {{ PB_Stories }} -->
+            {% for bubble in PB_Stories %}
+                {% include 'bubble.html' %}
+            {% endfor %}
+        </div>
+    {% endif %}
+    <span class="d-flex justify-content-center PB2 PB_bg_logo m-2 justify-content-centre widith-100">
+        Na czym polega ten szyfr?
+    </span>
+    <div class="mx-2 p-2 shadow justify-content-center">
+        <p>
+            Aby sie bawić tym szyfrem potrzebne jest słowo-klucz, nie koniecznie takie, które 
+            coś znaczy, ale takie, które spełnia kilka warunków:
+        </p>
+        <ul>
+            <li>posiada parzystą ilość liter</li>
+            <li>żadna litera się nie powtarza</li>
+            <li>nie ma w tym zestawie żadnych literl z 'ogonkami'</li>
+        </ul>
+        <p>
+            Jest kilka czesto stosowanych kluczy, ale nic nie stoi na przeszkodzie, aby wymyślić własne.
+            Poniżej możesz poznać kilka przykładów:
+        </p>
+        <ul class="list ">
+            {% for item in GADERYPOLUKI %}
+            <li>{{ item }}</li>
+            {% endfor %}
+        </ul>
+        <p>
+            Litery łączymy w kombinacje dwuliterowe (np. <span class="PB2">PO-LI-TY-KA-RE-NU</span>), i za każdym razem kiedy w prawdziwym tekście występuje 
+            któraś z liter z klucza - zastępujemy ją literą, która jest z nią w parze.
+        </p>
+        <p>
+            na przykład <span class="PB2">PAN BARNABA</span> wg powyrzszego przykładu to <span class="PB2">OKU BKEUKBK</span>
+        </p>
+        <p>Do wyboru masz trzy poziomy trudności. Od zadań łatwych (dwu/trzy wyrazowych) do bardzo trudnych (długie cytaty).  <br>
+            Sam zdecyduj od czego chcesz zacząć
+        </p>
+    </div>
+   {% include 'encrypt/next_or_back.html' %}
+    <br>
+</div>
+
+{% endblock %}
+
+{% block add_ins %}
+    <script src=" {% static 'js/timer.js' %} "></script> 
+    <script src=" {% static 'js/encrypt.js' %} "></script> 
+{% endblock %}

@@ -1,0 +1,39 @@
+<!-- Modal -->
+    <div class="modal fade " id="TopList" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered  modal-xl">
+            <div class="modal-content PB_border_logo m-2">
+                <div class="modal-header PB3">
+                    <h5 class="modal-title p-2 w-75 text-center" id="ModalTitle"> <span> Najlepsze wyniki</span></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="Close1"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <span class="PB3" id="message"></span>
+                    </div>
+                    <div class="mb-3 ">
+                        <span class="m-1">TOP LISTA</span>
+                        <table class="table table-striped">
+                            <thead>
+                                <th>lp</th>
+                                <th>kto</th>
+                                <th>wynik</th>
+                                <th>czas</th>
+                            </thead>
+                            <tbody>{% for item in 'abcdefghik' %}
+                                <tr class="p-2 d-none" name="toplist">
+                                    <td class="text-right"></td>
+                                    <td class="text-right"></td>
+                                    <td class="text-right"></td>
+                                    <td class="text-right"></td>
+                                </tr>{% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="Close2">Wyjdź</button>
+                    <button class="btn btn-primary" type="button" data-bs-dismiss="modal" id="saveBTN">Zapisz swój wynik</button>
+                </div>
+            </div>
+        </div>
+    </div>

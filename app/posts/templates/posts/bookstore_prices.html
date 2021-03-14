@@ -1,0 +1,94 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block meta %}
+    <title>Pan Barnaba - ceny</title>
+    <meta name=”description” content=”Pan Barnaba i zagadkowa hipoteza. autor: Katarzyna Kalista. ranking cen w księgarniach" />
+{% endblock %}
+
+{% block full %}
+    <div class='container'>
+        {% if PB_Stories %}
+            <div class="container">
+                <!-- działa! {{ PB_Stories }} -->
+                {% for bubble in PB_Stories %}
+                    {% include 'bubble.html' %}
+                {% endfor %}
+            </div>
+        {% endif %}
+        
+        {% comment %}
+        <div class="row justify-content-center">
+            <div class="col-md-6 center">
+                <table class="table table-striped table-bordered">
+                    <thead class="PB_table_header">
+                        <tr class="align-items-center ">
+                            <th class="text-center ">
+                                <div class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="Rodzaj" role="button" data-bs-toggle="dropdown" aria-expanded="false">Rodzaj</a>
+                                    <ul class="dropdown-menu" aria-labelledby="Rodzaj">
+                                        {% for item in booktypes %}
+                                            <li><a class="dropdown-item" href="{% url 'bookpricelist_subgroup' item %}">{{ item }}</a></li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </th>
+                            <th class="text-center">księgarnia</th>
+                            <th class="text-center">cena</th>
+                        </tr>
+
+                    </thead>
+                <tbody>
+                {% for item in bookstoreprices %}
+                   <!-- <div class="d-flex flex-row"> -->
+                    <tr>
+                       <td class="text-center">
+                           {{ item.subgroup }}
+                       </td>
+                        <td class="text-center">
+                            <a href="{{ item.external_link }}" target="_blank">
+                                <img class="mr-lg-4 mr-2" style="width: 16px;" src="{{ item.picture }}">
+                                {{item.content}}
+                            </a>
+                        </td>
+                    <td class="text-center"> {{ item.dec_content }} PLN</td>
+                    </tr>
+                <!-- </div> -->
+                {% endfor %}
+                </tbody>
+                </table>
+            </div>
+        </div> 
+        {% endcomment %}
+        <div class="row">
+            <span class="d-flex justify-content-center PB2 PB_bg_logo m-4 justify-content-centre widith-100">
+                Aktualne ceny książki o mnie w sklepach internetowych
+            </span>
+            <div class="col-md-4">
+                <div class="PB_card_img ms-5">
+                    <img src="https://www.czarnaowca.pl/cache/files/elibri/298035952---w-1200.jpg" class="card-img-top img-fluid"  alt="Picture">
+                </div>
+            </div>
+            <div class="col-md-8">
+                <script type="text/javascript" src="https://buybox.click/js/bb-widget.min.js" async=""></script>
+                <div class="bb-widget" id="buybox-436v" data-bb-id="14039" data-bb-oid="148787367" ></div>
+            </div>
+        </div>
+        <div class="row">
+            <span class="d-flex justify-content-center PB2 PB_bg_logo m-4 justify-content-centre widith-100">
+                Poprzednia powieść dla dorosłych autorki - "Ostatni Rozdział"
+            </span>
+            <div class="col-md-4">
+                <div class="PB_card_img ms-5">
+                    <img src="https://www.czarnaowca.pl/cache/files/elibri/2073316018---w-1200.jpg" class="card-img-top "  alt="Picture">
+                </div>
+            </div>
+            <div class="col-md-8">
+                <script type="text/javascript" src="https://buybox.click/js/bb-widget.min.js" async=""></script>
+                <div class="bb-widget" id="buybox-7axy" data-bb-id="14039" data-bb-oid="131194338" ></div>
+            </div>
+        </div>
+        
+        
+    </div>
+{% endblock %}

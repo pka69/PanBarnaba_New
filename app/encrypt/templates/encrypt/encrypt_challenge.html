@@ -1,0 +1,76 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block meta %}
+    <title>Pan Barnaba - szyfr {{ method }}</title>
+    <meta name=”description” content=”Pan Barnaba i zagadkowa hipoteza. autor: Katarzyna Kalista. Szyfrowanie - szyfr {{ method }}” />
+{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet"  href="{% static 'css/PB_encrypt.css' %}"/>
+{% endblock %}
+
+{% block title_box %}
+    <div class="d-inline-block ">
+        <div class="row justify-content-center ">
+            <h2>Twój czas wykonania</h2>
+        </div>
+        <div class="row justify-content-center border rounded-pill p-2 PB2" id="counter" value="0">
+        </div>
+    </div>
+{% endblock %}
+
+{% block full %}
+    <div class='container'>
+        <span class="d-none" id="finish" >0</span>
+        <span class="d-none" id="finalTime" >0</span>
+        <span class="d-none" id="level">{{ level }}</span>
+        <span class="d-none" id="key">{{ key }}</span>
+        <span class="d-none" id="game_id">{{ quotation }}</span>
+        <span class="d-none" id="method">{{ method }}</span>
+        <span class="d-none" id="gameType">encrypt</span>
+        {% if PB_Stories %}
+            <div class="container">
+                <!-- działa! {{ PB_Stories }} -->
+                {% for bubble in PB_Stories %}
+                    {% include 'bubble.html' %}
+                {% endfor %}
+            </div>
+        {% endif %}
+        <span class="d-flex justify-content-center PB2 PB_bg_logo m-2 justify-content-centre widith-100">
+            Dostałeś wyzwanie od {{ user.username }}. Musisz odszyfrować wiadomość.
+        </span>
+        <p>Poniżej masz opis zastosowanego szyfru. </p>
+        {% if method == 'gaderypoluki' %}
+            {% include 'encrypt/encrypt_gaderypoluki.html' %}
+        {% endif %}
+        {% if method == 'brownie' %}
+            {% include 'encrypt/encrypt_brownie.html' %}
+        {% endif %}
+        {% if method == 'divider' %}
+            {% include 'encrypt/encrypt_divider.html' %}
+        {% endif %}
+        {% if method == 'kaczor' %}
+            {% include 'encrypt/encrypt_kaczor.html' %}
+        {% endif %}
+        <div class="form-floating mb-3">
+            <input type="text" autocomplete="off" class="form-control" id="answer" style="height: {{ rows }}px"></textarea>
+            <label for="answer">wprowadź odszyfrowany tekst</label>
+        </div>
+        <div class="d-flex justify-content-center">
+            <div class="border rounded-pill  p-2 PB2 d-none" id="end_site"></div>
+            <span class="d-none PB4 PB_bg_error rounded-pill p-2" id="wrong" > coś sie nie zgadza. Poszukaj błedu. </span>
+        </div>
+        <a href="">
+            <button class="btn btn-secondary btn-md mx-5"> Sprawdź </button>
+        </a>
+    </div>
+    {% include 'scoring/score_list.html' %}
+    <br>
+{% endblock %}
+
+
+{% block add_ins %}
+    <script src=" {% static 'js/timer.js' %} "></script> 
+    <script src=" {% static 'js/encrypt.js' %} "></script> 
+{% endblock %}    

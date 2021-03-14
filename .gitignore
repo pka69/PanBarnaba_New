@@ -1,0 +1,14 @@
+/env
+.vscode
+app/static/images/puzzle
+app/static/others
+app/support_files
+*.pyc
+*/__pycache__/
+app/app/settings_MyDevil.py
+app/app/local_settings.py
+*.cpython-38.pyc
+app/app/__pycache__/__init__.cpython-38.pyc
+app/app/__pycache__/settings.cpython-38.pyc
+app/app/__pycache__/urls.cpython-38.pyc
+app/.~lock.Biblioteki v3.xlsm#

@@ -1,0 +1,68 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block meta %}
+    <title>Pan Barnaba - labirynt</title>
+    <meta name=”description” content=”Pan Barnaba i zagadkowa hipoteza. autor: Katarzyna Kalista. algorytm labirynt" />
+{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet"  href="{% static 'css/PB_maths.css' %}"/>
+ {% endblock %}
+
+{% block full %}
+<div class="container">
+    <span class="d-flex PB2 PB_bg_logo m-4 justify-content-centre widith-100">jak algorytm rozwiązuje labirynt?</span>
+    <p>
+        To akurat jest bardzo proste. Po prostu zaczyna w miejscu poczatkowym cyklicznie wykonuje krok za krokiem. 
+        Jak napotka miejsce, gdzie droga się rozgałęzia, to rozdziela sie i idze równolegle po dwóch dorgach. 
+        I tak za każdym razem jak napotka jakieś rozgałęzienie. Jeśli któraś z dróg zakńczy dojdzie do ściany - zaprzestaje szukać drogi.
+        Aż w końcu któraś z dróg dojdzie do celu. <br> 
+        Jeśli są dwie drogi dojścia do celu - wygra ta krótsza.
+        Z resztą najlepiej popatrz poniżej. A potem zbuduj labirynt i spróbuj rzucić wyzwanie komputerowi :)
+    </p>
+    <div class="container justify-content-center">
+        <input type="text" class="d-none" name="demo" id="demo">
+        <input type="text" class="d-none" name="rows" data-rows="{{ rows }}" value="{{ rows }}">
+        <input type="text" class="d-none" name="cols" data-rows="{{ cols }}" value="{{ cols }}">
+        <table class="tableGrid">
+            {% for row in labirynth %}
+                <tr class="col m-0 p-0">
+                {% for item in row %}
+                    <td class="cellWall">
+                        <div class="cell3 
+                            {% if item == 0 %}
+                                deadWall
+                            {% elif item == -1 %}
+                                startLab
+                            {% elif item == -2 %}
+                                endLab
+                            {% else %}
+                                liveWall
+                            {% endif %}" data-x="{{ forloop.parentloop.counter0 }}" data-y="{{ forloop.counter0 }}" data-value="{{ item }}"> 
+                            <div name="Step"></div>
+                        </div>
+                        
+                        </td>
+                {% endfor %}
+                </tr>
+            {% endfor %} 
+        </table>
+    </div>
+    <div class="lifeGrid" name="example">
+        <a href="">
+            <button class="btn btn-secondary btn-lg disabled" id="reset">Uruchom jeszcze raz</button>
+        </a>
+        <a href="{% url 'labirynth_go' %}">
+            <button class="btn btn-secondary btn-lg "">Zbuduj własny labirynt !</button>
+        </a>
+    </div>
+    <br>
+    <br>
+    <br>
+</div>
+
+{% endblock %}
+{% block add_ins %}
+    <script src=" {% static 'js/labirynth.js' %} "></script> 
+{% endblock %}
