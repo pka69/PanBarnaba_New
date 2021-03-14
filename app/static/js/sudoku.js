@@ -1,9 +1,12 @@
 const cells = document.querySelectorAll('.cell>p')
 const numbers = document.querySelectorAll('.cell_n')
 const key_numbers = []
-for (i=1; i<=numbers.length; i++) {
+
+for (i=1; i<numbers.length; i++) {
     key_numbers.push(String(i))
 }
+key_numbers.push('')
+
 size = document.querySelector('#size').outerText
 level = document.querySelector('#level').outerText
 
@@ -255,8 +258,12 @@ for (item of numbers) {
             this.removeEventListener('click',pressNumber);
             return
         }
-        sudoku.number(x)
-        
+        if (x == 0) {
+            sudoku.number('')    
+        }
+        else {
+            sudoku.number(x)
+        }
     })
 }
 
