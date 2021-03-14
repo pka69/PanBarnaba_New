@@ -22,7 +22,8 @@ POST_TYPE = (
 STAGE = (
     (0, 'posted'),
     (1, 'approved'),
-    (-1, 'rejected')
+    (-1, 'rejected'),
+    (2, 'main view post')
 
 )
 SHORT = 20
@@ -30,6 +31,10 @@ SHORT = 20
 class ApprovedManager(models.Manager):
     def get_queryset(self):
         return super().get_queryset().filter(stage=1)
+
+class MainViewManager(models.Manager):
+    def get_queryset(self):
+        return super().get_queryset().filter(stage=2)
 
 class NotRejectedManager(models.Manager):
     def get_queryset(self):
@@ -53,6 +58,7 @@ class Post(models.Model):
     objects = models.Manager()
     approved = ApprovedManager()
     notRejected = NotRejectedManager()
+    mainPost = MainViewManager()
 
     class Meta:
         ordering = ['-p_date', '-p_time']
