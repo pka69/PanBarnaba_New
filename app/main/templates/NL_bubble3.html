@@ -1,0 +1,23 @@
+{% load static %}
+{% load define_action %}
+<div class="bubble bubble-bottom-left mt-2" >
+    {% comment %} {% if bubble.picture %}
+        <div class="article-photo-md col-md-2">
+            {% if bubble.picture|web_adress %}
+                <a href="{{ bubble.picture }}" target="_blank">
+                    <img class="rounded float-start" src="{{ bubble.picture }}">
+                </a>
+            {% else %}
+                <a href="{% static bubble.picture %}" blank="true">
+                    <img class="rounded float-start" src="{% static bubble.picture %}">
+                </a>
+            {% endif %}
+        </div>
+    {% endif %} {% endcomment %}
+    {% autoescape off %}
+        {{ bubble.content_html }} 
+    {% endautoescape %}
+</div>
+<div class="navbar-brand""> 
+    <img  src="{% static 'images/icons8-cat-24.png' %}" width="30" height="30" alt="">
+</div>

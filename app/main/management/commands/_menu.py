@@ -10,7 +10,7 @@ Menu_details = (
     {'group': 'main', 'name': 'kontakt', 'link': '/contact/'},
     {'group': 'info', 'name': 'o autorce', 'link': '/info/#author'},
     {'group': 'info', 'name': 'o książkach', 'link': '/info/#books'},
-    {'group': 'info', 'name': 'wieści', 'link': '/posts/info/'},
+    {'group': 'info', 'name': 'wieści', 'link': '/posts/news/'},
     {'group': 'info', 'name': 'gdzie kupić', 'link': '/posts/bookpricelist/'},
     {'group': 'games', 'name': 'quiz', 'picture':'quiz.png', 'link': '/quiz/'},
     {'group': 'games', 'name': 'puzzle', 'picture': 'puzzle.png', 'link': '/puzzle/'},
@@ -28,10 +28,10 @@ Menu_details = (
     {'group': 'posts', 'name': 'Post', 'link': '/moderate/4/'},
     {'group': 'posts', 'name': 'BookPrice', 'link': '/moderate/5/'},
     {'group': 'posts', 'name': 'Content', 'link': '/moderate/5/'},
-    {'group': 'encrypt', 'name': 'GA-DE-RY-PO-LU-KI', 'picture':'politykarenu.gif', 'link': '/encrypt/gaderypoluki/'},
-    {'group': 'encrypt', 'name': 'CZEKOLADKA', 'picture':'czekoladka.jpg', 'link': '/encrypt/brownie/'},
-    {'group': 'encrypt', 'name': 'UŁAMKOWY', 'picture':'ulamkowy.jpg', 'link': '/encrypt/divider/'},
-    {'group': 'encrypt', 'name': 'KACZOR', 'picture':'kaczor.PNG', 'link': '/encrypt/kaczor/'},
+    {'group': 'encrypt', 'name': 'GA-DE-RY-PO-LU-KI', 'picture':'gaderypoluki.png', 'link': '/encrypt/gaderypoluki/'},
+    {'group': 'encrypt', 'name': 'CZEKOLADKA', 'picture':'czekoladka.png', 'link': '/encrypt/brownie/'},
+    {'group': 'encrypt', 'name': 'UŁAMKOWY', 'picture':'ulamkowy.png', 'link': '/encrypt/divider/'},
+    {'group': 'encrypt', 'name': 'KACZOR', 'picture':'kaczor.png', 'link': '/encrypt/kaczor/'},
 )
 
 
@@ -47,19 +47,9 @@ def create_menu():
         except DatabaseError as e:
             print('Błąd bazy dlanych ', e, '\ndla zestawu: {}'.format(item))
     
-    # Menu.objects.create(group='main', name='zagrajmy', link='/games/')
-    # Menu.objects.create(group='main', name='chcesz wiedzieć?', link='/maths/')
-    # Menu.objects.create(group='main', name='forum', link='/forum/')
-    # Menu.objects.create(group='main', name='informacje', link='', sub='/info')
-    # Menu.objects.create(group='main', name='kontakt', link='/contact/')
-    # Menu.objects.create(group='info', name='o autorce', link='/info/#author')
-    # Menu.objects.create(group='info', name='o książkach', link='/info/#books')
-    # Menu.objects.create(group='info', name='wieści', link='/info/#news')
-    # Menu.objects.create(group='info', name='gdzie kupić', link='/bookpricelist/')
-    # Menu.objects.create(group='games', name='quiz', picture='quiz.png', link='quiz/')
-    # Menu.objects.create(group='games', name='puzzle', picture='puzzle.png', link='puzzle/')
-    # Menu.objects.create(group='games', name='sudoku', picture='sudoku.png', link='sudoku/')
-    # Menu.objects.create(group='games', name='szyfrowanie', picture='encrypt.png', link='encrypt/')
-    # Menu.objects.create(group='maths', name='algorytm życia', picture='live.png', link='maths/live/')
-    # Menu.objects.create(group='maths', name='świat fractali', picture='fractal.png', link='maths/fractals/')
-    # Menu.objects.create(group='maths', name='zaprojektuj labirynt', picture='labirynth.png', link='maths/labirynth/')
+def update_menu_picture():
+    for item in Menu_details:
+        if item.get('picture'):
+            Menu.objects.filter(group=item['group'].capitalize()).filter(name=item['name'].capitalize()).update(picture=item['picture'])
+        else:
+            Menu.objects.filter(group=item['group'].capitalize()).filter(name=item['name'].capitalize()).update(picture='')

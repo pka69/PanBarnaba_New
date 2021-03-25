@@ -24,6 +24,7 @@ def sudokuSelectView(request):
     context['sudoku'] = sudoku
     context['title'] = ' Sudoku '
     context['PB_Stories'] = getBubbles(request)
+    context['logo'] = 'sudoku.png'
     return render(request, 'sudoku/sudoku.html', context=context)
 
 
@@ -38,4 +39,5 @@ class sudokuGameView(views.View):
         context['size'] = sudoku.size - 1
         context['numbers'] = [item + 1 for item in range(min(9, sudoku.size))]
         context['slug'] = sudoku.result
+        context['logo'] = 'sudoku.png'
         return render(request, 'sudoku/sudoku_selected.html', context=context)

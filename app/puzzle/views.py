@@ -19,6 +19,7 @@ def puzzleView(request):
     context['puzzle'] = puzzleList('images/puzzle')
     context['title'] = ' Puzzle '
     context['PB_Stories'] = getBubbles(request)
+    context['logo'] = 'puzzle.png'
     return render(request, 'puzzle/puzzle.html', context=context)
 
 
@@ -30,4 +31,6 @@ def puzzleSolve(request, puzzle_name):
     context['level'] = level
     context['rows'] = [item * level for item in range(level)]
     context['rowsend'] = [item * level + (level - 1) for item in range(level)]
+    context['PB_Stories'] = getBubbles(request)
+    context['logo'] = 'puzzle.png'
     return render(request, 'puzzle/puzzle_selected.html', context=context)

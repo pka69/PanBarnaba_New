@@ -1,4 +1,4 @@
-{% extends 'main.html' %}
+{% extends 'newLayout.html' %}
 
 {% load static %}
 
@@ -16,12 +16,12 @@
         <div class="row justify-content-center ">
             <h2>Twój czas wykonania</h2>
         </div>
-        <div class="row justify-content-center border rounded-pill p-2 PB2" id="counter" value="0">
+        <div class="row justify-content-center  p-2 my-2 cpost_body" id="counter" value="0">
         </div>
     </div>
 {% endblock %}
 
-{% block left %}
+{% block full %}
     <span class="d-none" id="finish" >0</span>
     <span class="d-none" id="finalTime" >0</span>
     <span class="d-none" id="level">{{ level }}</span>
@@ -31,11 +31,36 @@
     <span class="d-none" id="gameType">sudoku</span>
     <span class="d-none">{{ slug }}</span>
     <div class = "container">
+        <div class = "row justify-content-md-center">
+            <div class="col">
+                <div class="my-4">
+                    <img src="{% static 'images/lapka.png' %}" class="PB_stamp" alt="cat food stamp">
+                </div>
+                <div class="msg_central2 font_2 my-4">
+                    Jak grać?
+                </div>
+                <ul class="list-group cpost_body ">
+                    <li class="list-group-item border-0">
+                        strzałkami, klawiszem <span>Tab</span> lub myszką zmieniaj aktywny element
+                    </li>
+                    <li class="list-group-item border-0">
+                        wprowadź z klawiatury wartość lub kliknij w numerek poniżej sudoku
+                    </li>
+                    <li class="list-group-item border-0">
+                        aby usunąc wpisaną wartość wprowadź nową, naciśnij spacje albo  <span>Del</span>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
         <div class = "row">
             <div class="col">
-                <span class="d-flex justify-content-center PB2 PB_bg_logo m-4 justify-content-centre widith-100">
-                    Rozwiąż 
-                </span>
+                <div class="my-4">
+                    <img src="{% static 'images/lapka.png' %}" class="PB_stamp" alt="cat food stamp">
+                </div>
+                <div class="msg_central2 font_2 my-4">
+                    Rozwiąż
+                </div>
                 <table class="sudoku_table">
                     <tbody >
                         {% for item in items %}
@@ -85,28 +110,6 @@
         </div>
         <br>
     </div>
-    {% endblock %}
-    {% block right %}
-        <div class = "row justify-content-md-center">
-            <div class="col">
-                <!-- <hr class="my-4">  -->
-                <span class="d-flex justify-content-center PB2 PB_bg_logo m-4 justify-content-centre">
-                    Jak grać?
-                </span>
-                <ul class="list-group w-75">
-                    <li class="list-group-item">
-                        strzałkami, klawiszem <span>Tab</span> lub myszką zmieniaj aktywny element
-                    </li>
-                    <li class="list-group-item">
-                        wprowadź z klawiatury wartość lub kliknij w numerek powyżej
-                    </li>
-                    <li class="list-group-item">
-                        aby usunąc wpisaną wartość wprowadź nową, naciśnij spacje albo  <span>Del</span>
-                    </li>
-                </ul>
-
-            </div>
-        </div>
     
     {% include 'scoring/score_list.html' %}
     

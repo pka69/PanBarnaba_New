@@ -1,4 +1,4 @@
-{% extends 'main.html' %}
+{% extends 'newLayout.html' %}
 {% load static %}
 
 {% block meta %}
@@ -12,18 +12,13 @@
 
 {% block full %}
 <div class='container'>
-    {% if PB_Stories %}
-        <div class="container">
-            <!-- działa! {{ PB_Stories }} -->
-            {% for bubble in PB_Stories %}
-                {% include 'bubble.html' %}
-            {% endfor %}
-        </div>
-    {% endif %}
-    <span class="d-flex justify-content-center PB2 PB_bg_logo m-2 justify-content-centre widith-100">
+    <div>
+        <img src="{% static 'images/lapka.png' %}" class="PB_stamp my-4" alt="cat food stamp">
+    </div>
+    <div class="msg_central2 font_2 my-4">
         Na czym polega ten szyfr?
-    </span>
-    <div class="mx-2 p-2 shadow justify-content-center">
+    </div>
+    <div class="mx-2 p-2 cpost_body justify-content-center">
         <p>
             Aby sie bawić tym szyfrem potrzebne popatrz na poniższy rysunek. Mamy coś na kształt krzyżówki.
             Kazdej literze w komórce w szyfrowanym tekście odpowiada symbol literowo-cyfrowy:
@@ -52,7 +47,7 @@
                 </table>
             </div>
         </div>
-        <p class="mt-3 mx-2">
+        <p class="mt-5 mb-3">
             Każdą literlę można zapisać jej symbolem:
         </p>
         <ul class="PB3 m-3 list-group border-0">
@@ -62,7 +57,7 @@
             <li class="list-group-item m-1 py-0 border-0">Z1 to oczywiście 'Z'</li>
         </ul>
         <p>
-            Na przykład <span class="PB2">PAN BARNABA Z ANTKIEM</span> zaszyfrowany tą metodą będzie wyglądać tak:
+            Na przykład <span class="lpost_highlight">PAN BARNABA Z ANTKIEM</span> zaszyfrowany tą metodą będzie wyglądać tak:
         </p>
         <p>
             O2 A1 K4 &nbsp;&nbsp;A2 A1 R1 K4 A1 A2 A1

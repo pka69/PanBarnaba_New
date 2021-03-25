@@ -1,4 +1,4 @@
-{% extends 'main.html' %}
+{% extends 'newLayout.html' %}
 
 {% load static %}
 
@@ -12,14 +12,14 @@
 {% block title_box %}
     <div class="d-inline-block ">
         <div class="row justify-content-center ">
-            <h2>Twój czas wykonania</h2>
+            <span class="cpost_title">Twój czas wykonania</span>
         </div>
-        <div class="row justify-content-center border rounded-pill p-2 PB2" id="counter" value="0">
+        <div class="row justify-content-center  p-2 my-2 cpost_body" id="counter" value="0">
         </div>
     </div>
 {% endblock %}
 
-{% block left %}
+{% block full %}
     <span class="d-none" id="finish" >0</span>
     <span class="d-none" id="finalTime" >0</span>
     <span class="d-none" id="level">{{ level }}</span>
@@ -27,9 +27,27 @@
     <span class="d-none" id="method">std</span>
     <span class="d-none" id="gameType">puzzle</span>
     <div class = "container">
+        <div class="my-4">
+            <img src="{% static 'images/lapka.png' %}" class="PB_stamp" alt="cat food stamp">
+        </div>
+        <div class="msg_central2 font_2 my-4">
+            Jak grać?
+        </div>
+        <div class="container justify-content-center">
+            <ul class="list-group cpost_body ">
+                <li class="list-group-item border-0">
+                    kliknij w obrazek sąsiadujący z pusym fragmentem, aby zamienić je miejscami
+                </li>
+                <li class="list-group-item border-0">
+                    albo używaj klawiszy strzałek do przemieszczania szarego fragmentu
+                </li>
+            </ul>
+        </div>
         <div class = "row justify-content-md-center">
-            <div class="col-md-6">
-                <span class="d-flex justify-content-center PB2 PB_bg_logo m-4 justify-content-centre widith-100">Rozwiąż</span>
+            <div class="col-lg-6">
+                <div class="msg_central2 font_2 my-2">
+                    Rozwiąż
+                </div>
                     <div class="container justify-content-center align-items-center PB_image " >
                         <div class="row PB_row">
                             {% for item in parts %}
@@ -53,8 +71,10 @@
                          </div>
                     </div>
             </div>
-            <div class="col-6">
-                <span class="d-flex justify-content-center  PB2 PB_bg_logo m-4 widith-100">Wzorzec</span>
+            <div class="col-lg-6">
+                <div class="msg_central2 font_2 my-2">
+                    Wzorzec
+                </div>
                 <div class="container justify-content-center align-items-center PB_image">
                     <img src="{% static 'images/puzzle/'|add:puzzle %}" class="card-img-top"  alt="...">
                 </div>
@@ -62,27 +82,7 @@
 
         </div>
     </div>
-    {% endblock %}
-    {% block right %}
-        <!-- <div class = "row justify-content-md-center"> -->
-            <div class="col">
-                <!-- <hr class="my-4">  -->
-                <spam class="d-flex justify-content-center PB2 PB_bg_logo m-4 justify-content-centre">
-                    Jak grać?
-                </spam>
-                <ul class="list-group w-75">
-                    <li class="list-group-item">
-                        kliknij w obrazek sąsiadujący z pusym fragmentem, aby zamienić je miejscami
-                    </li>
-                    <li class="list-group-item">
-                        albo używaj klawiszy strzałek do przemieszczania szarego fragmentu
-                    </li>
-                </ul>
-
-            </div>
-        <!-- </div> -->
-    <!-- </div> -->
-    <br>
+    <div style="height:300px; width:100%; clear:both;"></div>
     {% include 'scoring/score_list.html' %}
     
 {% endblock %}

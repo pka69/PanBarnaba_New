@@ -1,4 +1,4 @@
-{% extends 'main.html' %}
+{% extends 'newLayout.html' %}
 {% load static %}
 
 {% block meta %}
@@ -8,18 +8,13 @@
 
 {% block full %}
 <div class='container'>
-    {% if PB_Stories %}
-        <div class="container">
-            <!-- działa! {{ PB_Stories }} -->
-            {% for bubble in PB_Stories %}
-                {% include 'bubble.html' %}
-            {% endfor %}
-        </div>
-    {% endif %}
-    <span class="d-flex justify-content-center PB2 PB_bg_logo m-2 justify-content-centre widith-100">
+    <div>
+        <img src="{% static 'images/lapka.png' %}" class="PB_stamp my-4" alt="cat food stamp">
+    </div>
+    <div class="msg_central2 font_2 my-4">
         Na czym polega ten szyfr?
-    </span>
-    <div class="mx-2 p-2 shadow justify-content-center">
+    </div>
+    <div class="mx-2 p-2 cpost_body justify-content-center">
         <p>
             Aby sie bawić tym szyfrem potrzebne jest słowo-klucz, nie koniecznie takie, które 
             coś znaczy, ale takie, które spełnia kilka warunków:
@@ -43,7 +38,7 @@
             któraś z liter z klucza - zastępujemy ją literą, która jest z nią w parze.
         </p>
         <p>
-            na przykład <span class="PB2">PAN BARNABA</span> wg powyrzszego przykładu to <span class="PB2">OKU BKEUKBK</span>
+            na przykład <span class="lpost_highlight">PAN BARNABA</span> wg powyrzszego przykładu to <span class="PB2">OKU BKEUKBK</span>
         </p>
         <p>Do wyboru masz trzy poziomy trudności. Od zadań łatwych (dwu/trzy wyrazowych) do bardzo trudnych (długie cytaty).  <br>
             Sam zdecyduj od czego chcesz zacząć

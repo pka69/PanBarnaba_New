@@ -1,4 +1,4 @@
-{% extends 'main.html' %}
+{% extends 'newLayout.html' %}
 {% load static %}
 
 {% block meta %}
@@ -11,36 +11,29 @@
  {% endblock %}
  
 {% block full %}
-    <div class='container my-2'>
-        {% if PB_Stories %}
-            <div class="container">
-                <!-- działa! {{ PB_Stories }} -->
-                {% for bubble in PB_Stories %}
-                    {% include 'bubble.html' %}
-                {% endfor %}
-            </div>
-        {% endif %}
+    <div class="container my-2">
         <div class="container mb-2 p-2 PB2">
             {% for option in ftypes %}
                 <a href="/posts/forum/{{ option }}">
-                    <button type="button" class="btn btn-{% if option == ftype %}secondary{% else %}outline-secondary{% endif %}">
+                    <button type="button" class="btn {% if option == ftype %}PB_button_grey{% else %}PB_button{% endif %} mx-2">
                         {{ option }}
                     </button>
                 </a>
             {% endfor %}
         </div>
-        <div class="my-3 secondary">
+        <div class="my-3">
             <form action="" method="POST">
                 {% csrf_token %}
-                <label for="content" class="form-label">o czym myślisz?</label>
+                <label for="content" class="form-label msg_central2 font_2 my-4">o czym myślisz?</label>
                 <input type="text" class="form-control" name="content" id="main_content" autocomplete="none">
                 <input type="text" class="form-control d-none" name="subgroup", value="{{ ftype }}">
                 <input type="number" class="form-control d-none" name="user", value="{{ request.user.id }}">
-                <button type"submit" class="d-none" name="submit" value="add_post"></button>
+                <button type="submit" class="d-none" name="submit" value="add_post"></button>
             </form>
+            <br>
         </div>
         {% for item in posts %}
-            {% include 'posts/forum.html' %}
+            {% include 'posts/NL_forum.html' %}
         {% endfor %}
         {% if posts.has_other_pages %}
         

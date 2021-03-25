@@ -1,0 +1,54 @@
+:root {
+
+    /* Colors: */
+    --unnamed-color-c9c7c7: #C9C7C7;
+    --unnamed-color-534d4d: #534D4D;
+    --unnamed-color-ffffff: #FFFFFF;
+    --unnamed-color-fcb855: #FCB855;
+    
+    /* Font/text values */
+    --unnamed-font-family-lato: Lato;
+    --unnamed-font-family-courgette: Courgette;
+    --unnamed-font-family-poppins: Poppins;
+    --unnamed-font-style-normal: normal;
+    --unnamed-font-weight-bold: bold;
+    --unnamed-font-weight-normal: normal;
+    --unnamed-font-size-22: 22px;
+    --unnamed-font-size-50: 50px;
+    --unnamed-font-size-70: 70px;
+    --unnamed-character-spacing-0: 0px;
+    --unnamed-character-spacing-3: 3px;
+    --unnamed-line-spacing-32: 32px;
+    --unnamed-line-spacing-40: 40px;
+    --unnamed-line-spacing-98: 98px;
+    --unnamed-text-transform-titlecase: titlecase;
+    }
+    
+    /* Character Styles */
+    .unnamed-character-style-1 {
+    font-family: var(--unnamed-font-family-lato);
+    font-style: var(--unnamed-font-style-normal);
+    font-weight: var(--unnamed-font-weight-bold);
+    font-size: var(--unnamed-font-size-70);
+    line-height: var(--unnamed-line-spacing-98);
+    letter-spacing: var(--unnamed-character-spacing-0);
+    color: var(--unnamed-color-534d4d);
+    }
+    .unnamed-character-style-2 {
+    font-family: var(--unnamed-font-family-lato);
+    font-style: var(--unnamed-font-style-normal);
+    font-weight: var(--unnamed-font-weight-normal);
+    font-size: var(--unnamed-font-size-22);
+    line-height: var(--unnamed-line-spacing-32);
+    letter-spacing: var(--unnamed-character-spacing-0);
+    color: var(--unnamed-color-534d4d);
+    }
+    .unnamed-character-style-3 {
+    font-family: var(--unnamed-font-family-courgette);
+    font-style: var(--unnamed-font-style-normal);
+    font-weight: var(--unnamed-font-weight-normal);
+    font-size: var(--unnamed-font-size-50);
+    line-height: var(--unnamed-line-spacing-40);
+    letter-spacing: var(--unnamed-character-spacing-3);
+    color: var(--unnamed-color-534d4d);
+    text-transform: var(--unnamed-text-transform-titlecase);

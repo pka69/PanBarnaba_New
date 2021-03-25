@@ -70,21 +70,24 @@ def mainView(request):
     in bottom bar info about current user, button to login/logout/create user/change password
     '''
 
-    if request.session.get('intro', 'brak') == 'brak':
-        request.session['intro'] = 'OK'
-        return redirect('/intro/')
+    # if request.session.get('intro', 'brak') == 'brak':
+    #     request.session['intro'] = 'OK'
+    #     return redirect('/intro/')
     if not request.session.get('welcome'):
         messages.info(request, 'Witaj! {}'.format(Post.welcome()))
         request.session['welcome'] = True
     context['submenu'] = Menu.getMenu('main')
     context['games'] = Menu.getMenu('games', detail=1)
     context['maths'] = Menu.getMenu('maths', detail=1)
-    context['news'] = Post.notRejected.filter(group=0).first()
-    context['forum'] = Post.approved.filter(group=2).filter(related_post__isnull=True).first()
+    context['puzzle'] = puzzleList('images/carousel')
+    context['content'] = Post.notRejected.filter(group=6).filter(subgroup__startswith="main-carusel").order_by('subgroup')
+    context['sections'] = Post.notRejected.filter(group=6).filter(subgroup__startswith="main-section").order_by('subgroup')
+    context['news'] = Post.notRejected.filter(group=0)[:4]
+    context['forum'] = Post.approved.filter(group=2).filter(related_post__isnull=True)[:4]
     # context['bookstore'] = Post.bookBestPrice('książka')
     # context['ebookstore'] = Post.bookBestPrice('ebook')
     context['PB_Stories'] = getBubbles(request)
-    return render(request, 'main.html', context=context)
+    return render(request, 'NL_main.html', context=context)
 
 
 @login_required(redirect_field_name='my_redirect_field')  # to delete in final project
@@ -106,6 +109,8 @@ def infoView(request):
     # show info view
     context['submenu'] = Menu.getMenu('main')
     context['title'] = 'Garść informacji ogólnych'
+    context['logo'] = 'info.png'
+    context['PB_Stories'] = getBubbles(request)
     return render(request, 'info.html', context)
 
 
@@ -116,7 +121,9 @@ class contactView(LoginRequiredMixin, View):
     def get(self, request):
         # show contact view with possibility so send message to the author
         context['submenu'] = Menu.getMenu('main')
+        context['logo'] = 'kontakt.png'
         context['title'] = 'skontaktuj się z nami'
+        context['PB_Stories'] = getBubbles(request)
         return render(request, 'contact.html', context=context)
     
     def post(self, request):
@@ -164,6 +171,8 @@ def gamesView(request):
     context['submenu'] = Menu.getMenu('main')
     context['games'] = Menu.getMenu('games', detail=1)
     context['PB_Stories'] = getBubbles(request)
+    context['title'] = 'Wybierz grę dla siebie'
+    context['logo'] = 'info.png'
     return render(request, 'games.html', context=context)
 
 
@@ -173,6 +182,8 @@ def mathsView(request):
     context['submenu'] = Menu.getMenu('main')
     context['maths'] = Menu.getMenu('maths', detail=1)
     context['PB_Stories'] = getBubbles(request)
+    context['title'] = 'Zobacz co przygotowaliśmy'
+    context['logo'] = 'info.png'
     return render(request, 'maths.html', context=context)
 
 

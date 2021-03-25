@@ -1,4 +1,4 @@
-{% extends 'main.html' %}
+{% extends 'newLayout.html' %}
 {% load static %}
 {% load define_action %}
 
@@ -13,19 +13,16 @@
 
 {% block full %}
 <div class="container-fluid grid_bg px-5">
-    {% if PB_Stories %}
-        <div class="container">
-            <!-- działa! {{ PB_Stories }} -->
-            {% for bubble in PB_Stories %}
-                {% include 'bubble.html' %}
-            {% endfor %}
-        </div>
-    {% endif %}
-    <span class="d-flex PB2 PB_bg_logo m-4 justify-content-centre widith-100">Wymyśl labirynt, z którym nie poradzi sobie komputer!</span>
     <div class="row" >
         <div class="col-lg-9 justify-content-centre px-5">
             <input type="text" class="d-none" name="rows" data-rows="{{ rows }}" value="{{ rows }}">
             <input type="text" class="d-none" name="cols" data-rows="{{ cols }}" value="{{ cols }}">
+            <div>
+                <img src="{% static 'images/lapka.png' %}" class="PB_stamp my-4" alt="cat food stamp">
+            </div>
+            <div class="msg_central2 font_2 my-4">
+                Wymyśl labirynt, z którym nie poradzi sobie komputer!
+            </div>
             <div class="lifeGrid my-2" name="example">
                 <table class="tableGrid">
                     {% for row in matrix.0 %}
@@ -46,12 +43,12 @@
             </div>
             <div class="container">
                 <div class="d-flex justify-content-center my-3">
-                    <button class="btn btn-secondary btn-sm" id="oneStep"> wykonaj jeden krok</button>
-                    <button class="btn btn-outline-secondary btn-sm mx-5" id="startRoad"> Uruchom szukanie drogi</button>
-                    <button class="btn btn-secondary btn-sm" id="reset">Wyczyść</button>
+                    <button class="btn PB_button" id="oneStep"> wykonaj jeden krok</button>
+                    <button class="btn PB_button_outline mx-5" id="startRoad"> Uruchom szukanie drogi</button>
+                    <button class="btn PB_button" id="reset">Wyczyść</button>
                     <!-- <button class="btn btn-secondary btn-sm mx-5" name="clean" id="clean"> zresetuj planszę </button> -->
                     <a href="{% url 'labirynth_go' %}">
-                        <button class="btn btn-secondary btn-sm mx-5">Zacznij labirynt od nowa!</button>
+                        <button class="btn PB_button mx-5">Zacznij labirynt od nowa!</button>
                     </a>
                 </div>
             </div>
@@ -70,7 +67,7 @@
                  <button class="btn btn-outline-secondary m-3" id="start">
                      <div class="cell3 startLab"></div>
                  </button>
-                 <h5 class=" m-1 justify-content-centre">
+                 <h5 class=" m-1 justify-content-center">
                     Wstaw punkt początkowy
                 </h5>
              </div> 

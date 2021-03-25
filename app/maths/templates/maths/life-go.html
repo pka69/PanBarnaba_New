@@ -1,4 +1,4 @@
-{% extends 'main.html' %}
+{% extends 'newLayout.html' %}
 {% load static %}
 
 
@@ -14,21 +14,19 @@
 {% block full %}
 
 <div class="container-fluid grid_bg px-5">
-    {% if PB_Stories %}
-        <div class="container">
-            <!-- działa! {{ PB_Stories }} -->
-            {% for bubble in PB_Stories %}
-                {% include 'bubble.html' %}
-            {% endfor %}
-        </div>
-    {% endif %}
-    <span class="d-flex PB2 PB_bg_logo my-4 justify-content-centre widith-100">algorytm życia - sprawdź jak to działa?</span>
+    
     <input type="text" class="d-none" name="rows" data-rows="{{ rows }}" value="{{ rows }}">
     <input type="text" class="d-none" name="cols" data-rows="{{ cols }}" value="{{ cols }}">
     <input type="text" class="d-none" name="finish" if="finish" value="1">
 
     <div class="row" >
         <div class="col-lg-10 px-2">
+            <div>
+                <img src="{% static 'images/lapka.png' %}" class="PB_stamp my-4" alt="cat food stamp">
+            </div>
+            <div class="msg_central2 font_2 my-4">
+                algororytm życia - sprawdź jak to działa
+            </div>
             <div class="lifeGrid my-2" name="example">
                 <table class="tableGrid">
                     {% for row in matrix.0 %}
@@ -44,9 +42,9 @@
             </div>
             <div class="container">
                 <div class="d-flex justify-content-center my-3">
-                    <button class="btn btn-secondary btn-lg mx-5" name="oneStep"> wykonaj jeden cykl życia</button>
-                    <button class="btn btn-outline-secondary btn-lg mx-5" name="start"> Uruchom algorytm życia</button>
-                    <button class="btn btn-secondary btn-lg mx-5" name="reset"> zresetuj planszę </button>
+                    <button class="btn PB_button" name="oneStep"> wykonaj jeden cykl życia</button>
+                    <button class="btn PB_button_outline mx-2" name="start"> Uruchom algorytm życia</button>
+                    <button class="btn PB_button" name="reset"> zresetuj planszę </button>
                 </div>
             </div>
             <div class="container">

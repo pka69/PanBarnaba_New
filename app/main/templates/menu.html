@@ -1,0 +1,58 @@
+{% load static %}
+    <div class="col-md-5 ">
+        <a class="navbar-brand m-0" href="/">
+            <img src="{% static 'images/glowa_barnaba.png' %}" width="78" height="78" alt="" class="img_center">
+        </a>
+        <div>
+            <p class="font_2 m-0 p-0">
+                {% block NAV1 %}
+                <span> Pan Barnaba</span>
+                {% endblock %}
+            </p>
+            {% if main_name %}
+                <p class="font_3 ">{{ main_name }}</p>
+            {% else %}
+                <p  class="font_3">zaprasza</p>
+            {% endif %}
+        </div>
+    </div>
+    <div class="col align-middle">
+        <nav class="navbar navbar-expand-lg navbar-light bg_color_grey29" >
+            <div class="container-fluid">
+                {% if submenu %}
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMenu" aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarMenu">
+                        <ul class="navbar-nav">
+                            {% for menu_0, menu_1, menu_2 in submenu %}
+                                {% if menu_2 %}
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle font_menu_left" 
+                                            href="#" 
+                                            id="{{ menu_0 }}" 
+                                            role="button" 
+                                            data-bs-toggle="dropdown" 
+                                            aria-expanded="false">
+                                            {{ menu_0 }}
+                                        </a>
+                                        <ul class="dropdown-menu" aria-labelledby="{{ menu_0 }}">
+                                            {% for menu1_0, menu1_1, menu1_2 in menu_2 %}
+                                                <li>
+                                                    <a class="dropdown-item font_menu_left" href="{{ menu1_1 }}">{{ menu1_0 }}</a>
+                                                </li>
+                                            {% endfor %}
+                                        </ul>
+                                    </li>
+                                {% else %}
+                                    <li class="nav-item font_menu_left">
+                                        <a class="nav-link" href=" {{ menu_1 }}">{{ menu_0 }}</a>
+                                    </li>
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
+            </div>
+        </nav>
+    </div>

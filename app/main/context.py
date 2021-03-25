@@ -1,7 +1,9 @@
 
+from posts.models import Post
+
 VERSION = [
     {
-        'version': '0.1',
+        'version': '0.5',
         'date': '2020/12/05'
     },
     {
@@ -19,5 +21,6 @@ def global_context(request):
         'copyright': '2020 KalPiCo',
         'copyright_mail': 'kalpico@gmail.com',
         'version': VERSION[act_version]['version'],
+        'footMessage': Post.notRejected.filter(group=6).filter(subgroup__startswith="main-section").order_by('subgroup').last()
     }
     return context

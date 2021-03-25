@@ -1,4 +1,4 @@
-{% extends 'main.html' %}
+{% extends 'newLayout.html' %}
 {% load static %}
 
 {% block meta %}
@@ -12,23 +12,18 @@
 
 {% block full %}
 <div class='container'>
-    {% if PB_Stories %}
-        <div class="container">
-            <!-- działa! {{ PB_Stories }} -->
-            {% for bubble in PB_Stories %}
-                {% include 'bubble.html' %}
-            {% endfor %}
-        </div>
-    {% endif %}
-    <span class="d-flex justify-content-center PB2 PB_bg_logo m-2 justify-content-centre widith-100">
+    <div>
+        <img src="{% static 'images/lapka.png' %}" class="PB_stamp my-4" alt="cat food stamp">
+    </div>
+    <div class="msg_central2 font_2 my-4">
         Na czym polega ten szyfr?
-    </span>
-    <div class="mx-2 p-2 shadow justify-content-center">
+    </div>
+    <div class="mx-2 p-2 cpost_body justify-content-center">
         <p>
             Aby sie bawić tym szyfrem potrzebne popatrz na poniższy rysunek. Każda z podstawowych liter jest 
             fragmentem tabliczki czekolady, dodadkowo cztery litery znajdują się w ćwiartkach X a jedna w kółku
         </p>
-        <div class="d-flex justify-content-center align-items-center">
+        <div class="d-flex justify-content-center align-items-center mb-4">
             <div>
                 <table class="mx-2 PB3">
                     <tr class="border-bottom border-dark">
@@ -74,45 +69,52 @@
                 <span class="border rounded-circle border-dark px-3 py-2">Z</span>
             </div>
         </div>
-        <p>
-            Każdą literlę można zapisać jej symbolem:
-        </p>
-        <ul class="PB3 m-3 list-group border-0">
-            <li class="list-group-item m-2 py-0 border-0"><span class="brownie_a">&#8226;</span> to odpowiednik 'A', czyli lewa górna kostka czekolady, lewa litera</li>
-            <li class="list-group-item m-2 py-0 border-0"><span class="brownie_j">&#8226;</span> to odpowiednik 'J', czyli środkowa kostka czekolady, prawa litera</li>
-            <li class="list-group-item m-2 py-0 border-0"><span class="brownie_u">&#8226;</span> to odpowiednik 'U', czyli litera w prawej części X</li>
-            <li class="list-group-item m-2 py-0 border-0"><span class="brownie_z">&#8226;</span> to oczywiście 'Z'</li>
-        </ul>
-        <p>
-            Na przykład <span class="PB2">PAN BARNABA Z ANTKIEM</span> zaszyfrowany tą metodą będzie wyglądać tak:
-        </p>
-        <p>
-            <span class="brownie_p">&#8226;</span>
-            <span class="brownie_a">&#8226;</span>
-            <span class="brownie_n">&#8226;</span>
-            &nbsp;&nbsp;
-            <span class="brownie_b">&#8226;</span>
-            <span class="brownie_a">&#8226;</span>
-            <span class="brownie_r">&#8226;</span>
-            <span class="brownie_n">&#8226;</span>
-            <span class="brownie_a">&#8226;</span>
-            <span class="brownie_b">&#8226;</span>
-            <span class="brownie_a">&#8226;</span>
-            &nbsp;&nbsp;
-            <span class="brownie_z">&#8226;</span>
-            &nbsp;&nbsp;
-            <span class="brownie_a">&#8226;</span>
-            <span class="brownie_n">&#8226;</span>
-            <span class="brownie_t">&#8226;</span>
-            <span class="brownie_k">&#8226;</span>
-            <span class="brownie_i">&#8226;</span>
-            <span class="brownie_e">&#8226;</span>
-            <span class="brownie_m">&#8226;</span>
-            
-        </p>
-        <p>Do wyboru masz trzy poziomy trudności. Od zadań łatwych (dwu/trzy wyrazowych) do bardzo trudnych (długie cytaty).  <br>
-            Sam zdecyduj od czego chcesz zacząć
-        </p>
+        <div class="f-flex justify-content-center">
+            <p>
+                Każdą literlę można zapisać jej symbolem:
+            </p>
+            <span class="brownie_a">&#8226;</span> to odpowiednik 'A', czyli lewa górna kostka czekolady, lewa litera</li>
+            <br><br>
+            <span class="brownie_j">&#8226;</span> to odpowiednik 'J', czyli środkowa kostka czekolady, prawa litera</li>
+            <br><br>
+            <span class="brownie_u">&#8226;</span> to odpowiednik 'U', czyli litera w prawej części X</li>
+            <br><br>
+            <span class="brownie_z">&#8226;</span> to oczywiście 'Z'</li>
+            <br><br>
+            <br>
+            <p>
+                Na przykład <span class="lpost_highlight">PAN BARNABA Z ANTKIEM</span> zaszyfrowany tą metodą będzie wyglądać tak:
+            </p>
+            <p>
+                <span class="brownie_p">&#8226;</span>
+                <span class="brownie_a">&#8226;</span>
+                <span class="brownie_n">&#8226;</span>
+                &nbsp;&nbsp;
+                <span class="brownie_b">&#8226;</span>
+                <span class="brownie_a">&#8226;</span>
+                <span class="brownie_r">&#8226;</span>
+                <span class="brownie_n">&#8226;</span>
+                <span class="brownie_a">&#8226;</span>
+                <span class="brownie_b">&#8226;</span>
+                <span class="brownie_a">&#8226;</span>
+                &nbsp;&nbsp;
+                <span class="brownie_z">&#8226;</span>
+                &nbsp;&nbsp;
+                <span class="brownie_a">&#8226;</span>
+                <span class="brownie_n">&#8226;</span>
+                <span class="brownie_t">&#8226;</span>
+                <span class="brownie_k">&#8226;</span>
+                <span class="brownie_i">&#8226;</span>
+                <span class="brownie_e">&#8226;</span>
+                <span class="brownie_m">&#8226;</span>
+                
+            </p>
+            <br>
+            <p>Do wyboru masz trzy poziomy trudności. Od zadań łatwych (dwu/trzy wyrazowych) do bardzo trudnych (długie cytaty).  <br>
+                Sam zdecyduj od czego chcesz zacząć
+            </p>
+        </div>
+        
     </div>
     {% include 'encrypt/next_or_back.html' %}
     <br>

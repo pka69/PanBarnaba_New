@@ -176,6 +176,7 @@ class gameOfLifeView(View):
         context['cols'] = len(GOL_STRUCTURE[selected[0]][0])
         context['PB_Stories'] = getBubbles(request)
         context['repeater'] = GOL_REPEATER[selected[0]]
+        context['logo'] = 'live.png'
         return render(request, 'maths/life.html', context=context)
 
 class gameOfLifeGoView(View):
@@ -192,6 +193,7 @@ class gameOfLifeGoView(View):
         context['speed'] = ['125', '250', '500', '1000']
         context['types'] = list(GOL_STRUCTURE.keys())
         context['PB_Stories'] = getBubbles(request)
+        context['logo'] = 'live.png'
         return render(request, 'maths/life-go.html', context=context)
 
 LABIRYNTH = [
@@ -245,6 +247,7 @@ class labirynthView(View):
         context['rows'] = 20
         context['cols'] = 50
         context['labirynth'] = LABIRYNTH
+        context['logo'] = 'labirynth.png'
         return render(request, 'maths/labirynth.html', context=context)
 
 LAB_SIZE = [
@@ -261,6 +264,7 @@ class labirynthGoView(View):
         context['cols'] = LAB_SIZE[size][1]
         context['matrix'] = [range(context['rows']), range(context['cols'])]
         context['speed'] = ['125', '250', '500', '1000']
+        context['logo'] = 'labirynth.png'
         return render(request, 'maths/labirynth-go.html', context=context)
 
 

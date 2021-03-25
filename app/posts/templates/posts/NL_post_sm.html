@@ -1,0 +1,31 @@
+{% load static %}
+{% load define_action %}
+<article class="article-sm">
+    {% if item.picture %}
+        <div class="article-photo-sm">
+            {% if item.picture|web_adress %}
+                <img src="{{ item.picture }}">
+            {% else %}
+                <img src="{% static item.picture %}">
+            {% endif %}
+        </div>
+    {% endif %}
+    <div class="article-content-sm">
+        <div class="article-excerpt-sm">
+            {% autoescape off %}
+                {{ item.content_html }}
+            {% endautoescape %}
+        </div>
+        {% if item.external_link %}
+            <div class="float float-reverse col-md-2 text-end w-100">
+                <a href="{{ item.external_link }}" class="PB_button">
+                    <img src="{% static 'images/PB_wavinghand.png' %}"  class="PB_wavinghand" alt="">
+                    przejdź
+                </a>
+            </div>
+        {% endif %}
+    </div>
+    <!-- <div class="article-footer-sm text-end">
+        {{ item.fulldate }} | {{ item.owner.username }}
+    </div> -->
+</article>

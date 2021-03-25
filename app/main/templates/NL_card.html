@@ -1,0 +1,13 @@
+{% load static %}
+<div class="col mx-auto">
+    <div class="PB_card mx-auto">
+        <a href="{{ item.2 }}" class="font_nd" >
+            <div class="PB_card_img">
+                <img src="{% static static_folder|add:item.1 %}" class="card-img-top "  alt="{{ item.0 }}">
+            </div>
+            <div>
+                <p class="font_menu font_nd my-2">{{ item.0 }} </p>
+            </div>
+        </a>
+    </div>
+</div>

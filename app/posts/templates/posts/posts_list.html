@@ -1,4 +1,4 @@
-{% extends 'main.html' %}
+{% extends 'newLayout.html' %}
 {% load static %}
 
 {% block meta %}
@@ -6,21 +6,16 @@
     <meta name=”description” content=”Pan Barnaba i zagadkowa hipoteza. autor: Katarzyna Kalista. Wieści z sieci"/>
     {% endblock %}
 
-{% block head %}
+<!-- {% block head %}
     <link rel="stylesheet"  href="{% static 'css/PB_posts.css' %}"/>
- {% endblock %}
+ {% endblock %} -->
 {% block full %}
     <div class='container my-5'>
-        {% if PB_Stories %}
-            <div class="container">
-                <!-- działa! {{ PB_Stories }} -->
-                {% for bubble in PB_Stories %}
-                    {% include 'bubble.html' %}
-                {% endfor %}
-            </div>
-        {% endif %}
+        <div class="mb-4">
+            <img src="{% static 'images/lapka.png' %}" class="PB_stamp" alt="cat food stamp">
+        </div>
         {% for item in posts %}
-            {% include 'posts/post.html' %}
+            {% include 'posts/NL_post.html' %}
         {% endfor %}
 
         {% if posts.has_other_pages %}

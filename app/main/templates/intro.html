@@ -13,31 +13,16 @@
             <div class="carousel-item  active">
                 <div class="d-flex justify-content-center p-2 article-photo-carousel">
                     <img  src="{% static 'images/PanBarnaba_72.jpg' %}"  alt="Pan Barnaba" target="_blank">
-                    <div class="m-5 aligncenter">
-                        {% if premier_time %}
-                            <h2 class="m-2">Premiera już niedługo </h5><br>
-                            <p class="mx-2">Irure eiusmod exercitation et amet anim adipisicing non commodo. 
-                                Aliquip cillum fugiat esse eiusmod est aliqua incididunt tempor nostrud aute cillum quis. Est cillum magna cillum fugiat in tempor mollit cillum minim et ullamco. Dolore eu excepteur eu enim non ex ea. Enim irure exercitation exercitation eiusmod mollit labore. Nulla anim proident qui duis sit nulla eu est. Aliqua fugiat culpa ea aliqua.
-                                Ea tempor nostrud est dolor officia sint et ex. Incididunt nulla cillum deserunt 
-                                non deserunt officia ullamco nulla non occaecat in. Exercitation esse esse mollit 
-                                aute Lorem ut ad et deserunt laborum ipsum nisi reprehenderit non. Esse cupidatat aliqua qui excepteur elit proident aliqua et exercitation culpa do. Elit laborum veniam laborum consectetur sunt velit elit anim duis veniam.</p>
-                        {% else %} 
-                            <h5 class="m-5">Gdzie kupić ?</h5>
-                            <a href="/posts/pricelist" class="card-text mx-5" target="_blank">tu możesz sprawdzić aktualne ceny</a>
-                        {% endif %}
-                    </div>
                 </div>
             </div>
             {% with static_folder='images/carousel/' %}
-                
+                {% for item in puzzle %}
                     <div class="carousel-item ">
                          <div class="d-flex justify-content-center article-photo-carousel">
-                             {% for item in puzzle %}
                             <img src="{% static static_folder|add:item.1 %}" class="d-flex" alt="Picture">
-                             {% endfor %}
                         </div>
                     </div>
-               
+                {% endfor %}
             {% endwith %}
             <div class="carousel-item  ">
                 <div class="d-flex justify-content-center p-2 article-photo-carousel">

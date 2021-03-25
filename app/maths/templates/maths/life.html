@@ -1,4 +1,4 @@
-{% extends 'main.html' %}
+{% extends 'newLayout.html' %}
 {% load static %}
 
 {% block meta %}
@@ -11,15 +11,20 @@
  {% endblock %}
 
 {% block left %}
-<div class="container">
-    <span class="d-flex PB2 PB_bg_logo m-4 justify-content-centre widith-100">algorytm życia - czym jest?</span>
-    <p>
+<div class="container cpost_body">
+    <div>
+        <img src="{% static 'images/lapka.png' %}" class="PB_stamp my-4" alt="cat food stamp">
+    </div>
+    <div class="msg_central2 font_2 my-4">
+        algorytm życia - czym jest?
+    </div>
+    <p class="cpost_body">
         Gra w życie (Life, The game of life) – 
         jeden z pierwszych i najbardziej znanych przykładów automatu komórkowego, 
         wymyślony w roku 1970 przez brytyjskiego matematyka 
         Johna Conwaya.
     </p>
-    <p>
+    <p class="cpost_body">
         Od momentu publikacji zawsze wzbudzała duże zainteresowanie z powodu 
         zaskakującego sposobu, w jaki struktury potrafią ewoluować. 
         To właśnie jej pojawienie się wzbudziło zainteresowanie automatami 
@@ -29,10 +34,10 @@
         z innych dziedzin interesuje sposób, w jaki przy zastosowaniu tylko 
         kilku prostych reguł powstają skomplikowane struktury.
     </p>
-    <h2 class="title">
+    <h2 class="cpost_title">
         Powstanie gry
     </h2>
-    <p>
+    <p class="cpost_body">
     Conway zainspirowany pracami nad układami sąsiadów i regułami zmian, 
     eksperymentował nad stworzeniem takiego automatu pod koniec lat 60. 
     XX wieku. Reguły, które w ostateczności przyczyniły się do powstania gry 
@@ -40,10 +45,10 @@
     szybkim rozrastaniem się struktur i zbyt wolnym pojawianiem się szybko 
     znikających obiektów.
     </p>
-    <h2 class="title">
+    <h2 class="cpost_title">
         Opis reguł gry
     </h2>
-    <p>
+    <p class="cpost_body"> 
     Gra toczy się na nieskończonej planszy (płaszczyźnie) podzielonej na 
     kwadratowe komórki. Każda komórka ma ośmiu „sąsiadów” (tzw. sąsiedztwo 
     Moore’a), czyli komórki przylegające do niej bokami i rogami. 
@@ -58,23 +63,23 @@
     Udział człowieka sprowadza się jedynie do ustalenia stanu początkowego 
     komórek.
     </p>
-    <h2 class="title">
+    <h2 class="cpost_title">
         Reguły gry według Conwaya
     </h2>
     <p>
-        <ul>
+        <ul class="lpost_body">
             <li>Martwa komórka, która ma dokładnie 3 żywych sąsiadów, staje się żywa w następnej jednostce czasu (rodzi się)</li>
             <li>Żywa komórka z 2 albo 3 żywymi sąsiadami pozostaje nadal żywa; przy innej liczbie sąsiadów umiera (z „samotności” albo „zatłoczenia”)</li>
         </ul>
     </p>
-    <h2 class="title">
+    <h2 class="cpost_title">
         Alternatywne reguły
     </h2>
-    <p>
+    <p class="cpost_body">
         To że Conway zaproponował powyższe reguły nie znaczy, że nie można ekserymentować z innymi zasadami. <br>
     żeby było prościej do zapisu reguły przyjęto następująca notację ułamkową: 23/3 - to zapis reguły Conwaya. Przed ukośnikiem umieszczamy ilu sąsiadów pozwala przeżyć a po ukośniku ilu sąsiadów powoduje narodziny komorki. 
     Znane są też inne podejścia: 
-    <ul>
+    <ul class="lpost_body">
             <li>23/3 - zapis reguły Conwaya</li>
             <li>/2 - nasionka, czyli wzrost intensywny</li>
             <li>/234 - kornonki - wzrost przypomina koronki serwety</li>
@@ -87,9 +92,9 @@
         Jest jeszcze wiele innych kombinacji. Możecie potestować własne ustawienia. <br>
         powięcej informacji można się udać <a href="https://pl.wikipedia.org/wiki/Gra_w_%C5%BCycie" target="_blank">tutaj</a>
     </p>
-    <div class="lifeGrid" name="example">
+    <div class="justify-content-center" name="example">
         <a href="{% url 'game_of_life_go' %}">
-            <button class="btn btn-secondary btn-lg">Zobacz jak to działa !</button>
+            <button class="btn PB_button">Zobacz jak to działa !</button>
         </a>
     </div>
     <br>
@@ -104,14 +109,14 @@
     <input type="text" class="d-none" name="rows" data-rows="{{ rows }}" value="{{ rows }}">
     <input type="text" class="d-none" name="cols" data-rows="{{ cols }}" value="{{ cols }}">
     <input type="text" class="d-none" name="finish" if="finish" value="1">
-    <span class="d-flex PB2 PB_bg_logo my-4 text-center widith-100">przykładowa formacja</span>
+    <span class="d-flex msg_central2 font_2 my-4">przykładowa formacja</span>
     <div class="d-flex justify-content-between border-bottom pb-2">
         <a href="/maths/life/?actual={{ gols.0.0 }}&step=-1">
-            <button class="btn btn-secondary btn-md"> poprzedni </button>
+            <button class="btn PB_button_sm"> poprzedni </button>
         </a>
-        <p class="text-center"><span class="PB3">{{ gols.0.0 }}</span></p>
+        <p class="cpost_body"><span class="PB3">{{ gols.0.0 }}</span></p>
         <a href="/maths/life/?actual={{ gols.0.0 }}&step=1">
-            <button class="btn btn-secondary btn-md"> następny </button>
+            <button class="btn PB_button_sm"> następny </button>
         </a>
     </div>
     <div class="lifeGrid" name="example">

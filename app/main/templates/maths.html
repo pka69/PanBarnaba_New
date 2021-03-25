@@ -1,4 +1,4 @@
-{% extends 'main.html' %}
+{% extends 'newLayout.html' %}
 {% load static %}
 
 {% block meta %}
@@ -8,20 +8,17 @@
 
 {% block full %}
 <div class='container'>
-    {% if PB_Stories %}
-        <div class="container">
-            <!-- działa! {{ PB_Stories }} -->
-            {% for bubble in PB_Stories %}
-                {% include 'bubble.html' %}
-            {% endfor %}
-        </div>
-    {% endif %}
+    <div class="my-4">
+        <img src="{% static 'images/lapka.png' %}" class="PB_stamp" alt="cat food stamp">
+    </div>
+    <div class="msg_central2 font_2 my-4">
+        Wskocz w świat algorytmów
+    </div>
      {% with static_folder='images/menu/' %}
-        <span class="d-flex justify-content-center PB2 PB_bg_logo m-4 justify-content-centre widith-100">Wskocz w świat algorytmów</span>
         <div class="row">
-            <div class="card-group">    
+            <div class="card-group mx-auto">    
                 {% for item in maths %}
-                    {% include 'card.html' %}
+                    {% include 'NL_card.html' %}
                 {% endfor %}
             </div>
         </div>

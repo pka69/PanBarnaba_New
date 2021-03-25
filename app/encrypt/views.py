@@ -27,6 +27,7 @@ def gaderypolukiView(request, level=0):
     context['PB_Stories'] = getBubbles(request)
     context['title'] = "szyfr GADERYPOLUKI"
     context['method'] = "gaderypoluki"
+    context['logo'] = 'gaderypoluki.png'
     if level:
         context['key'] = choice(GADERYPOLUKI)
         quotation = choice([item for item in Post.objects.filter(group=1).filter(subgroup='encrypt-{}'.format(level))])
@@ -46,6 +47,7 @@ def brownieView(request, level=0):
     context['PB_Stories'] = getBubbles(request)
     context['title'] = "szyfr Czekoladka"
     context['method'] = "brownie"
+    context['logo'] = 'czekoladka.png'
     if level:
         
         quotation = choice([item for item in Post.objects.filter(group=1).filter(subgroup='encrypt-{}'.format(level))])
@@ -65,6 +67,7 @@ def dividerView(request, level=0):
     context['PB_Stories'] = getBubbles(request)
     context['title'] = "szyfr ułamkowy"
     context['method'] = "divider"
+    context['logo'] = 'divider.png'
     if level:
         
         quotation = choice([item for item in Post.objects.filter(group=1).filter(subgroup='encrypt-{}'.format(level))])
@@ -85,6 +88,7 @@ def kaczorView(request, level=0):
     context['title'] = "szyfr Kaczor"
     context['KACZOR'] = KACZOR
     context['method'] = "kaczor"
+    context['logo'] = 'kaczor.png'
     if level:
         
         quotation = choice([item for item in Post.objects.filter(group=1).filter(subgroup='encrypt-{}'.format(level))])
@@ -204,4 +208,5 @@ def encryptView(request, action='', level=0, level2=0 ):
     context['games'] = Menu.getMenu('encrypt', detail=1)
     context['PB_Stories'] = getBubbles(request)
     context['title'] = "Pobaw się w szyfrowanie"
+    context['logo'] = 'encrypt.png'
     return render(request, 'encrypt/encrypt.html', context=context)

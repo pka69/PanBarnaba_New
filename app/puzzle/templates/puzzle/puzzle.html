@@ -1,4 +1,4 @@
-{% extends 'main.html' %}
+{% extends 'newLayout.html' %}
 
 {% block meta %}
     <title>Pan Barnaba - puzzle</title>
@@ -9,35 +9,34 @@
 
 {% block full %}
 <div class='container'>
-    {% if PB_Stories %}
-        <div class="container">
-            <!-- działa! {{ PB_Stories }} -->
-            {% for bubble in PB_Stories %}
-                {% include 'bubble.html' %}
-            {% endfor %}
-        </div>
-    {% endif %}
-    <span class="d-flex PB2 PB_bg_logo m-4 justify-content-centre widith-100">poziom trudności</span>
+    <div class="my-4">
+        <img src="{% static 'images/lapka.png' %}" class="PB_stamp" alt="cat food stamp">
+    </div>
+    <div class="msg_central2 font_2 my-4">
+        poziom trudności
+    </div>
     <div class="d-flex d-flex justify-content-md-center widith-50">
         <div class="custom-control custom-switch mr-5">
             <input type="checkbox" class="btn-check"  id="level_3" name='level_3' value=3 checked >
-            <label class="btn btn-outline-secondary mx-4" for="level_3" >łatwe (3 x 3)</label>
+            <label class="btn PB_button  mx-4" for="level_3" >easy (3 x 3)</label>
         </div>
         <p> </p>
         <div class="custom-control custom-switch">
             <input type="checkbox" class="btn-check"  id="level_4" name = 'level_4' value=4 >
-            <label class="btn btn-outline-secondary mx-4" for="level_4" >trudne (4 x 4)</label>
+            <label class="btn PB_button mx-4" for="level_4" >medium (4 x 4)</label>
         </div>
     </div>
     {% with static_folder='images/puzzle/' %}
-        <span class="d-flex PB2 PB_bg_logo m-4 justify-content-centre widith-100">Wybierz obrazek</span>
-                        <div class="card-group">  
-                            <div class="row">
-                            {% for item in puzzle %}
-                                {% include 'card.html' %}
-                            {% endfor %}
-                            </div>  
-                        </div>
+        <div class="msg_central2 font_2 my-4">
+            Wybierz obrazek
+        </div>
+            <div class="card-group ">  
+                <div class="row">
+                {% for item in puzzle %}
+                    {% include 'NL_card.html' %}
+                {% endfor %}
+                </div>  
+            </div>
     {% endwith %}
 </div>
 

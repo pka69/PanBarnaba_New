@@ -1,6 +1,6 @@
 from os import listdir
 from os.path import isfile, join
-from random import choice
+from random import choice, shuffle
 
 from django.conf import settings
 from django.conf.urls.static import static
@@ -54,15 +54,16 @@ class PuzzleBlock(Block):
         return sum([item.compare for item in self.items]) == len(self.items)
 
 
-def puzzleList(location):
+def puzzleList(location, make_shuffle=False):
     # list of pictures in static/images/puzzle directory
+
     mypath = settings.STATICFILES_DIRS[0] /  location 
     allfiles = [
         (
             f.split('.')[0],
             f,
             'puzzle_selected/{}'.format(f)) for f in listdir(mypath) if isfile(join(mypath, f))]
-    return allfiles
+    return shuffle(allfiles) if make_shuffle else sorted(allfiles)
 
 
 def puzzleSplited(fname, level):

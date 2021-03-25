@@ -26,12 +26,12 @@ var timing = setInterval( // you're making an interval - a thing, that is updati
         var seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);//conversion miliseconds on seconds
         if (seconds < 10) seconds="0"+seconds;
 
-        document.getElementById("countdown").innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s"; // putting number of days, hours, minutes and seconds in div, 
+        document.getElementById("countdown").innerHTML = "Premiera nadchodzi - " + days + "d " + hours + "h " + minutes + "m " + seconds + "s"; // putting number of days, hours, minutes and seconds in div, 
         //which id is countdown
 
         if (timeLeft <= 0) {
           clearInterval(timing);
-          document.getElementById("countdown").innerHTML = "It's over"; //if there's no time left, programm in this 2 lines is clearing interval (nothing is counting now) 
+          document.getElementById("countdown").innerHTML = "Już jest w ksiegarniach!"; //if there's no time left, programm in this 2 lines is clearing interval (nothing is counting now) 
           //and you see "It's over" instead of time left
         }
       }, 1000);

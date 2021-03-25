@@ -1,4 +1,4 @@
-{% extends 'main.html' %}
+{% extends 'newLayout.html' %}
 
 {% load static %}
 
@@ -8,11 +8,18 @@
 {% endblock %}
 
 {% block full %}
-    <div class='container p-2'>
-        <div class='content-info'>
-            <span class="d-flex PB2 PB_bg_logo m-4 justify-content-centre widith-100" id='author'>autorka - Katarzyna Kalista</span>
-            <div class="card mb-4 shadow-sm content-art">
-                <img class="bd-placeholder-img card-img-top" width="200" height="auto" src="{% static 'images/author.jpg' %}"  alt="Katarzyna Kalista" target="_blank">
+    <div class='container' >
+        <div class='central_block justify-content-center' name="author">
+            <div>
+                <img src="{% static 'images/lapka.png' %}" class="PB_stamp" alt="cat food stamp">
+            </div>
+            <div class="msg_central2 font_2">
+                autorka - Katarzyna Kalista
+            </div>
+            <div>
+                <img class="central_img" src="{% static 'images/author.jpg' %}"  alt="Pan Barnaba" target="_blank">
+            </div>
+            <div class="cpost_body my-3">
                 <p>
                     Krakowianka z urodzenia. Ukończyła dziennikarstwo i komunikację społeczną na Uniwersytecie Jagiellońskim. 
                     Od lat pracuje w branży IT. Pomysł na jej debiut „Ostatni rozdział” pojawił się w drodze do Santiago de Compostela.
@@ -20,50 +27,69 @@
                 </p>
             </div>
         </div>
-        <div class='content-info'>
-            <span class="d-flex PB2 PB_bg_logo m-4 justify-content-centre widith-100" id="books">książki</span>
-            <div class="card mb-4 shadow-sm content-art">
-                <img class="bd-placeholder-img card-img-top" width="450" height="auto" src="https://inverso.pl/img/product_media/284001-285000/16836601041KS.jpg" alt="reklama ostatni rozdział" target="_blank">
-                <div class="card-body">
-                    <a href="https://www.czarnaowca.pl/kategorie/bez_kategorii/ostatni-rozdzial,p1409185918" class="card-text" target="_blank">NOWOŚĆ</a>
-                    <p class="card-text">od 16 września 2020 w dobrych księgarniach!</p>
-                    <p><a href="https://ladymargot.pl/251-ostatni-rozdzial-katarzyna-kalista/" class="card-text" target="_blank">recenzja - Lady Margot</a></p>
-                    <p><a href="https://www.youtube.com/watch?v=nzNsgVKhCA0&t=1s" class="card-text" target="_blank">recenzja - Wielki Buk</a></p>
-                    <p><a href="https://www.instagram.com/explore/tags/katarzynakalista/?hl=pl" class="card-text" target="_blank">#katarzynakalista na instagram</a></p>
-                </div>
+        <div class='central_block justify-content-center' name="books">
+            <div>
+                <img src="{% static 'images/lapka.png' %}" class="PB_stamp" alt="cat food stamp">
             </div>
-            <div class="card mb-4 shadow-sm content-info">
-                <img class="bd-placeholder-img card-img-top" width="450" height="auto" src="https://www.czarnaowca.pl/cache/files/elibri/298035952---w-300-h-440.jpg"  alt="Pan Barnaba" target="_blank">
-                <div class="card-body">
-                    <a href="https://www.czarnaowca.pl/kategorie/dla-dzieci/pan-barnaba-i-zagadkowa-hipoteza,p373038081" class="card-text" target="_blank">NOWOŚĆ</a>
-                    <p class="card-text">od 16 kwietnia 2021 w dobrych księgarniach!</p>
-                    <p class="card-text">
-                        Pan Barnaba zwiedził cały świat, mówi w kilku językach i poznał Marię Skłodowską-Curie i Einsteina. Niby nie ma w tym nic zaskakującego, oprócz tego, że Barnaba to kot – prawdziwy choć niezwykły. <br>
-                        Barnaba przybył do Krakowa z Ameryki z misją potwierdzenia pewnej tajemniczej hipotezy, której udowodnienie warte jest milion dolarów. Kot jest irytujący, ma własne zdanie i zdecydowanie nie lubi głaskania, ani towarzystwa dzieci… Jednak do jednego trzynastolatka o imieniu Antek z czasem się przekonuje. <br>
-                        Niepokorne zwierzę i niesforny trzynastolatek jednoczą siły, żeby dowód zagadkowej hipotezy ujrzał światło dzienne i nie wpadł w niepowołane ręce. <br>
-                        Czy mimo trudnych początków ta osobliwa para osiągnie swój cel?
-                    </p>
-                    <p><a href="https://ladymargot.pl/251-ostatni-rozdzial-katarzyna-kalista/" class="card-text" target="_blank">recenzja - Lady Margot</a></p>
-                    <p><a href="https://www.youtube.com/watch?v=nzNsgVKhCA0&t=1s" class="card-text" target="_blank">recenzja - Wielki Buk</a></p>
-                    <p><a href="https://www.instagram.com/explore/tags/katarzynakalista/?hl=pl" class="card-text" target="_blank">#katarzynakalista na instagram</a></p>
+            <div class="msg_central2 font_2">
+                książki
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <div>
+                        <img class="img_book" src="https://inverso.pl/img/product_media/284001-285000/16836601041KS.jpg"  alt="Ostatni rozdział" target="_blank">
+                    </div>
+                    <div class="lpost_body">
+                        <div class="card-body">
+                            <a href="https://www.czarnaowca.pl/kategorie/bez_kategorii/ostatni-rozdzial,p1409185918" class="card-text" target="_blank">NOWOŚĆ</a>
+                            <p class="card-text">od 16 września 2020 w dobrych księgarniach!</p>
+                            <p><a href="https://ladymargot.pl/251-ostatni-rozdzial-katarzyna-kalista/" class="card-text" target="_blank">recenzja - Lady Margot</a></p>
+                            <p><a href="https://www.youtube.com/watch?v=nzNsgVKhCA0&t=1s" class="card-text" target="_blank">recenzja - Wielki Buk</a></p>
+                            <p><a href="https://www.instagram.com/explore/tags/katarzynakalista/?hl=pl" class="card-text" target="_blank">#katarzynakalista na instagram</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div>
+                        <img class="img_book" src="https://inverso.pl/img/product_media/302001-303000/19486701041KS.jpg"  alt="Pan Barnaba" target="_blank">
+                    </div>
+                    <div class="lpost_body">
+                        <div class="card-body">
+                            <a href="https://www.czarnaowca.pl/kategorie/dla-dzieci/pan-barnaba-i-zagadkowa-hipoteza,p373038081" class="card-text" target="_blank">NOWOŚĆ</a>
+                            <p class="card-text">od 16 kwietnia 2021 w dobrych księgarniach!</p>
+                            <p class="card-text">
+                                Pan Barnaba zwiedził cały świat, mówi w kilku językach i poznał Marię Skłodowską-Curie i Einsteina. Niby nie ma w tym nic zaskakującego, oprócz tego, że Barnaba to kot – prawdziwy choć niezwykły. <br>
+                                Barnaba przybył do Krakowa z Ameryki z misją potwierdzenia pewnej tajemniczej hipotezy, której udowodnienie warte jest milion dolarów. Kot jest irytujący, ma własne zdanie i zdecydowanie nie lubi głaskania, ani towarzystwa dzieci… Jednak do jednego trzynastolatka o imieniu Antek z czasem się przekonuje. <br>
+                                Niepokorne zwierzę i niesforny trzynastolatek jednoczą siły, żeby dowód zagadkowej hipotezy ujrzał światło dzienne i nie wpadł w niepowołane ręce. <br>
+                                Czy mimo trudnych początków ta osobliwa para osiągnie swój cel?
+                            </p>
+                            <p><a href="https://ladymargot.pl/251-ostatni-rozdzial-katarzyna-kalista/" class="card-text" target="_blank">recenzja - Lady Margot</a></p>
+                            <p><a href="https://www.youtube.com/watch?v=nzNsgVKhCA0&t=1s" class="card-text" target="_blank">recenzja - Wielki Buk</a></p>
+                            <p><a href="https://www.instagram.com/explore/tags/katarzynakalista/?hl=pl" class="card-text" target="_blank">#katarzynakalista na instagram</a></p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class='content-info'>
-            <span class="d-flex PB2 PB_bg_logo m-4 justify-content-centre widith-100" id='news'>Wydawnictwo Czarna Owca</span>
-            <div class="card mb-4 shadow-sm content-info ">
-                <a href="https://www.czarnaowca.pl" class="card-text" target="_blank">
-                    <img class="bd-placeholder-img card-img-top" width="450" height="auto" src="{% static 'images/logo-CO-30.svg' %}"  alt="Pan Barnaba" target="_blank">
-                </a>
-                <div class="card-body">
-                    <p>
-                    Ulubione wydawnictwo autorki.  <br>
-                    To w nim ukazała sie jej debiutancka ksiązka. <br>
-                    Czarna Owca wydała także moje historie. <br>
-                    <br>
-
+        <div class='central_block justify-content-center'>
+            <div>
+                <img src="{% static 'images/lapka.png' %}" class="PB_stamp" alt="cat food stamp">
+            </div>
+            <!-- <div class="msg_central2 font_2">
+                Wydawnictwo Czarna Owca
+            </div> -->
+            <a href="https://www.czarnaowca.pl" class="card-text" target="_blank">
+                <img class="central_img" src="{% static 'images/logo-CO-30.svg' %}"  alt="Pan Barnaba" target="_blank">
+            </a>
+            <div class="cpost_body my-3">
+                    <p> 
+                        <br>
+                        Ulubione wydawnictwo autorki.  <br>
+                        To w nim ukazała sie jej debiutancka ksiązka. <br>
+                        Czarna Owca wydała także moje historie. <br>
+                        <br>
+                        <br>
                     </p>
-                </div>
             </div>
         </div>
 

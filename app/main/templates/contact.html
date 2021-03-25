@@ -1,4 +1,4 @@
-{% extends 'main.html' %}
+{% extends 'newLayout.html' %}
 {% load static %}
 
 {% block meta %}
@@ -7,37 +7,40 @@
 {% endblock %}
 
 {% block full %}
-<div class='container-fluid p-2'>
-    <div class="row">
-        <div class="col-lg-5">
-            <div class='content-info'>
-                <span class="d-flex PB2 PB_bg_logo m-2 justify-content-centre widith-100" >
-                    zapraszamy do kontaktu
-                </span>
-                <div class="card mb-4 shadow-sm content-art">
-                    <img class="bd-placeholder-img card-img-top" width="200" height="auto" src="{% static 'images/KatarzynaKalista-7.jpg' %}"  alt="Pan Barnaba" target="_blank">
-                    <h2>Drogi czytelniku!</h2>
-                    <hr>
-                    <p>
-                        
-                        Twój głos jest dla nas bardzo ważny. <br>Zachęcamy Cię więc do dzielenia sie z nami wszelkimi uwagami, zarowno na 
-                        <a href="{% url 'forum' %}" alt="forum">forum</a> jak i tutaj, gdzie masz możliwość wysłania wiadomości, która nie będzie widoczna dla innych użytkowników. <br>
-                        Jesli chcesz, to możesz nam zostawić swój adres mailowy, abyśmy mogli odpowiedzieć na Twoją wiadomość.
-                    </p>
-                    <p>
-                    jeśli chcesz, możesz zamówić książkę z autografem, na przykład na prezent. <br>
-                    Nie tylko Pana Barnabę, ale także 
-                        <a href="https://www.czarnaowca.pl/kategorie/bez_kategorii/ostatni-rozdzial,p1409185918" alt="Ostatni rozdział" target="_blank">
-                            Ostatni rozdział
-                        </a> - idealny prezent na Dzień Mamy.
-                    </p>
-                    <p class="text-right py-1">
-                        <i>Katarzyna Kalista</i>
-                    </p>
-                </div>
+    <div class="container">
+        <div class="central_block justify-content-center">
+            <div>
+                <img src="{% static 'images/lapka.png' %}" class="PB_stamp" alt="cat food stamp">
             </div>
+            <div class="msg_central2 font_2">
+                zapraszamy do kontaktu
+            </div>
+            <div>
+                <img class="central_img" src="{% static 'images/KatarzynaKalista-7.jpg' %}"  alt="Pan Barnaba" target="_blank">
+            </div>
+            <div class="msg_central2 font_2">
+                Drogi czytelniku!
+            </div>
+            <div class="lpost_body">
+                <p >   
+                    Twój głos jest dla nas bardzo ważny. <br>Zachęcamy Cię więc do dzielenia sie z nami wszelkimi uwagami, zarowno na 
+                    <a href="{% url 'forum' %}" alt="forum">forum</a> jak i tutaj, gdzie masz możliwość wysłania wiadomości, która nie będzie widoczna dla innych użytkowników. <br>
+                    Jesli chcesz, to możesz nam zostawić swój adres mailowy, abyśmy mogli odpowiedzieć na Twoją wiadomość.
+                </p>
+                <p >
+                jeśli chcesz, możesz zamówić książkę z autografem, na przykład na prezent. <br>
+                Nie tylko Pana Barnabę, ale także 
+                    <a href="https://www.czarnaowca.pl/kategorie/bez_kategorii/ostatni-rozdzial,p1409185918" alt="Ostatni rozdział" target="_blank">
+                        Ostatni rozdział
+                    </a> - idealny prezent na Dzień Mamy.
+                </p>
+                <p class="text-right py-1">
+                    <i>Katarzyna Kalista</i>
+                </p>
+            </div>
+
         </div>
-        <div class="col-lg-5">
+        <div >
             <div class="content-info">
                 <form action="" method="post" enctype="multipart/form-data">
                     {% csrf_token %}
@@ -47,40 +50,41 @@
                     <input type="text" class="d-none" id="user" name="user" value="{{ request.user_id }}">
                     <div class="modal-body">
                         <div class="mb-3">
-                            <label for="subgroup" class="d-flex PB2 PB_bg_logo my-2 justify-content-centre widith-100" autocomplete="none">
+                            <label for="subgroup" class="d-flex msg_central2  font_2 my-2 justify-content-centre widith-100" autocomplete="none">
                                 Podaj tytuł wiadomości
                             </label>
-                            <input type="text" class="form-control" id="subgroup" name="subgroup">
+                            <input type="text" class="form-control central_input" id="subgroup" name="subgroup">
                         </div>
                         <div class="mb-3">
-                            <label for="content" class="d-flex PB2 PB_bg_logo my-2 justify-content-centre widith-100" autocomplete="none">
+                            <label for="content" class="d-flex msg_central2 font_2  my-2 justify-content-centre widith-100" autocomplete="none">
                                 wpisz treść wiadomości
                             </label>
-                            <textarea class="form-control" id="content" name="content" rows="16"></textarea>
+                            <textarea class="form-control central_input lpost_body" id="content" name="content" rows="16"></textarea>
                         </div>
                         <div class="mb-3">
                             <label for="external_link" class="form-label">adres email</label>
-                            <input class="form-control" type="email" name="external_link" id="external_link">
+                            <input class="form-control central_input lpost_body" type="email" name="external_link" id="external_link">
                         </div>
                         <div class="mb-3">
                             <div class="p-2 m-2 px-4">
-                                <div class="d-flex PB2 PB_bg_logo mb-2 justify-content-centre widith-100">
-                                    Jeśli chcesz, to załącz własny rysunek. Może wykorzystamy go jako puzzle
+                                <div class="d-flex msg_central2  font_2 mb-2 justify-content-centre widith-100">
+                                    Jeśli chcesz, to załącz własny rysunek. Może wykorzystamy go jako puzzle.
                                 </div>
                             </div>
                             <div>
-                                <label for="pictureFile" class="form-label">wybierz plik z dysku</label>
-                                <input class="form-control" type="file" accept="image/x-png,image/jpeg" id="pictureFile" name="pictureFile">
+                                <!-- <label for="pictureFile" class="form-label lpost_body">wybierz plik z dysku</label> -->
+                                <input class="form-control central_input lpost_body" type="file" accept="image/x-png,image/jpeg" id="pictureFile" name="pictureFile">
                             </div>
                         </div>
                     </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-secondary" type="submit" >Wyślij</button>
+                    <div class="text-center justify-content-center">
+                        <button class="PB_button  mt-2 mb-4" type="submit" >
+                            <img src="{% static 'images/PB_wavinghand.png' %}"  class="PB_wavinghand" alt="">
+                            Wyślij
+                        </button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
-</div>
-
 {% endblock %}

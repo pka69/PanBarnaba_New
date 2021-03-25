@@ -35,6 +35,7 @@ def bookstorePricesView(request, subgroup=''):
     # context['lastupdate'] = Post.lastPriceDate().strftime("%Y/%m/%d")
     # context['booktypes'] = Post.bookTypes()
     context['PB_Stories'] = getBubbles(request)
+    context['logo'] = 'info.png'
     return render(request, 'posts/bookstore_prices.html', context=context)
 
 @login_required(redirect_field_name='my_redirect_field')  # to delete in final project
@@ -42,8 +43,9 @@ def newsView(request):
     # show nes posted by moderators
     page = int(request.GET.get('page', 1))
     context['posts'] = paginate(Post.notRejected.filter(group=0), page)
-    context['title'] = 'Poznaj ostatnie wieści'
+    context['title'] = 'Poznaj ostatnie wieści...'
     context['PB_Stories'] = getBubbles(request)
+    context['logo'] = 'info.png'
     return render(request, 'posts/posts_list.html', context=context)
 
 
@@ -59,6 +61,7 @@ class forumView(LoginRequiredMixin, View):
         context['ftype'] = ftype
         context['posts'] = paginate(Post.approved.filter(group=2).filter(subgroup=ftype).filter(related_post__isnull=True).prefetch_related('comments'), page)
         context['PB_Stories'] = getBubblesLike(request)
+        context['logo'] = 'forum.png'
         return render(request, 'posts/forum_list.html', context=context)
   
     # post post from forum or alternatively comments
@@ -78,6 +81,7 @@ class forumView(LoginRequiredMixin, View):
                 subgroup=subgroup,
                 content=content,
                 external_link=external_link,
+                related_post=Post.objects.get(id=post_id),
                 owner=user
             )
         else:

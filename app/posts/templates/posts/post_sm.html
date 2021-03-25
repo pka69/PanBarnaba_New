@@ -1,30 +1,30 @@
 {% load static %}
 {% load define_action %}
 <article class="article-sm">
-                {% if item.picture %}
-                    <div class="article-photo-sm">
-                        {% if item.picture|web_adress %}
-                            <img src="{{ item.picture }}">
-                        {% else %}
-                            <img src="{% static item.picture %}">
-                        {% endif %}
-                    </div>
-                {% endif %}
-                <div class="article-content-sm">
-                    <div class="article-excerpt-sm">
-                        {% if item.external_link %}
-                            <a href="{{ item.external_link }}" class="article-btn" target="_blank"></a>
-                        {% endif %}
-                             {% autoescape off %}
-                                {{ item.content_html }}
-                            {% endautoescape %}
-                        {% if item.external_link %}
-                            </a>
-                        {% endif %}
-                    </div>
-                </div>
-                <div class="article-footer-sm text-end">
-                    
-                    {{ item.fulldate }} | {{ item.owner.username }}
-                </div>
-            </article>
+    {% if item.picture %}
+        <div class="article-photo-sm">
+            {% if item.picture|web_adress %}
+                <img src="{{ item.picture }}">
+            {% else %}
+                <img src="{% static item.picture %}">
+            {% endif %}
+        </div>
+    {% endif %}
+    <div class="article-content-sm">
+        <div class="article-excerpt-sm">
+            {% if item.external_link %}
+                <a href="{{ item.external_link }}" class="article-btn" target="_blank"></a>
+            {% endif %}
+                    {% autoescape off %}
+                    {{ item.content_html }}
+                {% endautoescape %}
+            {% if item.external_link %}
+                </a>
+            {% endif %}
+        </div>
+    </div>
+    <div class="article-footer-sm text-end">
+        
+        {{ item.fulldate }} | {{ item.owner.username }}
+    </div>
+</article>

@@ -1,0 +1,21 @@
+{% load static %}
+<nav class="navbar navbar-md nav_head">
+    <div class="container">
+        <a href='/bubbleSwitch/?next={{ request.path }}' class="font_1 ms-5 font_nd"> 
+            {% if request.session.bubbles == 'no' %}Włacz{% else %}Wyłącz{% endif %} podpowiedzi Pana Barnaby
+        </a>
+        <div class="d-flex justify-content-end">
+            {% if request.user.is_authenticated %}
+                <a class="nav-link font_1 ms-2 me-5" href="{% url 'logout' %}">
+                    <img src="{% static 'images/user.png' %}" class="userLogo" alt="user">
+                    Wyloguj się, {{ request.user.username }}
+                </a>
+            {% else %}
+                <a class="nav-link font_1 ms-2 me-5 " href="{% url 'login' %}">
+                    <img src="{% static 'images/user.png' %}" class="userLogo" alt="user">
+                    Zaloguj
+                </a>
+            {% endif %}
+        </div>
+    </div>
+</nav>

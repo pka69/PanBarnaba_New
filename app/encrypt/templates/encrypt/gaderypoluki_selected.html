@@ -1,4 +1,4 @@
-{% extends 'main.html' %}
+{% extends 'newLayout.html' %}
 {% load static %}
 
 {% block meta %}
@@ -11,13 +11,7 @@
 {% endblock %}
 
 {% block title_box %}
-    <div class="d-inline-block ">
-        <div class="row justify-content-center ">
-            <h2>Twój czas wykonania</h2>
-        </div>
-        <div class="row justify-content-center border rounded-pill p-2 PB2" id="counter" value="0">
-        </div>
-    </div>
+    {% include 'timer.html' %}
 {% endblock %}
 
 {% block full %}
@@ -30,32 +24,38 @@
     <span class="d-none" id="method">{{ method }}</span>
     <span class="d-none" id="gameType">encrypt</span>
     {% csrf_token %}
-    <span class="d-flex justify-content-center PB2 PB_bg_logo m-2 justify-content-centre widith-100">
+    <div>
+        <img src="{% static 'images/lapka.png' %}" class="PB_stamp my-4" alt="cat food stamp">
+    </div>
+    <div class="msg_central2 font_2 my-4">
         zaczynamy!
-    </span>
+    </div>
     <div class="container">
-         <span class="m-2 d-flex justify-content-center PB3">Klucz Szyfrujący</span>
-         <table class="encrypt_table">
+         <span class="m-2 d-flex justify-content-center cpost_title">Klucz Szyfrujący</span>
+         <br>
+         <table class="encrypt_table my-2">
              <tr>
                 {% for item in key_view %}
                     <td class="{% if item != '-' %}cell_key{% else %}cell_none{% endif %}"> {{ item }}</td>
                 {% endfor %}
             </tr>
         </table>
-        <span class="d-flex justify-content-center m-2 PB3">Odszyfruj...</span>
-        <span class="d-flex justify-content-center m-2 PB2" id="encrypt">{{ encrypt }}</span>
+        <br>
+        <span class="d-flex justify-content-center m-2 cpost_title">Odszyfruj...</span>
+        <span class="d-flex justify-content-center p-3 cpost_body my-2" id="encrypt">{{ encrypt }}</span>
         <div class="form-floating mb-3">
             <input type="text" autocomplete="off" class="form-control" id="answer" style="height: {{ rows }}px"></textarea>
             <label for="answer">wprowadź odszyfrowany tekst</label>
         </div>
         <div class="d-flex justify-content-center">
-            <div class="border rounded-pill  p-2 PB2 d-none" id="end_site"></div>
+            <div class="PB_button_outline d-none" id="end_site"></div>
             <span class="d-none PB4 PB_bg_error rounded-pill p-2" id="wrong" > coś sie nie zgadza. Poszukaj błedu. </span>
         </div>
     </div>  
     {% include 'encrypt/next_or_back.html' %}
     {% include 'scoring/score_list.html' %}
-<br>
+    <br>
+</div>  
 {% endblock %}
 
 {% block add_ins %}

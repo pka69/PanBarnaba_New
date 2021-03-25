@@ -11,17 +11,17 @@
     color: #333;
 }
 .lifeGrid {
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 10px;
+    margin: 10px auto;
     spacing:0;
     padding:0;
     display:flex;
     justify-content:space-around;
+    background-color: #fff;
 }
 .tableGrid {
     cellspacing:0;
     cellpadding:0;
+    
 }
 
 .cellGrid {
