@@ -1,18 +1,19 @@
 .question {
-    font-family: 'Bree Serif', serif;
-    font-size: 1.5rem;
-    color: rgb(89,13,15);
-    margin-bottom: 5px;
+    font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-normal) 1.2rem/1.2rem Poppins;
+    letter-spacing: var(--unnamed-character-spacing-0);
+    color: var(--unnamed-color-534d4d);
     text-align: center;
-    border-bottom: 1px;
-    border-color:  rgb(89,13,15);
-    border-bottom-style: solid;
+    text-transform: lowercase;
+    opacity: 1;
+    margin-bottom: 5px;
 }
 
 .answer {
-    font-family: 'Bree Serif', serif;
-    font-size: 1.2rem;
-    color: rgb(89,13,15);
+    font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-normal) 1.2rem/1.2rem Poppins;
+    letter-spacing: var(--unnamed-character-spacing-0);
+    color: var(--unnamed-color-534d4d);
+    text-align: left;
+    opacity: 1;
     margin-left: 15%;
     margin-bottom: 5px;
     width: 70%;

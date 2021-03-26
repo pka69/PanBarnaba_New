@@ -1,17 +1,32 @@
-{% extends 'main.html' %}
-
+{% extends 'newBasic.html' %}
+{% load static %}
 
 {% block full %}
-<div class='container' >
-        <div class="display-5 m-4 text-center PB2">
-                    <h2><span>formularz logowania</span></h2>
+<div class="container justify-content-center" >
+        <div>
+            <img src="{% static 'images/lapka.png' %}" class="PB_stamp mt-5" alt="cat food stamp">
         </div>
-        <form action="" method='post' >
+        <div class="msg_central2 font_2">
+            Zaloguj się
+        </div>
+        <form action="" method="post" class="d-flex justify-content-center mx-5">
             {% csrf_token %}
             {{ form }}
-            <input type="submit" value="Zaloguj">
+            <input type="submit" class="PB_button m-2" value="Zaloguj">
             <input type="text" class="d-none" name="next" value="{{ next }}" />
         </form>
-
+        <div>
+            <img src="{% static 'images/lapka.png' %}" class="PB_stamp mt-5" alt="cat food stamp">
+        </div>
+        <div class="msg_central2 font_2 mb-5">
+            lub
+        </div>
+        <div class="text-center">
+            <a class="m-5 PB_button" href="/{% url 'createuser' %}">
+                <img src="{% static 'images/user.png' %}" class="userLogo" alt="user">
+                utwórz konto
+            </a>
+        </div>
+        
     </div>
 {% endblock %}

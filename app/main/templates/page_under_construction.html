@@ -1,14 +1,20 @@
-{% extends 'main.html' %}
+{% extends 'newBasic.html' %}
 {% load static %}
 
 {% block full %}
-<div class='container'>
-
-        <span class="d-flex justify-content-center PB2 PB_bg_logo m-4 justify-content-centre widith-100">
-            Przepraszamy</span>
-            <p class="m-2">strona w przygotowaniu</p>
-        
-
-</div>
-
+    <div class='container align-items-center p-5'>
+        <div class="mt-5">
+            <img src="{% static 'images/lapka.png' %}" class="PB_stamp" alt="cat food stamp">
+        </div>
+        <div class="msg_central2 font_2">
+            Przepraszamy
+        </div>
+        <p class="cpost_body">strona w przygotowaniu</p>
+        <div class="d-flex justify-content-center">
+            <a href="{% url 'main' %}" class="PB_button  my-2">
+                <img src="{% static 'images/PB_wavinghand.png' %}"  class="PB_wavinghand" alt="">
+                strona główna
+            </a>
+        </div>
+    </div>
 {% endblock %}

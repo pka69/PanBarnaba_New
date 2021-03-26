@@ -6,7 +6,65 @@
     background: var(--unnamed-color-fcb855) 0% 0% no-repeat padding-box;
     opacity: 1;
 }
+/* error and login backgroun layout */
+.basic_body {
+    height: 100vh; /* For 100% screen height */
+    width:  100vw; /* For 100% screen width */
+    background: url("../images/niebo_error_login.png") ;
+    background-position: 0% 100%;
+    background-size: auto;
+    background-repeat:no-repeat;
+    
+}
+.basic_head {
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 67px;
+    background: var(--unnamed-color-fcb855) 0% 0% no-repeat padding-box;
+    opacity: 1;
+}
+.basic_foot {
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    height: 67px;
+    background: var(--unnamed-color-fcb855) 0% 0% no-repeat padding-box;
+    opacity: 1;
+}
+.basic_PB {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    background: url("../images/pan_barnaba_kot.png") ;
+    background-position: 50% 50%;
+    background-size: cover;
+    background-repeat:no-repeat;
+    width: 600px;
+    height: 800px;
+    transform: translate(-150px, 140px);
 
+} 
+
+.PB_Form {
+    margin:10px;
+    padding:5px;
+    /* background-color: lightgrey; */
+  }
+  
+  .PB_Form input {
+    margin: 5px;
+    margin-left: 10px;
+   
+  }
+  
+  .PB_Form label {
+    /* background-color: rgb(141,212,218); */
+    width: max;
+    text-align: right;
+    margin: 5px;
+    margin-left: 10px;
+  }
 .font_1 {
     font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-normal) 1rem/2rem var(--unnamed-font-family-courgette);
     letter-spacing: var(--unnamed-character-spacing-0);
@@ -241,7 +299,7 @@
     background: url("../images/dzieci.png"), url("../images/niebo_full.png") ;
     background-position: 100% 100%,100% 0%;
     background-repeat: no-repeat, repeat-y;
-    background-size:auto;
+    background-size: auto auto;
 }
 .bg_full2 {
     background: url("../images/dzieci.png"), url("../images/niebo_1_full.png") ;
@@ -518,14 +576,13 @@
     font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-normal) 1.2em/1.2em var(--unnamed-font-family-lato);
     letter-spacing: var(--unnamed-character-spacing-0);
     color: var(--unnamed-color-534d4d);
-    line-height: 1.2rem;
     width: auto;
     background: #fff;
-    border-radius: 40px;
-    padding: 10px 30px 10px 30px;
+    border-radius: 32px;
+    padding: 20px 30px 20px 30px;
     text-align: left;
-    color: var(--main-brown);
-    background-color: var(--main-orange);
+    /* background-color: var(--unnamed-color-c9c7c7); */
+    background-color: var(--unnamed-color-ffffff);
   }
   
   .bubble-bottom-left:before {
@@ -533,9 +590,9 @@
     width: 0px;
     height: 0px;
     position: absolute;
-    border-left: 24px solid var(--main-orange);
+    border-left: 24px solid var(--unnamed-color-ffffff);
     border-right: 12px solid transparent;
-    border-top: 12px solid var(--main-orange);
+    border-top: 12px solid var(--unnamed-color-ffffff);
     border-bottom: 20px solid transparent;
     left: 32px;
     bottom: -24px;

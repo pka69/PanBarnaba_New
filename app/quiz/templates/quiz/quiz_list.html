@@ -1,4 +1,4 @@
-{% extends 'main.html' %}
+{% extends 'newLayout.html' %}
 {% load static %}
 {% load humanize %}
 {% load define_action %}
@@ -10,29 +10,27 @@
 
 {% block full %}
 <div class="container">
-    {% if PB_Stories %}
-        <div class="container">
-            <!-- działa! {{ PB_Stories }} -->
-            {% for bubble in PB_Stories %}
-                {% include 'bubble.html' %}
-            {% endfor %}
-        </div>
-    {% endif %}
-    <span class="d-flex justify-content-center PB2 PB_bg_logo m-4 justify-content-centre widith-100">
-        lista dostępnych zestawów
-    </span>
-    {% for item in quiz_list %}
-        <dl class="row">
-            <dt class="col-sm-3 text-end p-1">{{ item.0 }}</dt>
-            <dd class="col-sm-5" type="button">
-                {% for quiz in item.1 %}
-                    <a class="list-group-item list-group-item-action" href="/quiz/{{ item.2 }}/{{ quiz }}">
-                        <p class="px-2 py-1 " type="button">zestaw {{ quiz }} </p>
-                    </a>
-                {% endfor %}
-             </dd>
-        </dl>
-    {% endfor %}
+    <div>
+        <img src="{% static 'images/lapka.png' %}" class="PB_stamp" alt="cat food stamp">
+    </div>
+    <div class="msg_central2 font_2">
+        lista dostępnych zestawów pytań
+    </div>
+    <div class="row justify-content-center">
+        {% for item in quiz_list %}
+            <dl class="w-50">
+                <dt class="lpost_title my-2">{{ item.0 }}</dt>
+                <dd class="col-sm-5">
+                    {% for quiz in item.1 %}
+                    <br>  
+                        <a class="PB_button m-2" href="/quiz/{{ item.2 }}/{{ quiz }}">
+                           zestaw {{ quiz }}
+                        </a>
+                    {% endfor %}
+                </dd>
+            </dl>
+        {% endfor %}
+    </div>
 </div>
 
 {% endblock %}

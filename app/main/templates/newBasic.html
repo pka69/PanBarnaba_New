@@ -1,0 +1,60 @@
+{% load static %}
+{% load humanize %}
+<!DOCTYPE html>
+<html lang="pl-PL">
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-2C3E7LJL4V"></script>
+     <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-2C3E7LJL4V');
+    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1 , shrink-to-fit=no" />
+    {% block meta %}
+        <title>Pan Barnaba</title>
+        <meta name=”description” content=”Pan Barnaba i zagadkowa hipoteza. autor: Katarzyna Kalista. Gry i zabawy dla dzieci. Ciekawe algorytmy. Forum. Ceny. Wieści z sieci” />
+    {% endblock %}
+    <meta name="keywords" content="książka, KatarzynaKalista, sudoku, puzzle, quiz, szyfrowanie, gameOfLife, dzieci, PanBarnaba" />
+    <meta name="author" content="Piotr Kalista" />
+    <meta name="copyright" content="Copyright owner" />
+    <meta name="robots" content="index, follow"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Courgette&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital@1&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link rel="stylesheet"  href="{% static 'css/NL_fix.css' %}"/>
+    <link rel="stylesheet"  href="{% static 'css/NL_PB.css' %}"/>
+
+    <link rel="shortcut icon" href="{% static 'images/icons8-cat-24.png' %}" type="image/x-icon">
+    {% block head %}
+    {% endblock %}
+</head> 
+<body>
+    <div class="container-fluid basic_body">
+        <div class="basic_head">
+        </div>
+        {% block message %}
+            <div class="container-fluid">
+                <!-- message -->
+                {% include 'messages.html' %}
+            </div>
+        {% endblock %}
+        <div class="basic_foot fixed-bottom">
+        </div>
+        <div class="row">
+            <div class="col-md-4 basic_PB">
+
+            </div>
+            <div class="col">
+                {% block full %} 
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+</body>

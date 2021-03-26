@@ -15,6 +15,7 @@ class quizListView(View):
         context['quiz_list'] = Question.groupList()
         context['title'] = 'wybierz zestaw'
         context['PB_Stories'] = getBubbles(request)
+        context['logo'] = 'quiz.png'
         return render(request, 'quiz/quiz_list.html', context=context)
 
 
@@ -26,6 +27,8 @@ class quizPlayView(View):
         context['set_name'] = 'poziom {}, zestaw {}'.format(Question.LEVELS[qlevel][1], qgroup )
         context['qlevel'] = qlevel
         context['qgroup'] = qgroup
+        context['PB_Stories'] = []
+        context['logo'] = 'quiz.png'
         return render(request, 'quiz/quiz_play.html', context=context)
 
 class quizNextView(View):

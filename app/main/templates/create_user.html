@@ -1,10 +1,15 @@
-{% extends 'main.html' %}
+{% extends 'newBasic.html' %}
 
 
 {% block full %}
 <div class='container'>
-        
-        <p class="m-3">nie musisz podawać imienia, nazwiska i adresu mailowego aby móc zapisywać swoje osiągnięcia.
+    <div>
+        <img src="{% static 'images/lapka.png' %}" class="PB_stamp mt-5" alt="cat food stamp">
+    </div>
+    <div class="msg_central2 font_2">
+        utwórz konto, aby móc wypowiadać się na forum czy też zapisywać swoje osiągnięcia w grach
+    </div>
+        <p class="cpost_body m-3">nie musisz podawać imienia, nazwiska i adresu mailowego aby móc zapisywać swoje osiągnięcia.
             <br>
             Ale nie podając nam adresu email nie dasz rady odzyskać hasła jeśli go zapomniesz.
             <br>
@@ -12,13 +17,13 @@
             <hr>
         </p>
         <div class="mb-3 p-3 shadow">
-            <span class="d-flex justify-content-center PB2 PB_bg_logo m-4 justify-content-centre widith-100">
-                formularz dodawania użytkownika
-            </span>
+            <div class="msg_central2 font_2">
+                utformularz dodawania użytkownika
+            </div>
             <form action="" method='post' class="PB_Form">
                 {% csrf_token %}
                 {{ form.as_p }}
-                <input type="submit" value="Dodaj">
+                <input type="submit" class="PB_button m-2" value="Dodaj">
             </form>
         </div>
     </div>

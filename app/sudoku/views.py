@@ -40,4 +40,5 @@ class sudokuGameView(views.View):
         context['numbers'] = [item + 1 for item in range(min(9, sudoku.size))]
         context['slug'] = sudoku.result
         context['logo'] = 'sudoku.png'
+        context['PB_Stories'] = []
         return render(request, 'sudoku/sudoku_selected.html', context=context)

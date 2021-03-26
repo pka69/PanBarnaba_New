@@ -16,7 +16,8 @@ POST_TYPE = (
     (6, 'Content'),  # website content
     (7, 'Message'),  # message from users
     (8, 'Welcome'), # WelcomeMessage
-    (9, ''),
+    # (9, 'Nie używać!!!'),
+    # (10, 'Regulations'),
 )
 
 STAGE = (

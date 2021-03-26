@@ -1,4 +1,4 @@
-{% extends 'main.html' %}
+{% extends 'newLayout.html' %}
 
 {% load static %}
 
@@ -12,13 +12,7 @@
 {% endblock %}
 
 {% block title_box %}
-    <div class="d-inline-block ">
-        <div class="row justify-content-center ">
-            <h2>Twój czas wykonania</h2>
-        </div>
-        <div class="row justify-content-center border rounded-pill p-2 PB2" id="counter" value="0">
-        </div>
-    </div>
+    {% include 'timer.html' %}
 {% endblock %}
 
 {% block full %}
@@ -30,9 +24,12 @@
     <span class="d-none" id="method">std</span>
     <span class="d-none" id="game_id">{{ qgroup }}</span>
     <div class = "container">
-        <span class="d-flex justify-content-center PB2 PB_bg_logo m-4 justify-content-centre widith-100">
-                    {{ set_name }} 
-                </span>
+        <div>
+            <img src="{% static 'images/lapka.png' %}" class="PB_stamp" alt="cat food stamp">
+        </div>
+        <div class="msg_central2 font_2">
+            {{ set_name }} 
+        </div>
         {% for item in quiz %}
             <div class="shadow m-2 p-1 {% if forloop.counter > 1 %}d-none{% endif %}">
                 <p class="question" data-qtype="{{ item.qtype }}" data-id="{{ item.id }}">{{ item.question }}</p>
@@ -52,14 +49,13 @@
                 {% endfor %}
             </div>
         {% endfor %}
-        <hr>
         <div class="justify-content-center">
-            <button type="button"  name="next_button" class="btn btn-secondary btn-lg">Następne</button>
+            <button type="button"  name="next_button" class="btn PB_button">Następne</button>
         </div>
-        <div class="justify-content-center">
-            <a href="/quiz/next/{{ qlevel}}/{{ qgroup }}"   type="button"  name="next_game" class="btn btn-secondary btn-lg d-none">kolejny quiz?</a>
+        <div class="justify-content-center my-3">
+            <a href="/quiz/next/{{ qlevel}}/{{ qgroup }}"   type="button"  name="next_game" class="btn PB_button d-none">kolejny quiz?</a>
         </div>
-        <div class="row justify-content-center border rounded-pill  m-4 PB2" id="end_site"></div>
+        <div class="msg_central2 font_2" id="end_site"></div>
         <br>
     </div>
     {% include 'scoring/score_list.html' %}

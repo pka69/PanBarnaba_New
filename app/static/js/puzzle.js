@@ -179,6 +179,13 @@ function onClick( x, y) {
         puzzle.onClick(x, y)
     } 
 
+// window.addEventListener("keydown", function(e) {
+//     if(["Space","ArrowUp","ArrowDown","ArrowLeft","ArrowRight"].indexOf(e.code) > -1) {
+//         e.preventDefault();
+//         console.log('preventDefault')
+//     }
+// }, false);
+
 document.addEventListener('keydown', function keyPress(event) {
     if (finish.innerText === "1") {
         this.removeEventListener('click',keyPress);
@@ -187,6 +194,7 @@ document.addEventListener('keydown', function keyPress(event) {
     const key = event.key; // "ArrowRight", "ArrowLeft", "ArrowUp", or "ArrowDown"
     const arrows = [ "ArrowLeft", "ArrowDown", "ArrowRight",   "ArrowUp",]
     if (arrows.includes(key)) {
+        event.preventDefault()
         puzzle.key(arrows.indexOf(key))
     }
 });

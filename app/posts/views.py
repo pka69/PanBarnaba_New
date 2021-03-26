@@ -32,8 +32,6 @@ def bookstorePricesView(request, subgroup=''):
     # else:
     #     context['bookstoreprices'] = Post.bookBestPrice(only_one=False)
     context['title'] = 'Ceny w ksiegarniach'
-    # context['lastupdate'] = Post.lastPriceDate().strftime("%Y/%m/%d")
-    # context['booktypes'] = Post.bookTypes()
     context['PB_Stories'] = getBubbles(request)
     context['logo'] = 'info.png'
     return render(request, 'posts/bookstore_prices.html', context=context)
@@ -62,6 +60,7 @@ class forumView(LoginRequiredMixin, View):
         context['posts'] = paginate(Post.approved.filter(group=2).filter(subgroup=ftype).filter(related_post__isnull=True).prefetch_related('comments'), page)
         context['PB_Stories'] = getBubblesLike(request)
         context['logo'] = 'forum.png'
+        context['menu_add'] = [['Regulamin', '/posts/rules/'],]
         return render(request, 'posts/forum_list.html', context=context)
   
     # post post from forum or alternatively comments
@@ -130,3 +129,9 @@ class forumReactView(View):
             else:
                 return JsonResponse({"status": "error", "comment":  "reaction '{}' for post {} already exist".format(react, post_id)})
         return JsonResponse({"status": "success", "comment":  "reaction '{}' for post {} added".format(react, post_id)})
+
+def forumRulesView(request):
+    context['title'] = 'forum Pana Barnaby ma swój regulamin'
+    context['PB_Stories'] = []
+    context['logo'] = 'forum.png'
+    return render(request, 'posts/regulamin.html', context=context)
