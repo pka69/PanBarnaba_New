@@ -1,6 +1,5 @@
 /env
 .vscode
-app/static/images/puzzle
 app/static/others
 app/support_files
 *.pyc

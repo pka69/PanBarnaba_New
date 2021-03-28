@@ -62,5 +62,5 @@
 - [x] kick off (2020/11/20)
 - [x] design a draft www (Dec 2020)
 - [x] testing functionality and correction (Jan-Feb 2021)
-- [ ] design/graphics finalisation (Jan-Mar 2021)
-- [ ] testing and run production server (end of Mar 2021)
+- [x] design/graphics finalisation (Jan-Mar 2021)
+- [x] testing and run production server (end of Mar 2021)

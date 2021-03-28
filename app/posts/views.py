@@ -67,7 +67,7 @@ class forumView(LoginRequiredMixin, View):
     def post(self, request, ftype=FTYPES[0]):
         post_id = request.POST.get('post_id', None)
         user_id = request.POST.get('user', 0)
-        subgroup = request.POST.get("subgroup", 0)
+        subgroup = request.POST.get("subgroup", 0).encode('UTF-8').decode()
         content = request.POST.get("content", 0)
         external_link = request.POST.get("external_link", '')
         try:

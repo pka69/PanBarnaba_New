@@ -2,16 +2,16 @@
 {% load static %}
 
 {% block full %}
-<div class="container justify-content-center" >
+<div class="container" >
         <div>
             <img src="{% static 'images/lapka.png' %}" class="PB_stamp mt-5" alt="cat food stamp">
         </div>
         <div class="msg_central2 font_2">
             Zaloguj się
         </div>
-        <form action="" method="post" class="d-flex justify-content-center mx-5">
+        <form action="" method="post" class="d-float justify-content-center text-center my-5">
             {% csrf_token %}
-            {{ form }}
+            {{ form.as_p }}
             <input type="submit" class="PB_button m-2" value="Zaloguj">
             <input type="text" class="d-none" name="next" value="{{ next }}" />
         </form>

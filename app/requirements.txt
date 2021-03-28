@@ -8,4 +8,5 @@ webdriver_manager
 pytest
 pytest-django
 fabric
+openpyxl
 
