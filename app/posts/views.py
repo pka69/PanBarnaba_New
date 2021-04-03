@@ -24,19 +24,15 @@ FTYPES = ('o książce', 'o stronie', 'do autorki', 'pomysły na kontynuację', 
 
 context = {'submenu': Menu.getMenu('main')}
 
-@login_required(redirect_field_name='my_redirect_field')  # to delete in final project
+
 def bookstorePricesView(request, subgroup=''):
     # show last bookstore prices (updated every day)
-    # if subgroup:
-    #     context['bookstoreprices'] = Post.bookBestPrice(booktype=subgroup, only_one=False)
-    # else:
-    #     context['bookstoreprices'] = Post.bookBestPrice(only_one=False)
     context['title'] = 'Ceny w ksiegarniach'
     context['PB_Stories'] = getBubbles(request)
     context['logo'] = 'info.png'
     return render(request, 'posts/bookstore_prices.html', context=context)
 
-@login_required(redirect_field_name='my_redirect_field')  # to delete in final project
+
 def newsView(request):
     # show nes posted by moderators
     page = int(request.GET.get('page', 1))
@@ -47,14 +43,11 @@ def newsView(request):
     return render(request, 'posts/posts_list.html', context=context)
 
 
-class forumView(LoginRequiredMixin, View):
-    login_url = '/login/'  # to delete in final project
-    redirect_field_name = 'my_redirect_field'  # to delete in final project
-
+class forumView(View):
     # view for show user forum with a few categories
     def get(self, request, ftype=FTYPES[0]):
         page = int(request.GET.get('page', 1))
-        context['title'] = 'zapraszamy na forum Pana Barnaby'
+        context['title'] = 'Forum Pana Barnaby'
         context['ftypes'] = FTYPES
         context['ftype'] = ftype
         context['posts'] = paginate(Post.approved.filter(group=2).filter(subgroup=ftype).filter(related_post__isnull=True).prefetch_related('comments'), page)
@@ -67,7 +60,7 @@ class forumView(LoginRequiredMixin, View):
     def post(self, request, ftype=FTYPES[0]):
         post_id = request.POST.get('post_id', None)
         user_id = request.POST.get('user', 0)
-        subgroup = request.POST.get("subgroup", 0).encode('UTF-8').decode()
+        subgroup = ftype
         content = request.POST.get("content", 0)
         external_link = request.POST.get("external_link", '')
         try:
@@ -76,15 +69,15 @@ class forumView(LoginRequiredMixin, View):
             messages.error(request, 'Wystąpił błąd. Aby wstawić post trzeba być zalogowanym')
             return redirect('/posts/forum/{}'.format(ftype))
         if post_id:
-            Post.objects.create(group=2,
+            Post.notRejected.create(group=2,
                 subgroup=subgroup,
                 content=content,
                 external_link=external_link,
-                related_post=Post.objects.get(id=post_id),
+                related_post=Post.notRejected.get(id=post_id),
                 owner=user
             )
         else:
-            Post.objects.create(
+            Post.notRejected.create(
                 group=2,
                 subgroup=subgroup,
                 content=content,
@@ -98,7 +91,7 @@ class forumView(LoginRequiredMixin, View):
 class forumReactView(View):
     def get_post(self, post_id):
         try:
-            return Post.objects.get(pk=post_id)
+            return Post.notRejected.get(pk=post_id)
         except Post.DoesNotExist:
             raise Http404
 
@@ -131,7 +124,7 @@ class forumReactView(View):
         return JsonResponse({"status": "success", "comment":  "reaction '{}' for post {} added".format(react, post_id)})
 
 def forumRulesView(request):
-    context['title'] = 'forum Pana Barnaby ma swój regulamin'
+    context['title'] = ''  # forum Pana Barnaby ma swój regulamin
     context['PB_Stories'] = []
-    context['logo'] = 'forum.png'
+    # context['logo'] = 'forum.png'
     return render(request, 'posts/regulamin.html', context=context)

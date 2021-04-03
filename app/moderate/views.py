@@ -4,6 +4,8 @@ Main functionality:
  * adding post other than forum posts,
  * buid quiz structure
 '''
+import os
+
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth.mixins import PermissionRequiredMixin
@@ -56,7 +58,7 @@ def moderateView(request, post_type=2, action=None, id=None):
     if request.method == 'POST':
         post_id = request.POST.get('id','')
         if post_id:  # if post_id is empty, than create a new post, else modify existing post
-            post = Post.objects.get(id=int(post_id))
+            post = Post.moderate.get(id=int(post_id))
         else:
             post = Post()
             post.owner = request.user
@@ -73,7 +75,7 @@ def moderateView(request, post_type=2, action=None, id=None):
         else:
             picture = request.FILES.get('pictureFile', None)
         if picture:
-            mypath = settings.STATICFILES_DIRS[0] / 'images/posts'
+            mypath = settings.DEPLOY_ROOT / 'images/posts'
             filename = picture.name
             full_name = os.path.join(mypath, filename)
             open(full_name, 'wb').write(picture.file.read()) 
@@ -85,20 +87,24 @@ def moderateView(request, post_type=2, action=None, id=None):
             messages.success(request, 'Post został dodany')
         
     if action in ACTION.keys():
-        post = Post.objects.get(id=id)
+        post = Post.moderate.get(id=id)
         post.stage = ACTION[action]
         post.moderator = request.user
         post.save()
         messages.success(request, 'Akcja {} zakończona sukcesem'.format(action))
-
+    sfiltr = request.GET.get("sfiltr",'')
     stagelist = request.GET.getlist("stagelist", [stage[0] for stage in STAGE])
+    posts = Post.moderate.filter(group=post_type).filter(stage__in=stagelist).order_by('group', 'subgroup','-p_date', '-p_time')
+    if sfiltr:
+        posts = posts.filter(subgroup__icontains=sfiltr)
     for i in range(len(stagelist)): stagelist[i] = int(stagelist[i])
     page = int(request.GET.get('page', 1))
-    context['posts'] = paginate(Post.objects.filter(group=post_type).filter(stage__in=stagelist).order_by('group', 'subgroup','-p_date', '-p_time'), page)
+    context['posts'] = paginate(posts, page)
     context['STAGE'] = STAGE
     context['post_type_selected'] = POST_TYPE[post_type]
     context['stagelist'] = stagelist
     context['post_type'] = POST_TYPE
+    context['sfiltr'] = sfiltr
     context['title'] = 'zarządzanie treścią'
     return render(request, 'moderate/moderate.html', context=context)
 

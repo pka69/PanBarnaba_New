@@ -382,7 +382,8 @@ else {
     STOP = true
     // grid.update_manual()
     var StartPoint = document.getElementById("start")
-    StartPoint.addEventListener("click", function() {
+    StartPoint.addEventListener("click", function(event) {
+        event.preventDefault();
         START_POINT = true;
         END_POINT = false;
         document.body.style.cursor = "move"

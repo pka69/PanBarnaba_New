@@ -9,8 +9,8 @@ class LoginForm(forms.Form):
 
 
 class CreateUserForm(forms.ModelForm):
-    password = forms.CharField(max_length=64, widget=forms.PasswordInput)
-    repeat_password = forms.CharField(max_length=64, widget=forms.PasswordInput)
+    password = forms.CharField(max_length=64, widget=forms.PasswordInput, label="podaj hasło")
+    repeat_password = forms.CharField(max_length=64, widget=forms.PasswordInput, label="Powtórz hasło")
     
     class Meta:
         model = User
@@ -45,8 +45,8 @@ class CreateUserForm(forms.ModelForm):
 
 
 class PasswordChangeForm(forms.Form):
-    new_password = forms.CharField(max_length=64, widget=forms.PasswordInput)
-    repeat_password = forms.CharField(max_length=64, widget=forms.PasswordInput)
+    new_password = forms.CharField(max_length=64, widget=forms.PasswordInput, label="podaj nowe hasło")
+    repeat_password = forms.CharField(max_length=64, widget=forms.PasswordInput, label="Powtórz nowe hasło")
 
     def clean(self):
         super(PasswordChangeForm, self).clean()

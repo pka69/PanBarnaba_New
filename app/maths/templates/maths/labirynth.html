@@ -15,18 +15,19 @@
     <div>
         <img src="{% static 'images/lapka.png' %}" class="PB_stamp my-4" alt="cat food stamp">
     </div>
-    <div class="msg_central2 font_2 my-4">
-        jak algorytm rozwiązuje labirynt?
+    <div class="msg_central2 font_2 my-2">
+        Jak algorytm odnajduje drogę w labiryncie?
     </div>
-    <p class="cpost_body">
-        To akurat jest bardzo proste. Po prostu zaczyna w miejscu poczatkowym cyklicznie wykonuje krok za krokiem. 
-        Jak napotka miejsce, gdzie droga się rozgałęzia, to rozdziela sie i idze równolegle po dwóch dorgach. 
-        I tak za każdym razem jak napotka jakieś rozgałęzienie. Jeśli któraś z dróg zakńczy dojdzie do ściany - zaprzestaje szukać drogi.
-        Aż w końcu któraś z dróg dojdzie do celu. <br> 
-        Jeśli są dwie drogi dojścia do celu - wygra ta krótsza.
-        Z resztą najlepiej popatrz poniżej. A potem zbuduj labirynt i spróbuj rzucić wyzwanie komputerowi :)
+    <p class="jpost_body mb-2">
+        Algorytm (czyli przepis) zaczyna w miejscu początkowym i wykonuje krok za krokiem. 
+        Jeśli napotka miejsce, gdzie droga się rozgałęzia, wówczas rozdziela się i idzie jednocześnie po dwóch ścieżkach. 
+        I tak za każdym razem po napotkaniu kolejnych rozgałęzień. 
+        Jeśli jakaś droga dojdzie do ściany, algorytm zaprzestaje podążania tą trasą. 
+        W końcu któraś z dróg dojdzie do celu. Jeśli są dwie drogi prowadzące do punktu docelowego, wygra ta krótsza. 
+        Zresztą najlepiej popatrz poniżej, a potem zbuduj labirynt i spróbuj rzucić wyzwanie komputerowi :)
+        <br>
     </p>
-    <div class="container">
+    <div class="container mt-2">
         <input type="text" class="d-none" name="demo" id="demo">
         <input type="text" class="d-none" name="rows" data-rows="{{ rows }}" value="{{ rows }}">
         <input type="text" class="d-none" name="cols" data-rows="{{ cols }}" value="{{ cols }}">
@@ -55,9 +56,9 @@
         </table>
     </div>
     <div class="cpost_body my-3" name="example">
-        <a href="">
+        <!-- <a href=""> -->
             <button class="btn PB_button disabled" id="reset">Uruchom jeszcze raz</button>
-        </a>
+        <!-- </a> -->
         <a href="{% url 'labirynth_go' %}">
             <button class="btn PB_button "">Zbuduj własny labirynt!</button>
         </a>

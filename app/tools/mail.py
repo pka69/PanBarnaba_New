@@ -11,7 +11,7 @@ AUTHOR = 'autorka'
 def moderatorInform():
     moderators = []
     moderate_group = Group.objects.filter(name='moderator').first()
-    forum_posts = Post.objects.filter(group=2).filter(stage=0)
+    forum_posts = Post.moderate.filter(group=2).filter(stage=0)
     if forum_posts.count() ==0:
         return False
     for user in moderate_group.user_set.all():
@@ -46,7 +46,7 @@ def messageToAuthor(id):
     author = User.objects.filter(username=AUTHOR).first()
     if not author:
         return False
-    post = Post.objects.get(id=id)
+    post = Post.notRejected.get(id=id)
     context = {
         'author': author, 
         'title': post.subgroup,

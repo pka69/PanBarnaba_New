@@ -18,14 +18,16 @@
     </div>
     <div class="row justify-content-center">
         {% for item in quiz_list %}
-            <dl class="w-50">
+            <dl class="w-25 me-5">
                 <dt class="lpost_title my-2">{{ item.0 }}</dt>
-                <dd class="col-sm-5">
+                <dd class="container">
                     {% for quiz in item.1 %}
-                    <br>  
-                        <a class="PB_button m-2" href="/quiz/{{ item.2 }}/{{ quiz }}">
+                        <br>  
+                        <div class="m-2">
+                        <a class="PB_button" href="/quiz/{{ item.2 }}/{{ quiz }}">
                            zestaw {{ quiz }}
                         </a>
+                    </div>
                     {% endfor %}
                 </dd>
             </dl>

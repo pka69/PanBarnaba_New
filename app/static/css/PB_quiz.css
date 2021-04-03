@@ -1,11 +1,7 @@
 .question {
-    font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-normal) 1.2rem/1.2rem Poppins;
-    letter-spacing: var(--unnamed-character-spacing-0);
-    color: var(--unnamed-color-534d4d);
-    text-align: center;
-    text-transform: lowercase;
     opacity: 1;
     margin-bottom: 5px;
+    margin-top: 5px;
 }
 
 .answer {
@@ -14,11 +10,11 @@
     color: var(--unnamed-color-534d4d);
     text-align: left;
     opacity: 1;
-    margin-left: 15%;
+    margin-left: 10%;
     margin-bottom: 5px;
     width: 70%;
-    padding-left: 5px;
-    padding-right: 5px;
+    /* padding-left: 5px;
+    padding-right: 5px; */
 }
 .answer-wrong {
     background-color:rgb(152,76,114);

@@ -30,7 +30,7 @@ def gaderypolukiView(request, level=0):
     context['logo'] = 'gaderypoluki.png'
     if level:
         context['key'] = choice(GADERYPOLUKI)
-        quotation = choice([item for item in Post.objects.filter(group=1).filter(subgroup='encrypt-{}'.format(level))])
+        quotation = choice([item for item in Post.notRejected.filter(group=1).filter(subgroup='encrypt-{}'.format(level))])
         context['quotation'] = quotation.id
         hash = Sylabowy(quotation.content, context['key'])
         context['encrypt'] = hash.getEncrypted()
@@ -50,7 +50,7 @@ def brownieView(request, level=0):
     context['logo'] = 'czekoladka.png'
     if level:
         
-        quotation = choice([item for item in Post.objects.filter(group=1).filter(subgroup='encrypt-{}'.format(level))])
+        quotation = choice([item for item in Post.notRejected.filter(group=1).filter(subgroup='encrypt-{}'.format(level))])
         context['quotation'] = quotation.id
         hash = Brownie(quotation.content)
         context['key'] = hash.key
@@ -70,7 +70,7 @@ def dividerView(request, level=0):
     context['logo'] = 'divider.png'
     if level:
         
-        quotation = choice([item for item in Post.objects.filter(group=1).filter(subgroup='encrypt-{}'.format(level))])
+        quotation = choice([item for item in Post.notRejected.filter(group=1).filter(subgroup='encrypt-{}'.format(level))])
         context['quotation'] = quotation.id
         hash = Divider(quotation.content)
         context['key'] = hash.key
@@ -90,8 +90,7 @@ def kaczorView(request, level=0):
     context['method'] = "kaczor"
     context['logo'] = 'kaczor.png'
     if level:
-        
-        quotation = choice([item for item in Post.objects.filter(group=1).filter(subgroup='encrypt-{}'.format(level))])
+        quotation = choice([item for item in Post.notRejected.filter(group=1).filter(subgroup='encrypt-{}'.format(level))])
         context['quotation'] = quotation.id
         hash = Kaczor(quotation.content)
         context['key'] = hash.key
@@ -106,7 +105,7 @@ def checkEncrypt(request):  #  , method, encrypt_key, to_check
     # return success or error user encryption
     if request.method=="POST":
         body = json.loads(request.body.decode())
-        quotation = Post.objects.get(pk=int(body['id']))
+        quotation = Post.notRejected.get(pk=int(body['id']))
         try:
             friend_message = json.loads(quotation.content)
         except ValueError:
@@ -140,7 +139,7 @@ def encryptMessageView(request):
         }
         json_body = json.dumps(body)
         try:
-            post = Post.objects.create(
+            post = Post.notRejected.create(
                 group=9,
                 subgroup="encrypt",
                 content = json_body,
@@ -163,7 +162,7 @@ def encryptMessageView(request):
     return render(request, 'encrypt/encrypt_friend_message.html', context=context)
 
 def challengeView(request, id):
-    post = Post.objects.get(pk=id)
+    post = Post.notRejected.get(pk=id)
     body = json.loads(post.content)
     post.dec_content +=1
     post.save()

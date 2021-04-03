@@ -29,18 +29,18 @@ function add_reactions(id, reaction) {
                 console.log(data)
                 if (data["status"] == "success") {
                     var span = posts_list[id][reaction].querySelector("span")
-                    span.innerText = (span.outerText * 1 + 1)
+                    span.innerText = (span.innerText * 1 + 1)
                 }
                 else if (data["status"] == "change") {
                     var positives = posts_list[id]['positives'].querySelector("span")
                     var negatives = posts_list[id]['negatives'].querySelector("span")
                     if (reaction=='negatives') {
-                        positives.innerText = (positives.outerText * 1 - 1)
-                        negatives.innerText = (negatives.outerText * 1 + 1)
+                        positives.innerText = (positives.innerText * 1 - 1)
+                        negatives.innerText = (negatives.innerText * 1 + 1)
                     } 
                     else {
-                        positives.innerText = (positives.outerText * 1 + 1)
-                        negatives.innerText = (negatives.outerText * 1 - 1)
+                        positives.innerText = (positives.innerText * 1 + 1)
+                        negatives.innerText = (negatives.innerText * 1 - 1)
                     }
                 }
             })

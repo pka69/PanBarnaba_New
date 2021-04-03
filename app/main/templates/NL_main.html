@@ -39,7 +39,7 @@
     {% include 'header.html' %}
     <div class="container-fluid bg_1 justify-content-center">
         <div class="container">
-            <div class="row align-items-center">
+            <div class="d-flex align-items-center justify-content-between">
                 {% include 'menu.html' %}
             </div>
             <div class="row pb-2 align-items-center">
@@ -48,7 +48,8 @@
                         {% if premier_time %}
                             <div class="d-inline-block mx-2">
                                 <div class="row justify-content-center ">
-                                    <p class="lpost_title">Premiera już niedługo!</p>
+                                    <p class="lpost_title">Książka przygodowa</p>
+                                    <p class="lpost_title">dla dzieci</p>
                                 </div>
                                 <div class="row lpost_highlight" >
                                     <span id="countdown"></span>
@@ -59,17 +60,33 @@
                                     data-day="{{ premier_time.2 }}"
                                     data-hour="{{ premier_time.3 }}"
                                     data-minute="{{ premier_time.4 }}"
-                                    >{{ premier_time }}</p>
+                                    >{{ premier_time }}
+                                </p>
                             </div>
-                            <p class="lpost_body m-2">Tempor eu cupidatat deserunt ad ex cupidatat non velit laboris nulla exercitation aliqua. Adipisicing labore culpa voluptate anim veniam minim amet sit ullamco eu elit. Ex irure anim aliquip sint consectetur sit ullamco officia in amet enim labore commodo. Consequat adipisicing voluptate nostrud aliquip incididunt minim proident elit anim eu deserunt. Dolore aute et cillum magna ipsum excepteur et minim. Labore cillum nostrud ullamco officia eiusmod deserunt exercitation ea et nostrud consequat enim.</p>
+                            <p class="jpost_body m-2">Pan Barnaba zwiedził cały świat, mówi w kilku językach i poznał Marię Skłodowską-Curie i Einsteina. Niby nie ma w tym nic zaskakującego, oprócz tego, że Barnaba to kot – prawdziwy choć niezwykły.
+                                Barnaba przybył do Krakowa z Ameryki z misją potwierdzenia pewnej tajemniczej hipotezy, której udowodnienie warte jest milion dolarów. Kot jest irytujący, ma własne zdanie i zdecydowanie nie lubi głaskania, ani towarzystwa dzieci… Jednak do jednego trzynastolatka o imieniu Antek z czasem się przekonuje.
+                                Niepokorne zwierzę i niesforny trzynastolatek jednoczą siły, żeby dowód zagadkowej hipotezy ujrzał światło dzienne i nie wpadł w niepowołane ręce.
+                                Czy mimo trudnych początków ta osobliwa para osiągnie swój cel? <br>
+                                <br>
+                                Pan Barnaba i zagadkowa hipoteza ukaże się w księgarniach <b>14 kwietnia</b>
+                                </p>
                         {% else %}
                             <div class="d-inline-block ">
                                 <div class="row justify-content-center">
-                                    <p class="lpost_body m-2 ">
+                                    <div class="row justify-content-center ">
+                                        <p class="lpost_title">Książka przygodowa</p>
+                                        <p class="lpost_title">dla dzieci</p>
+                                    </div>
+                                    <p class="jpost_body m-2 ">
                                         {% if title %} 
                                             {{ title }}
                                         {% else %}
-                                            Książka już jest w księgarniach!
+                                            Pan Barnaba zwiedził cały świat, mówi w kilku językach i poznał Marię Skłodowską-Curie i Einsteina. Niby nie ma w tym nic zaskakującego, oprócz tego, że Barnaba to kot – prawdziwy choć niezwykły.
+                                            Barnaba przybył do Krakowa z Ameryki z misją potwierdzenia pewnej tajemniczej hipotezy, której udowodnienie warte jest milion dolarów. Kot jest irytujący, ma własne zdanie i zdecydowanie nie lubi głaskania, ani towarzystwa dzieci… Jednak do jednego trzynastolatka o imieniu Antek z czasem się przekonuje.
+                                            Niepokorne zwierzę i niesforny trzynastolatek jednoczą siły, żeby dowód zagadkowej hipotezy ujrzał światło dzienne i nie wpadł w niepowołane ręce.
+                                            Czy mimo trudnych początków ta osobliwa para osiągnie swój cel? <br>
+                                            <br>
+                                            już jest w księgarniach!
                                         {% endif %}    
                                     </p>
                                 </div>
@@ -120,7 +137,7 @@
      <div class="bg_2">
         <div class="container">
             <div class=msg_central2>
-                <p class="font_2">Witajcie,</p> 
+                <p class="font_2">Witaj</p> 
                 {% for bubble in content %}
                     {% include 'NL_bubble.html' %}
                     <hr>
@@ -150,7 +167,7 @@
                     <img src="{% static 'images/lapka.png' %}" class="PB_stamp" alt="cat food stamp">
                 </div>
                 <div class="msg_central2 font_2">
-                    Albo poznaj fascynujące Algorytmy
+                    Poznaj też fascynujące algorytmy
                 </div>
                 <div class=msg_central2>
                     {% with bubble=sections.1 %}
@@ -176,7 +193,7 @@
                         <img src="{% static 'images/lapka.png' %}" class="PB_stamp" alt="cat food stamp">
                     </div>
                     <div class="msg_central2 font_2">
-                        Najnowsze Wiadomości!
+                        Najnowsze wiadomości!
                     </div>
                     <div class="msg_central2 mx-auto">
                         {% with bubble=sections.2 %}
@@ -184,13 +201,14 @@
                         {% endwith %}
                     </div>
                     <div class="row justify-content-center">
-                        <div class="card-group mx-auto">
+                        <!-- <div class="card-group mx-auto"> -->
                             {% for item in news %}
-                                {% include 'posts/NL_post_sm.html' %}
+                                {% include 'posts/NL_post.html' %}
+                               
                             {% endfor %}
-                        </div>
+                        <!-- </div> -->
                     </div>
-                        <div class="d-flex justify-content-center py-1">
+                        <div class="d-flex justify-content-center py-3">
                             <a href="{% url 'news' %}" class="font_nd">
                                 <img src="{% static 'images/ksiazka.png' %}"  class="PB_book" alt="">
                                 <span class="font_3">Pokaż wszystkie</span>
@@ -202,19 +220,18 @@
                         <img src="{% static 'images/lapka.png' %}" class="PB_stamp" alt="cat food stamp">
                     </div>
                     <div class="msg_central2 font_2">
-                        Najnowsze Wpisy na Forum!
+                        Najnowsze wpisy na forum!
                     </div>
                     <div class="msg_central2 mx-auto">
                         {% with bubble=sections.3 %}
                             {% include 'NL_bubble.html' %}
                         {% endwith %}
                     </div>
-                    
-                    <div class="mx-auto">
+                    <div class="row justify-content-center">
                         {% for item in forum %}
                             {% include 'posts/NL_forum_sm.html' %}
                         {% endfor %}
-                        <div class="d-flex justify-content-center py-1">
+                        <div class="d-flex justify-content-center py-3">
                             <a href="{% url 'forum' %}" class="font_nd">
                                 <img src="{% static 'images/ksiazka.png' %}"  class="PB_book" alt="">
                                 <span class="font_3">Pokaż wszystkie</span>
@@ -276,7 +293,9 @@
                 <img src="{% static 'images/COPYRIGHT  BY Pan_Barnaba TO Pan_Barnaba 2021.png' %}" alt="">
             </div>
             <div class="col-4">
-                <img src="{% static 'images/POLITYKA PRYWATNOSCI.png' %}" alt="">
+                <a href="{% url 'polityka' %}">
+                    <img src="{% static 'images/POLITYKA PRYWATNOSCI.png' %}" alt="">
+                </a>
             </div>
     </footer>
     {% endblock %}

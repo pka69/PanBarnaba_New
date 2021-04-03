@@ -35,13 +35,13 @@ class Answer {
         if (this.correct) {
             // this.item.nextElementSibling.classList.add('answer-correct')
             this.item.parentElement.classList.add('answer-correct')
-            // this.item.nextElementSibling.innerText = this.item.nextElementSibling.outerText + ' - (ok)'
+            // this.item.nextElementSibling.innerText = this.item.nextElementSibling.innerText + ' - (ok)'
             return "ok"
         }
         if (this.item.checked) {
             // this.item.nextElementSibling.classList.add('answer-wrong')
             this.item.parentElement.classList.add('answer-wrong')
-            // this.item.nextElementSibling.innerText = this.item.nextElementSibling.outerText + ' - (x)'
+            // this.item.nextElementSibling.innerText = this.item.nextElementSibling.innerText + ' - (x)'
             return "x"
         }
 
@@ -118,7 +118,7 @@ class Quiz {
         for (var item of this.questions) {
             temp_result += item.result()
         }
-        return temp_result * 100.0 / this.actual
+        return Math.round(temp_result * 100.0 * 100.0 / this.actual) / 100
     }
     color() {
         for (var item of this.questions){

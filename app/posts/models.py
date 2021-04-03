@@ -2,6 +2,7 @@ import datetime
 
 from django.db import models
 from django.contrib.auth.models import User
+
 from random import choice
 
 # Create your models here.
@@ -30,7 +31,8 @@ STAGE = (
 SHORT = 20
 
 class ApprovedManager(models.Manager):
-    def get_queryset(self):
+    use_for_related_fields = True
+    def get_queryset(self): 
         return super().get_queryset().filter(stage=1)
 
 class MainViewManager(models.Manager):
@@ -40,6 +42,10 @@ class MainViewManager(models.Manager):
 class NotRejectedManager(models.Manager):
     def get_queryset(self):
         return super().get_queryset().filter(stage__in=[0,1])
+
+class RejectedManager(models.Manager):
+    def get_queryset(self):
+        return super().get_queryset().filter(stage=-1)
 
 class Post(models.Model):
     group = models.IntegerField(choices=POST_TYPE, db_index=True, verbose_name='grupa')
@@ -56,10 +62,12 @@ class Post(models.Model):
     related_post = models.ForeignKey('Post', related_name="comments", default=None, null=True, on_delete=models.CASCADE, verbose_name='post nadrzędny')
     positives = models.ManyToManyField(User, related_name="positive_reaction", default=None, verbose_name='pozytywne')
     negatives = models.ManyToManyField(User, related_name="negative_reaction", default=None, verbose_name='pozytywne')
-    objects = models.Manager()
+    objects = ApprovedManager()
     approved = ApprovedManager()
     notRejected = NotRejectedManager()
     mainPost = MainViewManager()
+    moderate = models.Manager()
+    rejected = RejectedManager()
 
     class Meta:
         ordering = ['-p_date', '-p_time']

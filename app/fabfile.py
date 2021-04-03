@@ -2,7 +2,7 @@ from fabric.contrib.files import append, exists, sed
 from fabric.api import cd, env, local, run
 import random
 
-REPO_URL = 'https://github.com/pka69/Pan_Barnaba_DJ.git'
+REPO_URL = 'https://github.com/pka69/Pan_Barnaba_New.git'
 HOST = 'panbarnaba.pl' 
 
 def deploy():

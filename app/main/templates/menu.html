@@ -16,8 +16,8 @@
             {% endif %}
         </div>
     </div>
-    <div class="col align-middle">
-        <nav class="navbar navbar-expand-lg navbar-light bg_color_grey29" >
+    <div class="align-middle">
+        <nav class="navbar navbar-expand-xl navbar-light " >
             <div class="container-fluid">
                 {% if submenu %}
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMenu" aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,7 +28,7 @@
                             {% for menu_0, menu_1, menu_2 in submenu %}
                                 {% if menu_2 %}
                                     <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle font_menu_left" 
+                                        <a class="nav-link dropdown-toggle font_menu_right" 
                                             href="#" 
                                             id="{{ menu_0 }}" 
                                             role="button" 
@@ -36,10 +36,10 @@
                                             aria-expanded="false">
                                             {{ menu_0 }}
                                         </a>
-                                        <ul class="dropdown-menu" aria-labelledby="{{ menu_0 }}">
+                                        <ul class="dropdown-menu sub_menu" aria-labelledby="{{ menu_0 }}">
                                             {% for menu1_0, menu1_1, menu1_2 in menu_2 %}
                                                 <li>
-                                                    <a class="dropdown-item font_menu_left" href="{{ menu1_1 }}">{{ menu1_0 }}</a>
+                                                    <a class="dropdown-item font_menu_right " href="{{ menu1_1 }}">{{ menu1_0 }}</a>
                                                 </li>
                                             {% endfor %}
                                         </ul>
@@ -60,7 +60,7 @@
                                         aria-expanded="false">
                                         Inne
                                     </a>
-                                    <ul class="dropdown-menu" aria-labelledby="Inne">
+                                    <ul class="dropdown-menu sub_menu" aria-labelledby="Inne">
                                         {% for menu1_0, menu1_1 in menu_add %}
                                             <li>
                                                 <a class="dropdown-item font_menu_left" href="{{ menu1_1 }}">{{ menu1_0 }}</a>

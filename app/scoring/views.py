@@ -11,7 +11,7 @@ from .models import Score
 
 def scoreCheckView(request, game, game_id, s_result, hours, minutes, seconds):
     s_time = time(hour=hours, minute=minutes, second=seconds)
-    s_result = int(s_result[:-1]) if s_result[-1] == '%' else int(s_result)
+    s_result = round(float(s_result))  # if s_result[-1] == '%' else int(s_result)
     try:
         user = User.objects.get(pk=request.user.pk)
         user_result = Score.objects.filter(game=game).filter(game_id=game_id).filter(user=user).first()
@@ -19,9 +19,9 @@ def scoreCheckView(request, game, game_id, s_result, hours, minutes, seconds):
         user = None
         user_result = None
     position, total_players, game_results = Score.checkResultPosition(game, game_id, s_result, s_time)
-    message = '''Świetnie! <br>
-    Twój wynik daje Ci {} miejsce wśród {} osób, które w to grały!<br>
-    '''.format(position, total_players)
+    message = '''Brawo! <br>
+    Twój wynik {}%  w {} daje Ci {} miejsce wśród {} osób, które w to grały!<br>
+    '''.format(s_result, s_time.strftime("%H:%M:%S") ,position, total_players)
     if user:
         if user_result:
             if (s_result > user_result.s_result) or (

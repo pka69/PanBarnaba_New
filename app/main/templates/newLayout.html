@@ -40,10 +40,10 @@
 
     <div class="container-fluid bg_head justify-content-center">
         <div class="container">
-            <div class="row align-items-center">
+            <div class="d-flex align-items-center justify-content-between">
                 {% include 'menu.html' %}
             </div>
-            <div class="row pb-2 align-items-center mx-5">
+            <div class="row pb-0 align-items-center mx-5">
                 <div class="col-md-5">
                     {% block title_box %}
                         <div class="d-inline-block mx-0 my-2">
@@ -51,7 +51,12 @@
                                 {% if title %} 
                                     {{ title }}
                                 {% else %}
-                                    Książka już jest w księgarniach!
+                                    <!-- Pan Barnaba zwiedził cały świat, mówi w kilku językach i poznał Marię Skłodowską-Curie i Einsteina. Niby nie ma w tym nic zaskakującego, oprócz tego, że Barnaba to kot – prawdziwy choć niezwykły.
+                                    Barnaba przybył do Krakowa z Ameryki z misją potwierdzenia pewnej tajemniczej hipotezy, której udowodnienie warte jest milion dolarów. Kot jest irytujący, ma własne zdanie i zdecydowanie nie lubi głaskania, ani towarzystwa dzieci… Jednak do jednego trzynastolatka o imieniu Antek z czasem się przekonuje.
+                                    Niepokorne zwierzę i niesforny trzynastolatek jednoczą siły, żeby dowód zagadkowej hipotezy ujrzał światło dzienne i nie wpadł w niepowołane ręce.
+                                    Czy mimo trudnych początków ta osobliwa para osiągnie swój cel? <br>
+                                    <br>
+                                    Książka już jest w księgarniach! -->
                                 {% endif %}    
                             </p>
                         </div>
@@ -66,11 +71,11 @@
                         {% endif %}
                     {% endblock %}
                 </div>
-                <div class="col d-sm-none d-lg-block">
+                <div class="col d-sm-none d-lg-block justify-content-end">
                     {% if logo %}
                         {% with static_folder='images/pagelogo/' %}
                             <div class="logo_img">                                        
-                                <img src="{% static static_folder|add:logo %}" class="d-block w-100" alt="PageLogo">
+                                <img src="{% static static_folder|add:logo %}"  alt="PageLogo">
                             </div>
                         {% endwith %}
                     {% endif %}
@@ -87,11 +92,11 @@
     <div class="container-fluid bg_full">
         {% block full %}  
             <div class = 'row'>
-                <div class="col-md-9 p-2 border-end border-2">
+                <div class="col-lg-9">
                     {% block left %}
                     {% endblock %}
                 </div>
-                <div class="col-md-3 p-2">
+                <div class="col-lg-3">
                     {% block right %}
                     {% endblock %}
                 </div>
@@ -147,7 +152,9 @@
                 <img src="{% static 'images/COPYRIGHT  BY Pan_Barnaba TO Pan_Barnaba 2021.png' %}" alt="">
             </div>
             <div class="col-4">
-                <img src="{% static 'images/POLITYKA PRYWATNOSCI.png' %}" alt="">
+                <a href="{% url 'polityka' %}">
+                    <img src="{% static 'images/POLITYKA PRYWATNOSCI.png' %}" alt="">
+                </a>
             </div>
     </footer>
     {% endblock %}

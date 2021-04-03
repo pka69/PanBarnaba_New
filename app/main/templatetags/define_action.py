@@ -1,3 +1,5 @@
+import random
+
 from django import template
 from django.contrib.humanize.templatetags.humanize import intcomma
 
@@ -30,3 +32,7 @@ def no_records(data):
 @register.filter
 def web_adress(link):
   return True if link.startswith('http') else False
+
+@register.filter
+def shuffle(arg):
+    return sorted(arg, key=lambda x: random.random())

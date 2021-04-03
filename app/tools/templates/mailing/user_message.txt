@@ -1,4 +1,4 @@
-Droga {{ author.username }}
+Drodzy autorko i Panie Barnabo,
 
 pojawiła się w bazie nowa wiadomość od użytkownika.
 
@@ -7,7 +7,7 @@ Poniżej treść wiadomości:
 {{ title }}
 {{content }}
 
-{{ mail }}
+adres nadawcy (jeśli podał): {{ mail }}
 
 {% if picture %}
     Do wiadomości został załączony rysunek.

@@ -16,6 +16,7 @@ Menu_details = (
     {'group': 'games', 'name': 'puzzle', 'picture': 'puzzle.png', 'link': '/puzzle/'},
     {'group': 'games', 'name': 'sudoku', 'picture':'sudoku.png', 'link': '/sudoku/'},
     {'group': 'games', 'name': 'szyfrowanie', 'picture':'encrypt.png', 'link': '/encrypt/'},
+    {'group': 'games', 'name': 'znajdź różnicę', 'picture': 'difference.png', 'link': '/difference/'},
     {'group': 'maths', 'name': 'algorytm życia', 'picture':'live.png', 'link': '/maths/life/'},
     {'group': 'maths', 'name': 'świat fractali', 'picture':'fractal.png', 'link': '/maths/fractals/'},
     {'group': 'maths', 'name': 'zaprojektuj labirynt', 'picture':'labirynth.png', 'link': '/maths/labirynth/'},
@@ -53,3 +54,12 @@ def update_menu_picture():
             Menu.objects.filter(group=item['group'].capitalize()).filter(name=item['name'].capitalize()).update(picture=item['picture'])
         else:
             Menu.objects.filter(group=item['group'].capitalize()).filter(name=item['name'].capitalize()).update(picture='')
+
+def new_compare():
+    item = {'group': 'games', 'name': 'znajdź różnicę', 'picture': 'difference.png', 'link': '/difference/'}
+    try:
+        Menu.objects.create(**item)
+    except IntegrityError as e:
+        print('Błąd bazy danych ', e, '\ndla zestawu: {}'.format(item))
+    except DatabaseError as e:
+        print('Błąd bazy danych ', e, '\ndla zestawu: {}'.format(item))

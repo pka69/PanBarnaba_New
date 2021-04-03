@@ -1,0 +1,102 @@
+{% extends 'newLayout.html' %}
+{% load static %}
+{% block meta %}
+    <title>Pan Barnaba - forum regulamin</title>
+    <meta name=”description” content=”Pan Barnaba i zagadkowa hipoteza. autor: Katarzyna Kalista. Forum. Regulamin” />
+{% endblock %}
+
+{% block full %}
+    <div class='container lpost_body'>
+        <div class="mt-5">
+            <img src="{% static 'images/lapka.png' %}" class="PB_stamp" alt="cat food stamp">
+        </div>
+        <div class="msg_central2 font_2">
+            Zasady Korzystania z Forum Pana Barnaby
+        </div>
+        <hr>
+        <div class="lpost_title my-2">
+            § 1. WSTĘP
+        </div>  
+        <p class="mb-2">
+            1. Forum jest częścią Serwisu panbarnaba.pl 
+        </p>
+        <p class="mb-2">
+            2. Możliwość przeglądania zawartości Forum przysługuje wszystkim Użytkownikom, 
+        natomiast możliwość zamieszczania postów przysługuje Użytkownikom Zarejestrowanym,
+        </p>
+        <p class="mb-2">
+            3. Niniejszy Regulamin obowiązuje od dnia 01.04.2021 roku.
+        </p>
+        <div class="lpost_title my-2">
+            § 2. ZASADY KORZYSTANIA Z FORUM
+        </div>  
+        <p class="mb-2">
+            1. Zamieszczając wpis lub komentarz do czyjegoś wpisu Użytkownik zobowiązany jest do przestrzegania następującycj zasad:
+        </p>
+        <p class="mb-2 ms-3">
+            a) nie wolno publikować postów naruszających polskie prawo, ułatwiających jego łamanie lub zachęcających do takiego działania;
+        </p>
+        <p class="mb-2 ms-3">
+            b) nie wolno obrażać i poniżać w jakiejkolwiek formie innych Użytkowników Forum, 
+        czyli publikować postów oszczerczych i napastliwych, naruszających dobra osobiste lub wolność obywatelską, 
+        propagujących, popierających i/lub głoszących nietolerancję, ksenofobię, przemoc, 
+        nienawiść czy dyskryminację na tle rasy, wyznania, orientacji seksualnej, płci itp.;
+        </p>
+        <p class="mb-2 ms-3">
+            c) nie wolno prowokować innych Użytkowników w celu świadomego wywołania negatywnej reakcji (tzw. trollowanie);
+        </p>
+        <p class="mb-2 ms-3">
+            d) nie wolno publikować na Forum powtarzających się informacji (tzw. spamowanie);
+        </p>
+        <p class="mb-2 ms-3">
+            e) nie wolno prowadzić sporów politycznych i światopoglądowych;
+        </p>
+        <p class="mb-2 ms-3">
+            f) nie wolno publikować treści dotyczących nielegalnego oprogramowania komputerowego i 
+        innej własności intelektualnej (np. filmów i muzyki) oraz podawać linków ułatwiających ich pobieranie;
+        </p>
+        <p class="mb-2 ms-3">
+            g) nie wolno promować usług firm trzecich oraz własnych kanałów wideo;
+        </p>
+        <p class="mb-2 ms-3">
+            h) nie wolno promować i propagować, jak również jakiejkolwiek formie nawiązywać do środków odurzających i/lub do ich używania;
+        </p>
+        <p class="mb-2 ms-3">
+            i) nie wolno publikować tekstów obscenicznych, o treści pornograficznej ani podawać linków do takich materiałów;
+        </p>
+        <p class="mb-2">
+            2. Użytkownik Forum jest zobowiązany do:
+        </p>
+        <p class="mb-2 ms-3">
+            a) dbania o poprawność językową, unikania wulgaryzmów, również w postaci skrótów;
+        </p>
+        <div class="lpost_title my-2">
+            § 3. UPRAWNIENIA ADMINISTRATORÓW
+        </div>  
+        <p class="mb-2">
+            1. Moderatorzy i Administratorzy sprawują władzę na Forum i należy się stosować bezwarunkowo i bezdyskusyjnie do ich poleceń.
+        </p>
+        <p class="mb-2">
+            2. Moderatorzy i Administratorzy Forum mogą, bez tłumaczenia się i bez ostrzeżenia, zmieniać stopnie, usuwać posty, 
+        usuwać wątki, blokować ksywki, blokować numery IP, modyfikować wypowiedzi dowolnego Użytkownika.
+        </p>
+        <p class="mb-2">
+            3. Użytkownicy niestosujący się do zasad określonych w niniejszym Regulaminie Forum oraz w Regulaminie Głównym Serwisu, 
+        oraz tacy, którzy z innych przyczyn uznani zostaną przez Administratora lub Moderatora za mające negatywny wpływ na funkcjonowanie Forum, 
+        mogą być na stałe usuwani z Forum. Administrator lub Moderator może także zastosować inne sankcje przewidziane w Regulaminie Głównym, 
+        według swojego uznania i bez konieczności uzasadniania jej rodzaju ani wymiaru.
+        </p>
+        <p class="mb-2">
+            4. Raz nadane blokady ksywek (nazw Użytkownika) i blokady numerów IP Użytkowników łamiących zasady Forum nie będą usuwane.
+        </p>
+        <p class="mb-2">
+        
+        </p>
+        <div class="d-flex justify-content-center">
+            <a href="{% url 'main' %}" class="PB_button  my-2">
+                <img src="{% static 'images/PB_wavinghand.png' %}"  class="PB_wavinghand" alt="">
+                strona główna
+            </a>
+        </div>
+    </div>
+{% endblock %}

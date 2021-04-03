@@ -17,7 +17,7 @@ import sys
  
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
+STATIC_ROOT = ''
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
@@ -29,7 +29,7 @@ SECRET_KEY = environ['SECRET_KEY']
 DEBUG = True
  
 # Set SERVER_BASE = False to use local database
-SERVER_BASE = False # if you want to connect server database
+SERVER_BASE = True # if you want to connect server database
 
 SESSION_COOKIE_HTTPONLY = True
 

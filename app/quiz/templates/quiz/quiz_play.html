@@ -1,6 +1,7 @@
 {% extends 'newLayout.html' %}
 
 {% load static %}
+{% load define_action %}
 
 {% block meta %}
     <title>Pan Barnaba - quiz</title>
@@ -31,9 +32,9 @@
             {{ set_name }} 
         </div>
         {% for item in quiz %}
-            <div class="shadow m-2 p-1 {% if forloop.counter > 1 %}d-none{% endif %}">
-                <p class="question" data-qtype="{{ item.qtype }}" data-id="{{ item.id }}">{{ item.question }}</p>
-                {% for ans in item.answers.all %}
+            <div class="shadow m-2 p-2 {% if forloop.counter > 1 %}d-none{% endif %}">
+                <p class="question cpost_body2" data-qtype="{{ item.qtype }}" data-id="{{ item.id }}">{{ item.question }}</p>
+                {% for ans in item.answers.all|shuffle %}
                     <div class="answer form-check">
                         <input 
                             class="form-check-input" 

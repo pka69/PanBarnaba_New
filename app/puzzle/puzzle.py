@@ -3,7 +3,12 @@ from os.path import isfile, join
 from random import choice, shuffle
 
 from django.conf import settings
-from django.conf.urls.static import static
+# from django.conf.urls.static import static
+# from django.contrib.staticfiles.templatetags.staticfiles import static, do_static
+from django.templatetags.static import static
+from django.contrib.staticfiles.storage import StaticFilesStorage
+from django.contrib.staticfiles.utils import get_files
+
 
 
 from tools.block import Block
@@ -57,7 +62,11 @@ class PuzzleBlock(Block):
 def puzzleList(location, make_shuffle=False):
     # list of pictures in static/images/puzzle directory
 
-    mypath = settings.STATICFILES_DIRS[0] /  location 
+
+    # s = StaticFilesStorage()
+    # list(get_files(s, location=location))
+
+    mypath = settings.STATICFILES_DIRS[0] /  location  if settings.STATIC_ROOT == '' else settings.STATIC_ROOT /  location# static(location) 
     allfiles = [
         (
             f.split('.')[0],

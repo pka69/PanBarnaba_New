@@ -1,3 +1,4 @@
+import random
 from django.shortcuts import render, redirect
 from django.views import View
 from django.contrib import messages
@@ -21,7 +22,7 @@ class quizListView(View):
 
 class quizPlayView(View):
     def get(self, request, qlevel, qgroup):
-        quiz = Question.objects.filter(qlevel=qlevel, qgroup=qgroup).prefetch_related('answers')
+        quiz = sorted(Question.objects.filter(qlevel=qlevel, qgroup=qgroup).prefetch_related('answers'), key=lambda x: random.random())
         context['quiz'] = quiz
         context['level'] = 'level_{}'.format(qlevel)
         context['set_name'] = 'poziom {}, zestaw {}'.format(Question.LEVELS[qlevel][1], qgroup )

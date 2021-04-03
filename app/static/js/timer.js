@@ -55,12 +55,12 @@ function detailTime(timeLeft) {
 }
 function getTempURL(url, timeLeft) {
   let temp = url +
-  document.getElementById('gameType').outerText + '-' + 
-  document.getElementById('method').outerText + '-' + 
-  document.getElementById('level').outerText+ '/' + 
-  document.getElementById('game_id').outerText+ '/'
+  document.getElementById('gameType').innerText + '-' + 
+  document.getElementById('method').innerText + '-' + 
+  document.getElementById('level').innerText+ '/' + 
+  document.getElementById('game_id').innerText+ '/'
   if (document.getElementById('result')) {
-    temp += document.getElementById('result').outerText.replace("%","")+ '/'
+    temp += document.getElementById('result').innerText.replace("%","")+ '/'
   }
   else {
     temp += 100 + '/'
@@ -81,15 +81,15 @@ function fetchTolList(timeLeft) {
         if (data['status'] == 'success') {
           TopListShow();
           document.getElementById('saveBTN').addEventListener('click', function(event) {
-            console.log(event.target.outerText)
-            if (event.target.outerText == "Zamknij") {
+            console.log(event.target.innerText)
+            if (event.target.innerText == "Zamknij") {
               ToListHide();
               return;
             }
             else {
               event.target.innerText = "Zamknij";
             }
-            console.log(event.target.outerText)
+            console.log(event.target.innerText)
             temp_url = getTempURL('/scoring/score_update/', timeLeft)
             console.log('fetch start.', temp_url)
             fetch(temp_url)
@@ -121,14 +121,14 @@ var timing = setInterval( // you're making an interval - a thing, that is updati
     counter.innerHTML =  hours + "h " + minutes + "m " + seconds + "s"; // putting number of days, hours, minutes and seconds in div, 
     counter.value = timeLeft;
     //which id is countdown
-    if (finish.outerText > 0) {
+    if (+finish.innerText > 0) {
       var currentTime = new Date().getTime();
       var timeLeft = currentTime - StartTime;
       document.getElementById('finalTime').innerText =  timeLeft
       clearInterval(timing);
       result = ''
       if (document.getElementById('result')) {
-        result = ". Twój wynik quizu wynosi " +document.getElementById('result').outerText
+        result = ". Twój wynik quizu wynosi " +document.getElementById('result').innerText
       }
       counter.innerHTML = "Brawo!  " + convertTime(timeLeft, false) + result; 
       if (document.getElementById('end_site')) {

@@ -250,11 +250,11 @@ if (document.getElementsByName("gols").length) {
         for (var j=0;j<(cols*1);j++) {
             cells.push(new Cell(item_cells[i * cols  + j],i,j))
             cells[i * cols  + j].update_manual()
-            if (item_cells_hidden[i * cols + j].outerText === "1") {
+            if (item_cells_hidden[i * cols + j].innerText === "1") {
                 cells[i * cols  + j].init_stage(1)
             } 
             // if (i>=x1 && i<x2 && j>=y1 && j<y2) {
-            //     if (item_cells_hidden[(i - x1) * Math.round(cols /2)  + Math.round(j-y1)].outerText === "1") {
+            //     if (item_cells_hidden[(i - x1) * Math.round(cols /2)  + Math.round(j-y1)].innerText === "1") {
             //         cells[i * cols  + j].init_stage(1)
             //     }
             // }
@@ -297,7 +297,7 @@ else {
             console.log('click2')
             if (STOP===false) return;
             var button = event.currentTarget;
-            var no = button.outerText * 1
+            var no = button.innerText * 1
             if (button.classList.contains('cell_selected')) {
                 button.classList.remove('cell_selected');
                 dead_or_live[no][1] = 0;
@@ -313,7 +313,7 @@ else {
         item.addEventListener('click', function(event) {
             if (!(STOP)) {return}
             var button = event.currentTarget;
-            var no = button.outerText * 1
+            var no = button.innerText * 1
             if (button.classList.contains('cell_selected')) {
                 button.classList.remove('cell_selected');
                 dead_or_live[no][0] = 0;
@@ -330,7 +330,7 @@ else {
             if (!(STOP)) {return}
             var button = event.currentTarget;
             button.classList.add('cell_selected');
-            var no = parseFloat(button.outerText)/100
+            var no = parseFloat(button.innerText)/100
             grid.generator(no)
             button.classList.remove('cell_selected');
         })
@@ -340,7 +340,7 @@ else {
         item.addEventListener('click', function(event) {
             if (!(STOP)) {return}
             var button = event.currentTarget;
-            INTERVAL = button.outerText * 1;
+            INTERVAL = button.innerText * 1;
             console.log(INTERVAL)
             for (var item of button.parentElement.children) {
                 if (item===button) {

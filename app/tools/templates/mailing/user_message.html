@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block mail %}
-<h2>Droga {{ author.username }}</h2>
+<h2>Drodzy autorko i Panie Barnabo</h2>
 
 <p>pojawiła się w bazie nowa wiadomość od użytkownika.</p>
 <br>Poniżej treść wiadomości:
@@ -10,10 +10,10 @@
 <h1>{{ title }}</h1>
 <p>{{content }}</p>
 <br>
-<p>{{ mail }}</p>
+<p>adres nadawcy (jeśli podał: {{ mail }}</p>
 <br>
 {% if picture %}
-        <img src="{% static static_folder|add:picture %}" class="card-img-top " alt="user picture">
+        <img src="https://panbarnaba.pl{% static static_folder|add:picture %}" class="card-img-top " alt="user picture">
 {% endif %}
 
 {% endblock %}

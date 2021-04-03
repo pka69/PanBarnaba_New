@@ -16,15 +16,17 @@
         <img src="{% static 'images/lapka.png' %}" class="PB_stamp my-4" alt="cat food stamp">
     </div>
     <div class="msg_central2 font_2 my-4">
-        algorytm życia - czym jest?
+        czym jest algorytm życia?
     </div>
-    <p class="cpost_body">
-        Gra w życie (Life, The game of life) – 
-        jeden z pierwszych i najbardziej znanych przykładów automatu komórkowego, 
-        wymyślony w roku 1970 przez brytyjskiego matematyka 
-        Johna Conwaya.
+    <p class="jpost_body">
+        Gra w życie (The game of life) została stworzona w 1970 roku przez brytyjskiego matematyka Johna Conwaya. 
+        Nie stanowi gry w utartym rozumieniu, ale jest automatem komórkowym, czyli systemem złożonym z pojedynczych komórek, 
+        które sąsiadują ze sobą. Komórki żyją bądź umierają w kolejnych cyklach. Wszystko zależy od tego ilu mają sąsiadów i jakie zdefiniowaliśmy 
+        początkowe reguły gry. 
+        <br>
+        Brzmi niejasno? Powiem, że to ulubiona gra studentów matematyki i fizyki.
     </p>
-    <p class="cpost_body">
+    <!-- <p class="jpost_body">
         Od momentu publikacji zawsze wzbudzała duże zainteresowanie z powodu 
         zaskakującego sposobu, w jaki struktury potrafią ewoluować. 
         To właśnie jej pojawienie się wzbudziło zainteresowanie automatami 
@@ -37,45 +39,42 @@
     <h2 class="cpost_title">
         Powstanie gry
     </h2>
-    <p class="cpost_body">
+    <p class="jpost_body">
     Conway zainspirowany pracami nad układami sąsiadów i regułami zmian, 
     eksperymentował nad stworzeniem takiego automatu pod koniec lat 60. 
     XX wieku. Reguły, które w ostateczności przyczyniły się do powstania gry 
     Życie zostały wybrane, ponieważ pozwalały na równowagę pomiędzy zbyt 
     szybkim rozrastaniem się struktur i zbyt wolnym pojawianiem się szybko 
     znikających obiektów.
-    </p>
-    <h2 class="cpost_title">
+    </p> -->
+    <h2 class="cpost_title my-2">
         Opis reguł gry
     </h2>
-    <p class="cpost_body"> 
-    Gra toczy się na nieskończonej planszy (płaszczyźnie) podzielonej na 
-    kwadratowe komórki. Każda komórka ma ośmiu „sąsiadów” (tzw. sąsiedztwo 
-    Moore’a), czyli komórki przylegające do niej bokami i rogami. 
-    Każda komórka może znajdować się w jednym z dwóch stanów: 
-    może być albo „żywa” (włączona), albo „martwa” (wyłączona). 
-    Stany komórek zmieniają się w pewnych jednostkach czasu. 
-    Stan wszystkich komórek w pewnej jednostce czasu jest używany do 
-    obliczenia stanu wszystkich komórek w następnej jednostce. 
-    Po obliczeniu wszystkie komórki zmieniają swój stan dokładnie w tym 
-    samym momencie. Stan komórki zależy tylko od liczby jej żywych sąsiadów. 
-    W grze w życie nie ma graczy w dosłownym tego słowa znaczeniu. 
-    Udział człowieka sprowadza się jedynie do ustalenia stanu początkowego 
-    komórek.
+    <p class="jpost_body"> 
+        Gra toczy się na nieskończonej planszy przypominającej kartkę w kratkę. 
+        Te kratki to poszczególne komórki. 
+        Każda komórka może być w jednym z dwóch stanów, albo żywa (pokolorowana komórka) lub martwa (pusta komórka). 
+        Ponieważ komórka ma kształt kwadratu, może sąsiadować maksymalnie z 8 innymi komórkami, 
+        z czterema po bokach i czterema w rogach. 
+        Ilość sąsiadów ma wpływ na to czy w kolejnym cykly komórka będzie żyć czy nie. 
+        Ta gra toczy się więc o życie.
     </p>
-    <h2 class="cpost_title">
-        Reguły gry według Conwaya
+    <h2 class="cpost_title my-2">
+        standardowe reguły ustalonę przez wynalazce tego algorytmu
     </h2>
     <p>
         <ul class="lpost_body">
-            <li>Martwa komórka, która ma dokładnie 3 żywych sąsiadów, staje się żywa w następnej jednostce czasu (rodzi się)</li>
-            <li>Żywa komórka z 2 albo 3 żywymi sąsiadami pozostaje nadal żywa; przy innej liczbie sąsiadów umiera (z „samotności” albo „zatłoczenia”)</li>
+            <li>Jeśli żywa komórka, ma mniej niż dwóch sąsiadów, w kolejnym kroku umiera            </li>
+            <li>Jeśli żywa komórka ma więcej niż trzech sąsiadów, w kolejnym kroku umiera</li>
+            <li>Jeśli żywa komórka ma dwóch lub trzech sąsiadów – w kolejnym kroku też żyje.</li>
+            <li>Jeśli martwa komórka ma trzech żywych sąsiadów – w kolejnym kroku ożyje</li>
         </ul>
     </p>
-    <h2 class="cpost_title">
+
+    <!-- <h2 class="cpost_title">
         Alternatywne reguły
     </h2>
-    <p class="cpost_body">
+    <p class="jpost_body">
         To że Conway zaproponował powyższe reguły nie znaczy, że nie można ekserymentować z innymi zasadami. <br>
     żeby było prościej do zapisu reguły przyjęto następująca notację ułamkową: 23/3 - to zapis reguły Conwaya. Przed ukośnikiem umieszczamy ilu sąsiadów pozwala przeżyć a po ukośniku ilu sąsiadów powoduje narodziny komorki. 
     Znane są też inne podejścia: 
@@ -88,9 +87,14 @@
             <li>12345/3 - labirynt, bo wzory przypominają labirynt</li>
             <li>34/34 - Trzy Cztery.Początkowo sądzono, że ma ona tendencje do stabilizacji, ale dzięki symulacji komputerowej okazało się, że większe wzory eksplodują. Dużo małych oscylatorów i statki</li>
             <li>34678/3678 - Dzień i Noc. Dużo wzorów o złożonym zachowaniu. Wzory można odwracać – uczynić wszystkie żywe komórki martwymi i na odwrót, a będzie on działał identycznie.</li>
-        </ul>
-        Jest jeszcze wiele innych kombinacji. Możecie potestować własne ustawienia. <br>
+        </ul> -->
+        <!-- Jest jeszcze wiele innych kombinacji. Możecie potestować własne ustawienia. <br>
         powięcej informacji można się udać <a href="https://pl.wikipedia.org/wiki/Gra_w_%C5%BCycie" target="_blank">tutaj</a>
+    </p> -->
+    <p>
+        Ale oczywiście można ustawić inne warunki i śledzić jak to wplywa na kolejne cykle gry. 
+        Możesz potestować własne ustawienia. <br>
+        Więcej informacji można znaleźć <a href="https://pl.wikipedia.org/wiki/Gra_w_%C5%BCycie" target="_blank">tutaj</a>
     </p>
     <div class="justify-content-center" name="example">
         <a href="{% url 'game_of_life_go' %}">
@@ -109,38 +113,44 @@
     <input type="text" class="d-none" name="rows" data-rows="{{ rows }}" value="{{ rows }}">
     <input type="text" class="d-none" name="cols" data-rows="{{ cols }}" value="{{ cols }}">
     <input type="text" class="d-none" name="finish" if="finish" value="1">
-    <span class="d-flex msg_central2 font_2 my-4">przykładowa formacja</span>
+    <span class="d-flex msg_central2 font_2 my-4" name="example" id="example">przykładowa formacja</span>
     <div class="d-flex justify-content-between border-bottom pb-2">
-        <a href="/maths/life/?actual={{ gols.0.0 }}&step=-1">
+        <a href="/maths/life/?actual={{ gols.0.0 }}&step=-1#example">
             <button class="btn PB_button_sm"> poprzedni </button>
         </a>
-        <p class="cpost_body"><span class="PB3">{{ gols.0.0 }}</span></p>
-        <a href="/maths/life/?actual={{ gols.0.0 }}&step=1">
+        <p class="cpost_body"><span class="PB3" >{{ gols.0.0 }}</span></p>
+        <a href="/maths/life/?actual={{ gols.0.0 }}&step=1#example">
             <button class="btn PB_button_sm"> następny </button>
         </a>
     </div>
     <div class="lifeGrid" name="example">
         <table class="tableGrid">
-        {% for row in gols.0.1 %}
-            <tr class="col m-0 p-0">
-            {% for item in gols.0.2 %}
-                <td class="cellGrid">
-                    <div class="cell deadCell" > </div>
-                </td>
+            <tbody class="tablebody">
+            {% for row in gols.0.1 %}
+                <tr class="col m-0 p-0">
+                {% for item in gols.0.2 %}
+                    <td class="cellGrid">
+                        <div class="cell deadCell" > </div>
+                    </td>
+                {% endfor %}
+                </tr>
+            {% endfor %} 
+            {% for row in example.0 %}
+                <tr class="col" >
+                {% for item in row %}
+                        <td class="cell_hidden" >{{ item }}</td>
+                {% endfor %}
+                </tr>
             {% endfor %}
-            </tr>
-        {% endfor %} 
-        {% for row in example.0 %}
-            <tr class="col" >
-            {% for item in row %}
-                    <td class="cell_hidden" >{{ item }}</td>
-            {% endfor %}
-            </tr>
-        {% endfor %}
+            </tbody>
         </table>
     </div>
     <br>
-    
+    <div class="justify-content-center text-center" name="example">
+        <a href="{% url 'game_of_life_go' %}">
+            <button class="btn PB_button">Zobacz jak to działa !</button>
+        </a>
+    </div> 
 </div>
 
 {% endblock %}

@@ -18,7 +18,7 @@ from django.urls import path, include
 from main.views import mainView, gamesView, contactView,\
     introView, infoView, missingPage,\
     LoginView, LogoutView, CreateUserView,\
-    PasswordChangeView, bubbleSwitch, waitingView
+    PasswordChangeView, bubbleSwitch, waitingView, PolitykaView
 
 
 urlpatterns = [
@@ -32,6 +32,8 @@ urlpatterns = [
     path('games/', gamesView, name='games'),
     path('maths/', include('maths.urls')),
     path('bubbleSwitch/', bubbleSwitch, name='bubbleSwitch'),
+    path('difference/', missingPage, name='difference' ),
+    path('polityka/', PolitykaView, name='polityka' ),
 
     path('login/', LoginView.as_view(), name='login'),
     path('logout/', LogoutView.as_view(), name='logout'),

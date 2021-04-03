@@ -7,13 +7,13 @@ const wrong = document.getElementById("wrong")
 
 answer.addEventListener("change", function(){
     var data = {
-        id: quotation.outerText, 
-        method: method.outerText,
-        key: key.outerText,
+        id: quotation.innerText, 
+        method: method.innerText,
+        key: key.innerText,
         answer: answer.value,
         // csrfmiddlewaretoken: document.getElementsByName('csrfmiddlewaretoken')[0].value
     }
-    const temp_url = '/encrypt/check_answer_is_correct/'  // + quotation.outerText + '/' + method.outerText + '/' + key.outerText + '/' + answer.value +"/"
+    const temp_url = '/encrypt/check_answer_is_correct/'  // + quotation.innerText + '/' + method.innerText + '/' + key.innerText + '/' + answer.value +"/"
     console.log(temp_url)
     console.log('data:', data)
     fetch(temp_url,

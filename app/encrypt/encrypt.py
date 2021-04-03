@@ -31,7 +31,7 @@ class Encryptor():
         encryptor = cls(to_encrypt, encrypt_key)
         encrypt = encryptor.getEncrypted()
         check = encryptor.convert(to_check)
-        return encrypt == check
+        return encrypt.strip().replace(" ","") == check.strip().replace(" ","")
 
 
 class Sylabowy(Encryptor):

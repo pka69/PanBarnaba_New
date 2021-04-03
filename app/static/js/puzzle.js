@@ -1,5 +1,5 @@
 const puzzle_parts = document.getElementsByName("ppart");
-const level = parseInt(document.getElementById("level").outerText);
+const level = parseInt(document.getElementById("level").innerText);
 // const finish = document.getElementById('finish');
 
 

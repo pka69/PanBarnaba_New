@@ -7,8 +7,8 @@ for (i=1; i<numbers.length; i++) {
 }
 key_numbers.push('')
 
-size = document.querySelector('#size').outerText
-level = document.querySelector('#level').outerText
+size = parseInt(document.querySelector('#size').innerText)
+level = parseInt(document.querySelector('#level').innerText)
 
 function Create2DArray(rows) {
   var arr = [];
@@ -32,30 +32,31 @@ class Block {
         }
         else {
             this.cells.push(cell)
-            if (cell.cell.outerText!==''){
-                this.values.push(cell.cell.outerText)
+            if (cell.cell.innerText.trim()!==''){
+                this.values.push(parseInt(cell.cell.innerText))
             }
         }
     }
     removeValue(value){
-        const i = this.values.indexOf(value)
-        console.log('name:', this.name, 'value:', value, 'i:', i, 'this.values:', this.values)
+        const i = this.values.indexOf(+value)
+        // console.log('name:', this.name, 'value:', value, 'i:', i, 'this.values:', this.values)
         this.values.splice(i,1)
-        console.log('value:', value, 'i:', i, 'this.values:', this.values)
+        // console.log('value:', value, 'i:', i, 'this.values:', this.values)
         if (this.conflict && this.conflict===value){
-            console.log('removed value = conflict value')
+            // console.log('removed value = conflict value')
             if (this.values.filter(x => x===value).length === 1){
-                console.log('done')
+                // console.log('done')
                 this.conflict = ''
             }
         }
         this.conflictMark()
     }
     addValue(value) {
-        const i = this.values.indexOf(value)
+        const i = this.values.indexOf(+value)
+        // console.log("block.addValue", this.values, this.name, value, i)
         this.values.push(value)
         if (i!==-1){
-            console.log('conflict!!!', value)
+            // console.log('conflict!!!', value)
            this.conflict = value 
         }
         this.conflictMark()
@@ -65,7 +66,7 @@ class Block {
             item.cell.parentElement.classList.remove('s_conflict');
             if (this.conflict === ''){
             }
-            else if (this.conflict === item.cell.outerText) {
+            else if (this.conflict === item.cell.innerText) {
                 item.cell.parentElement.classList.add('s_conflict');
             }
         }
@@ -101,7 +102,7 @@ class SudokuCell {
         }
     }
     compare(){
-        if (this.cell.outerText === this.value){
+        if (this.cell.innerText === this.value){
             return true;
         }
         else {
@@ -109,18 +110,19 @@ class SudokuCell {
         }
     }
     valueChange(value){
-        if (this.cell.outerText!==''){
-            console.log('usuwam starą wartość:',this.cell.outerText)
+        if (this.cell.innerText!==''){
+            // console.log('usuwam starą wartość:',this.cell.innerText)
             for (var block of this.blocks) {
-                block.removeValue(this.cell.outerText)
+                block.removeValue(this.cell.innerText)
             }
             
         }
         this.cell.innerText = value;
-        console.log('podstawiam nową wartość:',this.cell.outerText)
+        // console.log('podstawiam nową wartość:',this.cell.innerText)
         if (value!==''){
+            // console.log('sprawdzanie konfliktu')
             for (var block of this.blocks) {
-                block.addValue(this.cell.outerText)
+                block.addValue(value)
             }  
         }
         
@@ -134,6 +136,7 @@ class Sudoku {
         this.active_cells = []
         this.active = NaN;
         var exist = [];
+        self = this;
         for (var cell of cells) {
             var block_names = cell.dataset.blocks.split(',')
             block_names.splice(-1)
@@ -217,7 +220,7 @@ class Sudoku {
         }        
     }
     number(value){
-        console.log('number:', value)
+        // console.log('number:', value)
         this.active.valueChange(value);
         // this.moveNext();
         this.isDone();
@@ -252,7 +255,7 @@ function onNumber(x) {
     sudoku.number(x)
 }
 for (item of numbers) {
-    const x = Number(item.outerText)
+    const x = Number(item.innerText)
     item.addEventListener('click', function pressNumber() {
         if (finish.innerText === "1") {
             this.removeEventListener('click',pressNumber);

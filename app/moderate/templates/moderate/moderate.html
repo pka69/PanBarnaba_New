@@ -10,12 +10,12 @@
 {% block full %}
     <div class='container-fluid justify-content-center p-2' >
         <span class="d-flex justify-content-center PB2 PB_bg_logo m-2 justify-content-centre widith-100">
-            Wybrana kategoria: <span class="PB1 px-2"> {{ post_type_selected.1 }}</span>
+            Wybrana kategoria: <span class="PB1 px-2"> {{ post_type_selected.1 }}</span> <i>(kliknij w ID aby edytować post)</i>
         </span>
-        <div class="container d-flex flex-row mb-3">
+        <div class="container-fluid d-flex flex-row mb-3">
             <div class="dropdown p-2 mx-4">
-                <button class="btn bg_color_ocean93 dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                    filtrowanie
+                <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                    kategoria
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                     {% for item in post_type %}
@@ -25,12 +25,18 @@
             </div>
             <!-- Button trigger modal -->
             <div class="p-2 mx-4">  
-                <button type="button" class="btn bg_color_ocean93" data-bs-toggle="modal" data-bs-target="#AddModPost">
+                <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#AddModPost">
                 Dodaj post
                 </button>
             </div>
-            <div class="p-2 mx-4 shadow">
-                <form action="" method="get">
+            <div class="p-2 mx-4 shadow w-75">
+                <form action="" method="get" class="d-flex d-flex-row">
+                    <div class="input-group input-group-sm me-2">
+                        <div CLASS="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-sm">podgrupa</span>
+                        </div>
+                        <input class="form-control"  type="text" placeholder="..." value="{{ sfiltr }}" name="sfiltr"  maxlength="40" />
+                    </div>
                     {% for item in STAGE %}
                     <div class="form-check form-check-inline form-switch">
                         <input class="form-check-input" type="checkbox"  action="" method="get" name="stagelist" id="stage_{{ item.0 }}" value="{{ item.0 }}" {% if item.0 in stagelist %}checked{% endif %}>
@@ -39,11 +45,13 @@
                         </label>
                     </div>
                     {% endfor %}
-                    <button class="btn btn-secondary btn-sm btn-inline " type="submit">filtruj</button>
+                    <div>
+                        <button class="btn btn-secondary btn-sm btn-inline " type="submit">filtruj</button>
+                    </div>
                 </form>
             </div>
             <div class="p-2 mx-4">
-                kliknij w ID aby edytować post
+                
             </div>
         </div>
         <div class="row justify-content-center">
@@ -88,8 +96,8 @@
                             <td class="text-center">
                                 {{ item.fulldate|date:'Y-m-d H:i' }}
                             </td>
-                            <td class="text-center align-items-center">
-                                <div class="d-flex">
+                            <td class="text-center ">
+                                <div class="d-flex justify-content-center">
                                     {% if item.stage > -1 %}
                                         <a href="/moderate/{{ post_type_selected.0 }}/reject/{{ item.id }}">
                                             <svg name="action_approve" class="d-inline" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-hand-thumbs-down" viewBox="0 0 16 16">
@@ -174,7 +182,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="content" class="form-label">treść posta</label>
-                            <textarea class="form-control" id="content" name="content" rows="8"></textarea>
+                            <textarea class="form-control" id="content" name="content" rows="5"></textarea>
                         </div>
                         <div class="mb-3">
                             <label for="external_link" class="form-label">link zewnętrzny do przekierowania</label>
@@ -197,13 +205,13 @@
                                     </label>
                                 </div>
                             </div>
-                            <div>
+                            <div class="d-none" name="pictureLocation">
+                                <label for="pictureFile" class="form-label">wybierz plik z dysku</label>
+                                <input class="form-control" type="file" accept="image/x-png,image/jpeg" id="pictureFile" name="pictureFile">
+                            </div>
+                            <div name="pictureLocation">
                                 <label for="picture" class="form-label">link do obrazka</label>
                                 <textarea class="form-control" id="picture" name="picture" accept="image/x-png,image/jpeg" rows="3"></textarea>
-                            </div>
-                            <div class="d-none">
-                                <label for="pictureFile" class="form-label">wybierz plik z dysku</label>
-                                <input class="form-control" type="file"  id="pictureFile" name="pictureFile">
                             </div>
                         </div>
                     </div>

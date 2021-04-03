@@ -60,7 +60,7 @@ def getBubblesLike(request):
 def waitingView(request):
     pass
 
-@login_required(redirect_field_name='my_redirect_field')  # to delete in final project
+
 def mainView(request):
     '''
     main view.
@@ -90,7 +90,6 @@ def mainView(request):
     return render(request, 'NL_main.html', context=context)
 
 
-@login_required(redirect_field_name='my_redirect_field')  # to delete in final project
 def introView(request):
     if not request.session.get('welcome'):
         messages.info(request, 'Witaj! {}'.format(Post.welcome()))
@@ -104,7 +103,7 @@ def introView(request):
     context['maths'] = Menu.getMenu('maths', detail=1)
     return render(request, 'intro.html', context=context)
 
-@login_required(redirect_field_name='my_redirect_field')  # to delete in final project
+
 def infoView(request):
     # show info view
     context['submenu'] = Menu.getMenu('main')
@@ -114,15 +113,13 @@ def infoView(request):
     return render(request, 'info.html', context)
 
 
-class contactView(LoginRequiredMixin, View):
-    login_url = '/login/'  # to delete in final project
-    redirect_field_name = 'my_redirect_field'  # to delete in final project
-
+class contactView(View):
+    
     def get(self, request):
         # show contact view with possibility so send message to the author
         context['submenu'] = Menu.getMenu('main')
         context['logo'] = 'kontakt.png'
-        context['title'] = 'skontaktuj się z nami'
+        context['title'] = ' '  #skontaktuj się z nami
         context['PB_Stories'] = getBubbles(request)
         return render(request, 'contact.html', context=context)
     
@@ -141,14 +138,14 @@ class contactView(LoginRequiredMixin, View):
         #     return redirect('/')
         if user_id:
             user = User.objects.get(pk=user_id)
-            msg = Post.objects.create(group=group,
+            msg = Post.notRejected.create(group=group,
                 subgroup=subgroup,
                 content=content,
                 owner=user,
                 external_link=external_link,
             )
         else:
-            msg = Post.objects.create(group=group,
+            msg = Post.notRejected.create(group=group,
                 subgroup=subgroup,
                 content=content,
                 external_link=external_link,
@@ -165,25 +162,23 @@ class contactView(LoginRequiredMixin, View):
         return redirect('/')
 
 
-@login_required(redirect_field_name='my_redirect_field')  # to delete in final project
 def gamesView(request):
     # show all defined games
     context['submenu'] = Menu.getMenu('main')
     context['games'] = Menu.getMenu('games', detail=1)
     context['PB_Stories'] = getBubbles(request)
     context['title'] = 'Wybierz grę dla siebie'
-    context['logo'] = 'info.png'
+    context['logo'] = 'play.png'
     return render(request, 'games.html', context=context)
 
 
-@login_required(redirect_field_name='my_redirect_field')  # to delete in final project
 def mathsView(request):
     # show all defined maths info
     context['submenu'] = Menu.getMenu('main')
     context['maths'] = Menu.getMenu('maths', detail=1)
     context['PB_Stories'] = getBubbles(request)
     context['title'] = 'Zobacz co przygotowaliśmy'
-    context['logo'] = 'info.png'
+    context['logo'] = 'play.png'
     return render(request, 'maths.html', context=context)
 
 
@@ -281,3 +276,9 @@ class PasswordChangeView(LoginRequiredMixin, FormView):
             user.save()
             messages.success(self.request, 'Pomyślna zmiana hasła dla {}!'.format(user.username))
         return super(PasswordChangeView, self).form_valid(form)
+
+def PolitykaView(request):
+    context['title'] = ''  # Polityka prywatności
+    context['PB_Stories'] = []
+    # context['logo'] = 'forum.png'
+    return render(request, 'polityka.html', context=context)

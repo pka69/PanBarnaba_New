@@ -1,6 +1,9 @@
 
-<article class="forum_box mb-2" name="post" data-id="{{ item.id }}">
+<article class="article  d-flex-row mb-2" name="post" data-id="{{ item.id }}">
+        <div class="post_content px-2" name="content">
+            <span>{{ item.owner.username }}</span> napisał: 
+        </div>
         <div class="post_content p-2" name="content">
-            <span>{{ item.owner.username }}</span> napisał: <i>{{ item.content }}</i>
+             <i>{{ item.content }}</i>
         </div>
 </article>

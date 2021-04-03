@@ -66,7 +66,6 @@
                         {% for item in items %}
                             {% if item.y == 0 %} <tr class="d-flex flex-row"> {% endif %}
                                 <td class="cell cell_{{ level }} 
-                                        
                                         {% if item.hidden %} 
                                             cell-hidden 
                                         {% else %}
@@ -80,7 +79,7 @@
                                         data-fix="{{ item.fix }}" data-value="{{ item.value }}"
                                         data-border="{{ item.border }}"
                                         data-hidden="{{ item.hidden }}"
-                                        > {% if item.fix %} {{ item.value }} {% endif %}
+                                        > {% if item.fix %}{{ item.value }}{% endif %}
                                     </p>
                                 </td>
                             {% if item.y ==  size %} </tr> {% endif %}

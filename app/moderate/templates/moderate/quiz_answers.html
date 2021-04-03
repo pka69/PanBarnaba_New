@@ -4,7 +4,7 @@
 {% load define_action %}
 
 {% block NAV1 %}
-    <span> S T R E F A &nbsp;&nbsp; M O D E R A T O R A</span>
+    <span> STREFA MODERATORA</span>
 {% endblock %}
 
 {% block full %}
@@ -57,7 +57,7 @@
                 </div>
             </form>
             <div class=" text-center m-5">
-                <a href="{% url 'moderate_quiz' %}">
+                <a href="{% url 'moderate_quiz_level' quiz.qlevel %}">
                     <button class="btn btn-secondary" type="submit" >Wróć do listy pytań</button>
                 </a>
             </div>
