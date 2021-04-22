@@ -1,0 +1,91 @@
+{% extends 'newLayout.html' %}
+
+{% load static %}
+
+
+{% block meta %}
+    <title>Pan Barnaba - memo</title>
+    <meta name=”description” content=”Pan Barnaba i zagadkowa hipoteza. autor: Katarzyna Kalista. Memo" />
+{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet"  href="{% static 'css/PB_memo.css' %}"/>
+{% endblock %}
+
+{% block title_box %}
+    <div class="d-inline-block ">
+        <div class="row justify-content-center ">
+            <span class="cpost_title">Twój czas wykonania</span>
+        </div>
+        <div class="row justify-content-center  p-2 my-2 cpost_body" id="counter" value="0">
+        </div>
+    </div>
+{% endblock %}
+
+{% block full %}
+    <span class="d-none" id="finish" >0</span>
+    <span class="d-none" id="finalTime" >0</span>
+    <span class="d-none" id="level">{{ level }}</span>
+    <span class="d-none" id="game_id">{{ level }}</span>
+    <span class="d-none" id="method">std</span>
+    <span class="d-none" id="gameType">memo</span>
+    <div class = "container">
+        <div class="my-4">
+            <img src="{% static 'images/lapka.png' %}" class="PB_stamp" alt="cat food stamp">
+        </div>
+        <div class="msg_central2 font_2 my-4">
+            Jak grać?
+        </div>
+        <div class="container justify-content-center">
+            <ul class="list-group cpost_body ">
+                <li class="list-group-item border-0">
+                    kliknij w kartę aby zobaczyć rysunek 
+                </li>
+                <li class="list-group-item border-0">
+                    kliknij w kolejny, aby go odkryć. 
+                </li>
+                <li class="list-group-item border-0">
+                    jeśli są identyczne, to szukaj kolejnej pary. jak nie to oba zostaną ukryte. 
+                </li>
+                <li class="list-group-item border-0">
+                    zapamiętaj gdzie był jaki obrazek - może Ci się to przydać. 
+                </li>
+            </ul>
+        </div>
+        <div class = "justify-content-center">
+            <div class="my-4">
+                <div class="msg_central2 font_2 my-2">
+                    Znajdź identyczne rysunki
+                </div>
+                <div class="container justify-content-center align-items-center" >
+                    <div class="">
+                        {% for row in memos %}
+                            <div class="d-flex justify-content-center align-items-center my-1">
+                            {% for item in row %}
+                                <div class="PB_image_memo_{{ level }} mx-1 shadow">
+                                    <img 
+                                        src="{% static PanBarnaba %}" 
+                                        class="card-img-top {% if item.0 == '' %} d-none {% endif %} " 
+                                        data-picture="{% static 'images/memo/'|add:item %}"
+                                        data-x="{{ forloop.parentloop.counter0 }}"
+                                        data-y="{{ forloop.counter0 }}"
+                                        name="memos" 
+                                        alt="{{ item }}">
+                                </div>
+                            {% endfor %}  
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="height:300px; width:100%; clear:both;"></div>
+    {% include 'scoring/score_list.html' %}
+    
+{% endblock %}
+
+{% block add_ins %}
+    <script src=" {% static 'js/timer.js' %} "></script> 
+    <script src=" {% static 'js/memo.js' %} "></script> 
+{% endblock %}

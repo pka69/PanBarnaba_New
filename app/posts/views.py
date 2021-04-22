@@ -45,22 +45,22 @@ def newsView(request):
 
 class forumView(View):
     # view for show user forum with a few categories
-    def get(self, request, ftype=FTYPES[0]):
+    def get(self, request, ftype=0):
         page = int(request.GET.get('page', 1))
         context['title'] = 'Forum Pana Barnaby'
         context['ftypes'] = FTYPES
-        context['ftype'] = ftype
-        context['posts'] = paginate(Post.approved.filter(group=2).filter(subgroup=ftype).filter(related_post__isnull=True).prefetch_related('comments'), page)
+        context['ftype'] = FTYPES[ftype]
+        context['posts'] = paginate(Post.approved.filter(group=2).filter(subgroup=FTYPES[ftype]).filter(related_post__isnull=True).prefetch_related('comments'), page)
         context['PB_Stories'] = getBubblesLike(request)
         context['logo'] = 'forum.png'
         context['menu_add'] = [['Regulamin', '/posts/rules/'],]
         return render(request, 'posts/forum_list.html', context=context)
   
     # post post from forum or alternatively comments
-    def post(self, request, ftype=FTYPES[0]):
+    def post(self, request, ftype=0):
         post_id = request.POST.get('post_id', None)
         user_id = request.POST.get('user', 0)
-        subgroup = ftype
+        subgroup = request.POST.get('subgroup', FTYPES[0])
         content = request.POST.get("content", 0)
         external_link = request.POST.get("external_link", '')
         try:

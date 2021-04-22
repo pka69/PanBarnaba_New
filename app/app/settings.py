@@ -29,7 +29,7 @@ SECRET_KEY = environ['SECRET_KEY']
 DEBUG = True
  
 # Set SERVER_BASE = False to use local database
-SERVER_BASE = True # if you want to connect server database
+SERVER_BASE = False # if you want to connect server database
 
 SESSION_COOKIE_HTTPONLY = True
 
@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     'tools',
     'moderate',
     'puzzle',
+    'difference',
     'sudoku',
     'encrypt',
     'posts', 
@@ -65,6 +66,7 @@ INSTALLED_APPS = [
     'maths',
     'scoring',
     'library',
+    'memo',
 ]
 
 if DEBUG:

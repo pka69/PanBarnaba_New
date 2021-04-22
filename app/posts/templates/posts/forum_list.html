@@ -11,20 +11,20 @@
  {% endblock %}
  
 {% block full %}
-    <div class="container my-2">
-        <div class="container mb-2 p-2 PB2">
+    <div class="container my-1">
+        <div class="container px-2 PB2">
             {% for option in ftypes %}
-                <a href="/posts/forum/{{ option }}">
+                <a href="/posts/forum/{{ forloop.counter0 }}">
                     <button type="button" class="btn {% if option == ftype %}PB_button_grey{% else %}PB_button{% endif %} mx-2">
                         {{ option }}
                     </button>
                 </a>
             {% endfor %}
         </div>
-        <div class="my-3">
+        <div class="my-1">
             <form action="" method="POST">
                 {% csrf_token %}
-                <label for="content" class="form-label msg_central2 font_2 my-4">o czym myślisz?</label>
+                <label for="content" class="form-label msg_central2 font_2 py-3">o czym myślisz?</label>
                 <input type="text" class="form-control" name="content" id="main_content" autocomplete="none">
                 <input type="text" class="form-control d-none" name="subgroup", value="{{ ftype }}">
                 <input type="number" class="form-control d-none" name="user", value="{{ request.user.id }}">

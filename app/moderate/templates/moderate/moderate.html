@@ -3,6 +3,11 @@
 {% load humanize %}
 {% load define_action %}
 
+{% block meta %}
+    <title>Pan Barnaba - Moderator</title>
+    <meta name=”description” content=”Pan Barnaba i zagadkowa hipoteza. autor: Katarzyna Kalista. Strefa Moderatora" />
+{% endblock %}
+
 {% block NAV1 %}
     <span> STREFA MODERATORA</span>
 {% endblock %}
@@ -13,7 +18,7 @@
             Wybrana kategoria: <span class="PB1 px-2"> {{ post_type_selected.1 }}</span> <i>(kliknij w ID aby edytować post)</i>
         </span>
         <div class="container-fluid d-flex flex-row mb-3">
-            <div class="dropdown p-2 mx-4">
+            <!-- <div class="dropdown p-2 mx-4">
                 <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                     kategoria
                 </button>
@@ -22,7 +27,7 @@
                         <li><a class="dropdown-item" href="/moderate/{{ item.0 }}">{{ item.1 }}</a></li>
                     {% endfor %}
                 </ul>
-            </div>
+            </div> -->
             <!-- Button trigger modal -->
             <div class="p-2 mx-4">  
                 <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#AddModPost">

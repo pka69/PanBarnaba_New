@@ -236,10 +236,8 @@ class LogoutView(View):
         return redirect('/')
 
 
-class CreateUserView(LoginRequiredMixin, CreateView):
+class CreateUserView(CreateView):
     # accet to CREATE USER form
-    login_url = '/login/'
-    redirect_field_name = 'my_redirect_field'
     form_class = CreateUserForm
     template_name = 'create_user.html'
     success_url = '/'

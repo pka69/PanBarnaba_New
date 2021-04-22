@@ -1,0 +1,45 @@
+{% extends 'newLayout.html' %}
+
+{% block meta %}
+    <title>Pan Barnaba - picture difference</title>
+    <meta name=”description” content=”Pan Barnaba i zagadkowa hipoteza. autor: Katarzyna Kalista. Znajdź różnicę" />
+{% endblock %}
+
+{% load static %}
+
+{% block full %}
+<div class='container'>
+    <div class="my-4">
+        <img src="{% static 'images/lapka.png' %}" class="PB_stamp" alt="cat food stamp">
+    </div>
+    <!-- <div class="msg_central2 font_2 my-4">
+        poziom trudności
+    </div>
+    <div class="d-flex d-flex justify-content-md-center widith-50">
+        <div class="custom-control custom-switch mr-5">
+            <input type="checkbox" class="btn-check"  id="level_3" name='level_3' value=3 checked >
+            <label class="btn PB_button  mx-4" for="level_3" >easy (3 x 3)</label>
+        </div>
+        <p> </p>
+        <div class="custom-control custom-switch">
+            <input type="checkbox" class="btn-check"  id="level_4" name = 'level_4' value=4 >
+            <label class="btn PB_button mx-4" for="level_4" >medium (4 x 4)</label>
+        </div>
+    </div> -->
+    {% with static_folder='images/difference/' %}
+        <div class="msg_central2 font_2 my-4">
+            Wybierz obrazek
+        </div>
+            <div class="card-group mx-auto">  
+                {% for item in difference %}
+                    {% include 'NL_card.html' %}
+                {% endfor %}
+            </div>
+    {% endwith %}
+</div>
+
+{% endblock %}
+
+{% block add_ins %}
+    <script src=" {% static 'js/level_selector.js' %} "></script> 
+{% endblock %}

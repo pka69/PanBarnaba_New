@@ -62,7 +62,6 @@ class PuzzleBlock(Block):
 def puzzleList(location, make_shuffle=False):
     # list of pictures in static/images/puzzle directory
 
-
     # s = StaticFilesStorage()
     # list(get_files(s, location=location))
 
@@ -72,8 +71,23 @@ def puzzleList(location, make_shuffle=False):
             f.split('.')[0],
             f,
             'puzzle_selected/{}'.format(f)) for f in listdir(mypath) if isfile(join(mypath, f))]
-    return shuffle(allfiles) if make_shuffle else sorted(allfiles)
+    shuffle(allfiles)       
+    return allfiles if make_shuffle else sorted(allfiles)
 
+def puzzleListContain(location, mask):
+    # list of pictures in static/images/puzzle directory
+
+
+    # s = StaticFilesStorage()
+    # list(get_files(s, location=location))
+
+    mypath = settings.STATICFILES_DIRS[0] /  location  if settings.STATIC_ROOT == '' else settings.STATIC_ROOT /  location# static(location) 
+    allfiles = [
+        (
+            f.split('.')[0],
+            f,
+            'puzzle_selected/{}'.format(f)) for f in listdir(mypath) if isfile(join(mypath, f)) and f.find(mask) > -1]
+    return sorted(allfiles)
 
 def puzzleSplited(fname, level):
     # based on defined level define the picture parts name 

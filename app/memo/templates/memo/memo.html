@@ -1,0 +1,42 @@
+{% extends 'newLayout.html' %}
+
+{% block meta %}
+    <title>Pan Barnaba - memo</title>
+    <meta name=”description” content=”Pan Barnaba i zagadkowa hipoteza. autor: Katarzyna Kalista. Memo" />
+{% endblock %}
+
+{% load static %}
+
+{% block full %}
+<div class='container'>
+    <div class="my-4">
+        <img src="{% static 'images/lapka.png' %}" class="PB_stamp" alt="cat food stamp">
+    </div>
+    <div class="msg_central2 font_2 my-4">
+        Wybierz poziom trudności
+    </div>
+    <div class="d-flex d-flex justify-content-md-center widith-50">
+        <div class="custom-control custom-switch mr-5">
+            <a href="{% url 'memo_selected' 4 %}">
+            <label class="btn PB_button  mx-4" for="level_3" >easy (4 x 4)</label>
+        </a>
+        </div>
+        <p> </p>
+        <div class="custom-control custom-switch">
+            <a href="{% url 'memo_selected' 6 %}">
+                <label class="btn PB_button mx-4" for="level_4" >medium (6 x 6)</label>
+            </a>
+        </div>
+        <!-- <div class="custom-control custom-switch">
+            <a href="{% url 'memo_selected' 8 %}">
+                <label class="btn PB_button mx-4" for="level_4" >hard (8 x 8)</label>
+            </a>
+        </div> -->
+    </div>
+</div>
+
+{% endblock %}
+
+{% block add_ins %}
+    <script src=" {% static 'js/level_selector.js' %} "></script> 
+{% endblock %}

@@ -32,7 +32,7 @@ urlpatterns = [
     path('games/', gamesView, name='games'),
     path('maths/', include('maths.urls')),
     path('bubbleSwitch/', bubbleSwitch, name='bubbleSwitch'),
-    path('difference/', missingPage, name='difference' ),
+    # path('difference/', missingPage, name='difference' ),
     path('polityka/', PolitykaView, name='polityka' ),
 
     path('login/', LoginView.as_view(), name='login'),
@@ -46,7 +46,9 @@ urlpatterns = [
     path('quiz/', include('quiz.urls')),
     path('puzzle/', include('puzzle.urls')),
     path('sudoku/', include('sudoku.urls')),
+    path('memo/', include('memo.urls')),
     path('encrypt/', include('encrypt.urls'), name='encrypt'),
+    path('difference/', include('difference.urls')),
     path('scoring/', include('scoring.urls')),
 
     path('maths/fractals/', missingPage, name='encrypt'),

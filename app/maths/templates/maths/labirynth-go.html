@@ -18,10 +18,16 @@
             <input type="text" class="d-none" name="rows" data-rows="{{ rows }}" value="{{ rows }}">
             <input type="text" class="d-none" name="cols" data-rows="{{ cols }}" value="{{ cols }}">
             <div>
-                <img src="{% static 'images/lapka.png' %}" class="PB_stamp my-4" alt="cat food stamp">
+                <img src="{% static 'images/lapka.png' %}" class="PB_stamp my-2" alt="cat food stamp">
             </div>
-            <div class="msg_central2 font_2 my-4">
+            <div class="msg_central2 font_2 my-1">
                 Wymyśl labirynt, z którym nie poradzi sobie komputer!
+            </div>
+            <div class="jpost_body w-75 mx-auto">
+                Kliknij w planszę aby zmienić jej stan (ściana lub korytarz). 
+                Możesz przeciągać myszką z wciśniętym guzikiem aby robić to szybciej.
+                Kliknij w ikony po prawej stronie, aby ustawić punkt początkowy i cel dla Pana Barnaby. 
+                A poniżej planszy są guziki, którymi uruchomisz algorytm. Testuj i baw sie dobrze.
             </div>
             <div class="lifeGrid my-2" name="example">
                 <table class="tableGrid">

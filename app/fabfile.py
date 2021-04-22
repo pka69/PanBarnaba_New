@@ -4,6 +4,11 @@ import random
 
 REPO_URL = 'https://github.com/pka69/Pan_Barnaba_New.git'
 HOST = 'panbarnaba.pl' 
+'''
+git reset --hard
+git pull
+
+'''
 
 def deploy():
     site_folder = '/home/elephant69/domains/{}/public_python/'.format(HOST)
