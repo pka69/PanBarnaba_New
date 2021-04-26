@@ -5,6 +5,7 @@ from django.conf import settings
 from django.core.mail import send_mail
 
 from posts.models import Post
+from library.models import Library
 
 AUTHOR = 'autorka'
 
@@ -85,3 +86,32 @@ def encrypt_to_friend(post, user, path):
         'fail_silently': False
     }
     send_mail(**mail)
+
+def mail_to_DKK(title, libraries, test = True):
+    
+    for library in libraries:
+        context = {
+            'library': library, 
+        }
+        mail = {
+            'subject': 'Wiadomość dla DKK dla dzieci',
+            'message': render_to_string('mailing/{}.txt'.format(title), context=context),
+            'from_email': settings.DEFAULT_FROM_EMAIL, # user.email if user.email else
+            'recipient_list': ['pjkalista@gmail.com'] if test else [library.email],
+            'html_message': render_to_string('mailing/{}.html'.format(title), context=context),
+            'fail_silently': False
+        }   
+        try:
+            send_mail(**mail)
+        except Exception as e:
+                admin_message('nie wysłano maila do {} {}. \nbłąd {}'.format(library.name, library.email, e))
+
+
+def admin_message(msg):
+    mail = {
+        'subject': 'Wiadomość ze strony panbarnaba.pl',
+        'message': msg,
+        'from_email': settings.DEFAULT_FROM_EMAIL, # user.email if user.email else
+        'recipient_list': ['pjkalista@gmail.com'],
+        'fail_silently': False
+    }

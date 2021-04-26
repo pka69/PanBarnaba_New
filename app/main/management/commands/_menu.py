@@ -17,6 +17,7 @@ Menu_details = (
     {'group': 'games', 'name': 'sudoku', 'picture':'sudoku.png', 'link': '/sudoku/'},
     {'group': 'games', 'name': 'szyfrowanie', 'picture':'encrypt.png', 'link': '/encrypt/'},
     {'group': 'games', 'name': 'znajdź różnicę', 'picture': 'difference.png', 'link': '/difference/'},
+    {'group': 'games', 'name': 'memo', 'picture': 'memo.png', 'link': '/memo/'},
     {'group': 'maths', 'name': 'algorytm życia', 'picture':'live.png', 'link': '/maths/life/'},
     {'group': 'maths', 'name': 'świat fractali', 'picture':'fractal.png', 'link': '/maths/fractals/'},
     {'group': 'maths', 'name': 'zaprojektuj labirynt', 'picture':'labirynth.png', 'link': '/maths/labirynth/'},
@@ -44,9 +45,9 @@ def create_menu():
         try:
             Menu.objects.create(**item)
         except IntegrityError as e:
-            print('Błąd bazy dlanych ', e, '\ndla zestawu: {}'.format(item))
+            print('Błąd bazy dlanych ', e, ' dla zestawu: {} \n'.format(item))
         except DatabaseError as e:
-            print('Błąd bazy dlanych ', e, '\ndla zestawu: {}'.format(item))
+            print('Błąd bazy dlanych ', e, ' dla zestawu: {} \n'.format(item))
     
 def update_menu_picture():
     for item in Menu_details:

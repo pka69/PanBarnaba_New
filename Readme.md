@@ -42,6 +42,7 @@
 * pandas 
 * pytest
 * pytest-django
+* django-inlinecss
 * finally not used, but tested
     * selenium
     * webdriver_manager

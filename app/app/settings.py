@@ -39,6 +39,8 @@ if sys.argv[1] != 'runserver':
     DEPLOY_ROOT = BASE_DIR / 'public/static'
 else:
     DEPLOY_ROOT = BASE_DIR / 'static'
+    
+INLINECSS_CSS_LOADER = 'django_inlinecss.css_loaders.StaticfilesFinderCSSLoader'
 
 ALLOWED_HOSTS = [] if DEBUG else ['panbarnaba.pl']
 
@@ -54,6 +56,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
+    'django_inlinecss',
     'main',
     'tools',
     'moderate',

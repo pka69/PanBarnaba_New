@@ -41,7 +41,7 @@ def scoreCheckView(request, game, game_id, s_result, hours, minutes, seconds):
 
 def scoreUpdateView(request, game, game_id, s_result, hours, minutes, seconds):
     s_time = time(hour=hours, minute=minutes, second=seconds)
-    s_result = int(s_result[:-1]) if s_result[-1] == '%' else int(s_result)
+    s_result = round(float(s_result))  # if s_result[-1] == '%' else int(s_result)
     try:
         user = User.objects.get(pk=request.user.pk)
         user_result = Score.objects.filter(game=game).filter(game_id=game_id).filter(user=user).first()

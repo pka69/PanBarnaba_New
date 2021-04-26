@@ -24,7 +24,7 @@
             </div>
             {% if item.external_link %}
             <div class="float float-reverse col-md-2 text-end w-100   my-2">
-                <a href="{{ item.external_link }}" class="PB_button">
+                <a href="{{ item.external_link }}" class="PB_button" {% if item.external_link|web_adress %} target="_blank" {% endif %}>
                     <img src="{% static 'images/PB_wavinghand.png' %}"  class="PB_wavinghand" alt="">
                     przejdź
                 </a>

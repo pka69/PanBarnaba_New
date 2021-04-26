@@ -1,0 +1,41 @@
+{% extends 'mailing/mail_base.html' %}
+{% load static %}
+
+{% block mail %}
+<h2 class="font_2 mb-1 p-0">{{library.salutation}} {{library.moderator}}</h2>
+<hr>
+<div >
+    <img src="https://panbarnaba.pl/static/images/lapka.png"  width="30" height="30" alt="Pan Barnaba" class="img_center">
+</div>
+<div class="row">
+    <div class="col-9 jpost_body">
+    <p class="lpost_highlight">Chciałbym się przedstawić</p>
+    <p>Nazywam się Barnaba. 
+        Jestem bohaterem książki dla dzieci pod tytułem „Pan Barnaba i zagadkowa hipoteza”, która właśnie się ukazała się nakładem Czarnej Owcy. 
+        Przybyłem do Krakowa z pewną zagadkową misją wartą milion dolarów.     </p>
+    <p>Wymyśliła mnie Pani <a href="https://www.facebook.com/Katarzyna-Kalista-strona-autorska-109244764249213" class="font_nd footer2_font" target="_blank">
+    Katarzyna Kalista</a>. </p>
+     
+    <p>Chyba zapomniałem dodać rzecz najważniejszą - <b>jestem kotem</b>.</p>
+   
+    <p>Nie będę zdradzał szczegółów moich przygód, chciałbym natomiast zaproponować lekturę książki Członkom <b>Dyskusyjnego Klubu Książki</b>. </p>
+
+    <p>Zapraszam też na stronę internetową <a href="www.panbarnaba.pl" class="font_nd footer2_font">panbarnaba.pl</a>, 
+        gdzie możecie sprawdzić się w zabawnym quizie dotyczącym moich przygód, zagrać w gry rozwijające umysł, a także napisać do mnie na forum.
+        </p>
+    <p>Zdradzę w tajemnicy, że będą pojawiać się tam konkursy rysunkowe dla dzieci, 
+        a nagrodzone prace mogą pojawić się w grach na stronie, na przykład na puzzlach lub na kartach memo. 
+        Można też będzie wygrać książkę z dedykacją od Autorki!
+    </p>
+    <br>
+    </div>
+</div>
+<p>Zapraszam do lektury i miłej zabawy, </p>
+<p><i>Pan Barnaba</i></p>
+<p>p.s. Autorka udzieliła bardzo ciekawego wywiadu na <a href="https://lubimyczytac.pl/podsycanie-naturalnej-ciekawosci-dzieci-jest-wazne-rozmawiamy-z-katarzyna-kalista?fbclid=IwAR2OVQWh-dMt7wCFPjNOv6LskaD1ZwFHbibtQwb3KJirNzZTdIAU72DQPHk">lubimyczytac.pl</a> - polecam.</p>
+<img src='https://panbarnaba.pl/static/images/lapka.png'  width="30" height="30" alt="Pan Barnaba" class="img_center">
+<hr>
+
+<img src="https://panbarnaba.pl/static/images//01-kamieniaca.png"  class="PB_image2 img_center" alt="Pan Barnaba-okładka">
+
+{% endblock %}

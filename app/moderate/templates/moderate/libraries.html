@@ -4,27 +4,28 @@
 {% load define_action %}
 
 {% block meta %}
-    <title>Pan Barnaba - moderate</title>
+    <title>Pan Barnaba - Moderator</title>
     <meta name="description” content=”Pan Barnaba i zagadkowa hipoteza. autor: Katarzyna Kalista. Strefa moderatora" />
 {% endblock %}
 
-{% block NAV1 %}
+{% block NAV1 %} 
     <span> STREFA MODERATORA</span>
 {% endblock %}
 
 {% block full %}
     <div class="container-fluid">
         <form action="">
+            <h2><span class="PB2 justify-content-center text-center mx-4">filtrowanie dyskusyjnych klubów książki ({{ akt_lib }}/{{ max_lib }})</span></h2>
             <div class="row justify-content-center">
-                <h2><span class="PB2 justify-content-center mx-4">filtrowanie dyskusyjnych klubów książki ({{ akt_lib }}/{{ max_lib }})</span></h2>
+                
                 <div class="col-4">
-                    <div class="input-group input-group-sm mb-3">
+                    <div class="input-group input-group-sm pb-3">
                         <div CLASS="input-group-prepend">
                             <span class="input-group-text" id="inputGroup-sizing-sm">region</span>
                         </div>
                         <input class="form-control"  type="text" placeholder="nazwa, fragment nazwy" value="{{ area_filtr }}" name="area_filtr"  maxlength="128" />
                     </div>
-                    <div class="input-group input-group-sm mb-3">
+                    <div class="input-group input-group-sm pb-3">
                         <div CLASS="input-group-prepend">
                             <span class="input-group-text" id="inputGroup-sizing-sm">Nazwa</span>
                         </div>
@@ -45,26 +46,36 @@
                         <input class="form-control"  type="text" placeholder="wpisz szukaną frazę..." value="{{ email_filtr }}" name="email_filtr"  maxlength="128" />
                     </div>
                 </div>
-                <div class="col-2 ms-2">
+                <div class="col-2 ps-2">
                     <div class="custom-control custom-switch">
                         <input type="checkbox" class="custom-control-input"  id="kids" name = 'kids' {% if kids %} checked {% endif %}>
-                        <label class="custom-control-label" for="check" >DKK dla dzieci</label>
+                        <label class="custom-control-label" for="kids" >DKK dla dzieci</label>
                     </div>
                     <div class="custom-control custom-switch">
                         <input type="checkbox" class="custom-control-input"  id="young" name = 'young' {% if adults %} checked {% endif %}>
-                        <label class="custom-control-label" for="double" >DKK dla młodzieży</label> 
+                        <label class="custom-control-label" for="young" >DKK dla młodzieży</label> 
                     </div>
                     <div class="custom-control custom-switch">
                         <input type="checkbox" class="custom-control-input"  id="adults" name = 'adults' {% if young %} checked {% endif %}>
-                        <label class="custom-control-label" for="double" >DKK dla dorosłych</label> 
+                        <label class="custom-control-label" for="adults" >DKK dla dorosłych</label> 
                     </div>
                     <div class="custom-control custom-switch">
                         <input type="checkbox" class="custom-control-input"  id="closed" name = 'closed' {% if closed %} checked {% endif %}>
-                        <label class="custom-control-label" for="double" >czy zamknięta</label> 
+                        <label class="custom-control-label" for="closed" >czy zamknięta</label> 
                     </div>
                 </div>
-                <div class="col-1">
+                <div class="col-2">
                     <button type="submit" class="btn btn-primary">Filtruj</button>
+                    <div class="dropdown my-1">
+                        <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                            Wyślij mail do wybranej grupy
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            {% for item in mail %}
+                                <li><a class="dropdown-item" href="/moderate/library_mail/{{item}}{{ request.get_full_path }}">{{ item }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
                 </div>
             </div>
         </form>
@@ -73,6 +84,7 @@
                 <table class="table table-striped table-bordered">
                     <thead class="PB_table_header">
                         <tr class="align-items-center">
+                            <th class="text-center">id</th>
                             <th class="text-center">area</th>
                             <th class="text-center">city</th>
                             <th class="text-center">name</th>
@@ -95,21 +107,23 @@
                                     data-bs-toggle="modal" 
                                     data-bs-target="#AddModPost" 
                                     data-id="{{ item.id }}"
-                                    data-area="{{ item.area }}"
-                                    data-city="{{ item.city }}"
                                     data-name="{{ item.name }}"
+                                    data-city="{{ item.city }}"
+                                    data-salutation="{{ item.salutation }}"
                                     data-phone="{{ item.phone }}"
+                                    data-moderator="{{ item.moderator }}"
                                     data-email="{{ item.email }}"
-                                    data-www="{{ item.www }}"
-                                    data-kids="{{ item.DDK_kids }}"
-                                    data-adults="{{ item.DDK_adults }}"
-                                    data-young="{{ item.DDK_young }}"
-                                    data-young="{{ item.DDK_theme }}"
-                                    data-young="{{ item.notes }}"
-                                    data-closed="{{ item.closed }}">
-                                    
-                                    {{ item.area }}
+                                    data-ddk_kids="{{ item.DDK_kids }}"
+                                    data-ddk_adults="{{ item.DDK_adults }}"
+                                    data-ddk_young="{{ item.DDK_young }}"
+                                    data-theme="{{ item.DDK_theme }}"
+                                    data-notes="{{ item.notes }}"
+                                    data-ddk_closed="{{ item.closed }}">
+                                    {{ item.id }}
                                 </button>
+                            </td>
+                            <td class="text-center">
+                                {{ item.area }}
                             </td>
                             <td class="text-center">
                                 {{ item.city }}
@@ -150,5 +164,94 @@
             {% include 'paginator.html' %}
         {% endwith %}
     {% endif %}
+    <div class="modal fade" id="AddModPost" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content bg_color_ocean93">
+                <form action="" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <input type="number" class="d-none" id="id" name="id" value="">
+                    <input type="number" class="d-none" id="next" name="next" value="{{ url_next }}">
+                    <div class="modal-header PB2">
+                        <h5 class="modal-title p-2 w-100" id="ModalTitle">Zmień dane biblioteki</h5>
+                        <span name="lib_name" id="lib_name"></span>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-1">
+                            <label for="name" class="form-label">nazwa</label>
+                            <input type="text" class="form-control" id="name" name="name" ></input>
+                        </div>
+                        <div class="mb-1">
+                            <label for="city" class="form-label">miasto</label>
+                            <input type="text" class="form-control" id="city" name="city" ></input>
+                        </div>
+                        <div class="mb-1">
+                            <label for="moderator" class="form-label">moderator</label>
+                            <input type="text" class="form-control" id="moderator" name="moderator" ></input>
+                        </div>
+                        <div class="mb-1">
+                            <label for="email" class="form-label">email</label>
+                            <input type="text" class="form-control" id="email" name="email" ></input>
+                        </div>
+                        <div class="mb-1">
+                            <label for="www" class="form-label">wwww</label>
+                            <input type="text" class="form-control" id="www" name="www" ></input>
+                        </div>
+                        <div class="mb-1">
+                            <label for="telefon" class="form-label">telefon</label>
+                            <input type="text" class="form-control" id="telefon" name="telefon" ></input>
+                        </div>
+                        <div class="mb-1">
+                            <label for="salutation" class="form-label">zwrot grzecznościowy</label>
+                            <input type="text" class="form-control" id="salutation" name="salutation" ></input>
+                        </div>
+                        <div class="mb-1">
+                            <label for="notes" class="form-label">notatki</label>
+                            <textarea type="text" class="form-control" id="notes" name="notes" rows="2"></textarea>
+                        </div>
+                        <div class="mb-1">
+                            <label for="theme" class="form-label">tematyczny</label>
+                            <input type="text" class="form-control" id="theme" name="theme" ></input>
+                        </div>    
+                        <div class="mb-1">
+                            <div class="mx-2 shadow">
+                                <div class="form-check form-check-inline">
+                                    <input value=0 class="form-check-input" type="checkbox" name="ddk_adults" id="ddk_adults">
+                                    <label class="form-check-label" for="pictureType1">
+                                        dla dorosłych
+                                    </label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input value=1 class="form-check-input" type="checkbox" name="ddk_young" id="ddk_young">
+                                    <label class="form-check-label" for="pictureType2">
+                                        dla młodzieży
+                                    </label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input value=0 class="form-check-input" type="checkbox" name="ddk_kids" id="ddk_kids">
+                                    <label class="form-check-label" for="pictureType1">
+                                        dla dzieci
+                                    </label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input value=1 class="form-check-input" type="checkbox" name="ddk_closed" id="ddk_closed">
+                                    <label class="form-check-label" for="pictureType2">
+                                        zamknięty
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Wyjdź</button>
+                        <button class="btn btn-primary" type="submit" >Zapisz</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
 
+{% block add_ins %}
+    <script src=" {% static 'js/moderate_library.js' %} "></script> 
 {% endblock %}

@@ -23,7 +23,13 @@ from main.models import Menu
 from quiz.models import Question, Answer
 from .forms import AnswerForm
 from library.models import Library
+from tools.mail import mail_to_DKK
 
+MAIL_LAYOUT = [
+    "DKK_invitation",
+    "Konkurs_1",
+    "Konkurs_2",
+]
 
 PAGE_RECORDS = 20
 PERMISSION = 'posts.moderate'
@@ -212,7 +218,30 @@ class quizDetailView(PermissionRequiredMixin, View):
 
 class libraryListView(PermissionRequiredMixin, View):
     permission_required = (PERMISSION)
-    
+    def post(self, request):
+        next = request.get_full_path()
+        lib_data = {}
+        id = request.POST.get('id','')
+        lib_data['moderator'] = request.POST.get('moderator','')
+        lib_data['email'] = request.POST.get('email','')
+        lib_data['www'] = request.POST.get('www','')
+        lib_data['telefon'] = request.POST.get('telefon','')
+        lib_data['salutation'] = request.POST.get('salutation','')
+        lib_data['notes'] = request.POST.get('notes','')
+        lib_data['name'] = request.POST.get('name','')
+        lib_data['city'] = request.POST.get('city','')
+        lib_data['ddk_theme'] = request.POST.get('theme','')
+        lib_data['ddk_kids'] = True if request.POST.get('ddk_kids','') else False
+        lib_data['ddk_young'] = True if request.POST.get('ddk_young','') else False
+        lib_data['ddk_adults'] = True if request.POST.get('ddk_adults','') else False
+        lib_data['closed'] = True if request.POST.get('ddk_closed','') else False
+        library = Library.objects.filter(id=id)[0]
+        for key, value in lib_data.items():
+            setattr(library, key, value)
+            # library[key] = value
+        library.save()
+        return redirect(next)
+
     def get(self, request):
         libraries = Library.objects.all()
         context['max_lib'] = libraries.count()
@@ -255,10 +284,10 @@ class libraryListView(PermissionRequiredMixin, View):
         if name_filtr:
             libraries = libraries.filter(
                 Q(city__icontains=name_filtr) |
-                Q(name=name_filtr) 
+                Q(name__icontains=name_filtr) 
             )
         if moderator_filtr:
-            libraries = libraries.filter(moderator__icontains=name_filtr) 
+            libraries = libraries.filter(moderator__icontains=moderator_filtr) 
         request.session['email_filtr'] = email_filtr
         if email_filtr:
             libraries = libraries.filter(email__icontains=email_filtr)    
@@ -272,7 +301,54 @@ class libraryListView(PermissionRequiredMixin, View):
         context['adults'] = adults
         context['young'] = young
         context['closed'] = closed
-        context['title'] = 'filtrowanie klubów DKK'
+        context['title'] = 'Lista DKK'
         context['submenu'] = Menu.getMenu('moderate')
         context['akt_lib'] = libraries.count()
+        context['mail'] = MAIL_LAYOUT
+        context['url_next'] = request.get_full_path()
         return render(request, 'moderate/libraries.html', context=context)
+
+
+def libraryMailSend(request, template, n1, n2):
+    area_filtr = request.GET.get('area_filtr','')
+    name_filtr = request.GET.get('name_filtr', '')
+    email_filtr = request.GET.get('email_filtr', '')
+    moderator_filtr = request.GET.get('moderator_filtr', '')
+    kids = request.GET.get('kids', False)
+    adults = request.GET.get('adults', False)
+    young = request.GET.get('young', False)
+    closed = request.GET.get('closed', False)
+    libraries = Library.objects.all()
+    filtr_end = '&'
+    if area_filtr:
+        libraries = libraries.filter(area__icontains=area_filtr)
+    if kids:
+        libraries = libraries.filter(DDK_kids=True)
+        filtr_end +="kids=on"
+    if adults:
+        libraries = libraries.filter(DDK_adults=True)
+        filtr_end +="adults=on"
+    if young:
+        libraries = libraries.filter(DDK_young=True)
+        filtr_end +="young=on"
+    if closed:
+        libraries = libraries.filter(closed=True)
+        filtr_end +="closed=on"
+    if name_filtr:
+        libraries = libraries.filter(
+            Q(city__icontains=name_filtr) |
+            Q(name=name_filtr) 
+        )
+    if moderator_filtr:
+        libraries = libraries.filter(moderator__icontains=moderator_filtr) 
+    request.session['email_filtr'] = email_filtr
+    if email_filtr:
+        libraries = libraries.filter(email__icontains=email_filtr)   
+    libraries = libraries.exclude(email__isnull=True)    
+    if len(filtr_end) == 1: 
+        filtr_end = ''
+    mail_to_DKK(template, libraries, False)
+    messages.success(request, 'wysłano wiadomość {} do {} DKK'.format(template, libraries.count()))
+    return redirect('/moderate/library_list/?area_filtr={}&name_filtr={}&moderator_filtr={}&email_filtr={}{}'.format(
+        area_filtr, name_filtr, moderator_filtr, email_filtr, filtr_end
+    ))

@@ -7,15 +7,15 @@ const msg = document.getElementById("msg")
 function odmiany(number) {
     switch (number) {
         case 1: 
-            return `${number} pomyłka`;
+            return `${number} błąd`;
         case 2: 
-            return `${number} pomyłki`;
+            return `${number} błędy`;
         case 3: 
-            return `${number} pomyłki`;    
+            return `${number} błędy`;    
         case 4: 
-            return `${number} pomyłki`;
+            return `${number} błędy`;
         default: 
-            return `${number} pomyłek`;
+            return `${number} błędów`;
     }
 }
 
@@ -58,8 +58,8 @@ class differences {
         this.finded = this.toFind
     }
     message() {
-        msg.innerText = `poszukaj ${this.finded} różnic ` + (this.mistakes?`(${odmiany(this.mistakes)})`:'.');
-        console.log(`poszukaj ${this.finded} różnic ` + (this.mistakes?`(${odmiany(this.mistakes)})`:'.'))
+        msg.innerText = `znajdź ${this.finded} różnic ` + (this.mistakes?`(${odmiany(this.mistakes)})`:'.');
+        console.log(`znajdź ${this.finded} różnic ` + (this.mistakes?`(${odmiany(this.mistakes)})`:'.'))
     }
     finished() {
         let result = (this.toFind) / (this.toFind + this.mistakes) * 100.0

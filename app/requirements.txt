@@ -9,4 +9,5 @@ pytest
 pytest-django
 fabric
 openpyxl
+django-inlinecss
 

@@ -22,11 +22,12 @@ from .models import Post
 PAGE_RECORDS = 20
 FTYPES = ('o książce', 'o stronie', 'do autorki', 'pomysły na kontynuację', 'Hyde Park', 'FanFiki')
 
-context = {'submenu': Menu.getMenu('main')}
+
 
 
 def bookstorePricesView(request, subgroup=''):
     # show last bookstore prices (updated every day)
+    context = {'submenu': Menu.getMenu('main')}
     context['title'] = 'Ceny w ksiegarniach'
     context['PB_Stories'] = getBubbles(request)
     context['logo'] = 'info.png'
@@ -35,6 +36,7 @@ def bookstorePricesView(request, subgroup=''):
 
 def newsView(request):
     # show nes posted by moderators
+    context = {'submenu': Menu.getMenu('main')}
     page = int(request.GET.get('page', 1))
     context['posts'] = paginate(Post.notRejected.filter(group=0), page)
     context['title'] = 'Poznaj ostatnie wieści...'
@@ -47,6 +49,7 @@ class forumView(View):
     # view for show user forum with a few categories
     def get(self, request, ftype=0):
         page = int(request.GET.get('page', 1))
+        context = {'submenu': Menu.getMenu('main')}
         context['title'] = 'Forum Pana Barnaby'
         context['ftypes'] = FTYPES
         context['ftype'] = FTYPES[ftype]
@@ -124,6 +127,7 @@ class forumReactView(View):
         return JsonResponse({"status": "success", "comment":  "reaction '{}' for post {} added".format(react, post_id)})
 
 def forumRulesView(request):
+    context = {'submenu': Menu.getMenu('main')}
     context['title'] = ''  # forum Pana Barnaby ma swój regulamin
     context['PB_Stories'] = []
     # context['logo'] = 'forum.png'

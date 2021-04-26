@@ -26,7 +26,7 @@
     height: 67px;
     background: var(--unnamed-color-fcb855) 0% 0% no-repeat padding-box;
     opacity: 1;
-}
+} 
 .basic_foot {
     bottom: 0px;
     left: 0px;
@@ -314,15 +314,15 @@
 @media (min-width: 768px) {
     .bg_1 {
         background: url("../images/niebo_1_full.png") ;
-        background-position: middle middle ; 
+        background-position: bottom middle ; 
         background-repeat:no-repeat;
         background-size: cover;
     }
 }
 
 .bg_head {
-    background: url("../images/niebo_2_3.png") ;
-    background-position: top right ; 
+    background: url("../images/niebo_2_4.png") ;
+    background-position: bottom right ; 
     background-repeat:no-repeat;
     background-size: cover;
 }
@@ -589,8 +589,8 @@
     /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     background-color:var(--unnamed-color-ffffff);
     opacity: 1; */
-    position: : relative;
-    top:-100%
+    position: relative;
+    top:-100%;
 }
   .PB_image_part_25 {
     width: 24px;
