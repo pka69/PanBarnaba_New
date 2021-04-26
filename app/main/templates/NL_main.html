@@ -1,5 +1,6 @@
 {% load static %}
 {% load humanize %}
+{% load define_action %}
 <!DOCTYPE html>
 <html lang="pl-PL">
 <head>
@@ -114,7 +115,7 @@
                 <div class="col"> 
                     <!-- d-sm-none d-lg-block -->
                     {% block title_center %}
-                    <div id="carouselExampleSlidesOnly" class="carousel carousel-dark slide w-75 shadow margin-auto" data-bs-ride="carousel">
+                    <div id="carouselExampleSlidesOnly" class="carousel carousel-dark slide w-75 margin-auto" data-bs-ride="carousel">
                         <!-- <div class="carousel-indicators">
                             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
                             {% for item in puzzle %}
@@ -125,10 +126,25 @@
                             <div class="carousel-item active">
                                     <img  src="{% static 'images/01-kamieniaca.png' %}"  class="d-block w-100" alt="Pan Barnaba" target="_blank">
                             </div>
+                            {% with static_folder='images/posts/' %}
+                                {% for item in carusel_add %}
+                                <div class="carousel-item">   
+                                    <a href="{{ item.external_link }}" target="_blank">   
+                                        {% if item.picture|web_adress %}
+                                        <img src="{{ item.picture }}" class="d-block w-100" alt="Puzzle">
+                                        {% else %}
+                                        <img src="{% static static_folder|add:item.picture %}" class="d-block w-100" alt="Action_img">
+                                        {% endif %}
+                                    </a>
+                                </div>
+                                {% endfor %}
+                            {% endwith %}
                             {% with static_folder='images/carousel/' %}
                                 {% for item in puzzle %}
-                                    <div class="carousel-item">                                        
+                                    <div class="carousel-item">   
+                                        <a href="{% static static_folder|add:item.1 %}" target="_blank">                                     
                                         <img src="{% static static_folder|add:item.1 %}" class="d-block w-100" alt="Puzzle">
+                                        </a>
                                     </div>
                                 {% endfor %}
                             {% endwith %}

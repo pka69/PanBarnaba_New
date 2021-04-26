@@ -29,7 +29,9 @@ Menu_details = (
     {'group': 'posts', 'name': 'Notes', 'link': '/moderate/3/'},
     {'group': 'posts', 'name': 'Post', 'link': '/moderate/4/'},
     {'group': 'posts', 'name': 'BookPrice', 'link': '/moderate/5/'},
-    {'group': 'posts', 'name': 'Content', 'link': '/moderate/5/'},
+    {'group': 'posts', 'name': 'Content', 'link': '/moderate/6/'},
+    {'group': 'posts', 'name': 'Message', 'link': '/moderate/7/'},
+    {'group': 'posts', 'name': 'Welcome', 'link': '/moderate/8/'},
     {'group': 'encrypt', 'name': 'GA-DE-RY-PO-LU-KI', 'picture':'gaderypoluki.png', 'link': '/encrypt/gaderypoluki/'},
     {'group': 'encrypt', 'name': 'CZEKOLADKA', 'picture':'czekoladka.png', 'link': '/encrypt/brownie/'},
     {'group': 'encrypt', 'name': 'UŁAMKOWY', 'picture':'ulamkowy.png', 'link': '/encrypt/divider/'},
@@ -64,3 +66,11 @@ def new_compare():
         print('Błąd bazy danych ', e, '\ndla zestawu: {}'.format(item))
     except DatabaseError as e:
         print('Błąd bazy danych ', e, '\ndla zestawu: {}'.format(item))
+
+
+def update_menu_links():
+    for item in Menu_details:
+        if item.get('link'):
+            Menu.objects.filter(group=item['group'].capitalize()).filter(name=item['name'].capitalize()).update(link=item['link'])
+        else:
+            Menu.objects.filter(group=item['group'].capitalize()).filter(name=item['name'].capitalize()).update(link='')

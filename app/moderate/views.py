@@ -37,7 +37,7 @@ ACTION = {
     'reject': -1,
     'approve': 1,
 }
-context = {'submenu': Menu.getMenu('moderate')}
+context = {'submenu': Menu.getMenu('moderate')} 
 
 
 def paginate(qs_list, page=1):
@@ -100,9 +100,12 @@ def moderateView(request, post_type=2, action=None, id=None):
         messages.success(request, 'Akcja {} zakończona sukcesem'.format(action))
     sfiltr = request.GET.get("sfiltr",'')
     stagelist = request.GET.getlist("stagelist", [stage[0] for stage in STAGE])
-    posts = Post.moderate.filter(group=post_type).filter(stage__in=stagelist).order_by('group', 'subgroup','-p_date', '-p_time')
+    posts = Post.moderate.filter(group=post_type).filter(stage__in=stagelist)
     if sfiltr:
-        posts = posts.filter(subgroup__icontains=sfiltr)
+        posts = posts.filter(
+            Q(subgroup__icontains=sfiltr) | Q(content__icontains=sfiltr)
+        )
+    posts = posts.order_by('group', 'subgroup','-p_date', '-p_time')
     for i in range(len(stagelist)): stagelist[i] = int(stagelist[i])
     page = int(request.GET.get('page', 1))
     context['posts'] = paginate(posts, page)

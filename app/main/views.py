@@ -82,6 +82,7 @@ def mainView(request):
     context['puzzle'] = puzzleList('images/carousel')
     context['content'] = Post.notRejected.filter(group=6).filter(subgroup__startswith="main-carusel").order_by('subgroup')
     context['sections'] = Post.notRejected.filter(group=6).filter(subgroup__startswith="main-section").order_by('subgroup')
+    context['carusel_add'] = Post.notRejected.filter(group=6).filter(subgroup__startswith="carusel-add").order_by('subgroup')
     context['news'] = Post.notRejected.filter(group=0)[:4]
     context['forum'] = Post.approved.filter(group=2).filter(related_post__isnull=True)[:4]
     # context['bookstore'] = Post.bookBestPrice('książka')
