@@ -7,7 +7,7 @@ various view of different types of posts:
 from django.shortcuts import render, redirect
 from django.views import View
 from django.conf import settings
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 from django.contrib import messages
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required  # to delete in final project
@@ -71,8 +71,12 @@ class forumView(View):
         except Exception as e:
             messages.error(request, 'Wystąpił błąd. Aby wstawić post trzeba być zalogowanym')
             return redirect('/posts/forum/{}'.format(ftype))
+        auto_post = Group.objects.get(name="auto_post")
+        stage = 1 if (auto_post in user.groups.all()) else 0
         if post_id:
-            Post.notRejected.create(group=2,
+            Post.notRejected.create(
+                group=2,
+                stage = stage,
                 subgroup=subgroup,
                 content=content,
                 external_link=external_link,
@@ -82,6 +86,7 @@ class forumView(View):
         else:
             Post.notRejected.create(
                 group=2,
+                stage = stage,
                 subgroup=subgroup,
                 content=content,
                 external_link=external_link,
