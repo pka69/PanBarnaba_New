@@ -91,20 +91,6 @@ def mainView(request):
     return render(request, 'NL_main.html', context=context)
 
 
-def introView(request):
-    if not request.session.get('welcome'):
-        messages.info(request, 'Witaj! {}'.format(Post.welcome()))
-        request.session['welcome'] = True
-    context['submenu'] = Menu.getMenu('main')
-    context['puzzle'] = puzzleList('images/carousel')
-    context['content'] = Post.notRejected.filter(group=6).filter(subgroup__startswith="main-carusel").order_by('subgroup')
-    page = int(request.GET.get('page', 1))
-    context['posts'] = paginate(Post.notRejected.filter(group=0), page)
-    context['games'] = Menu.getMenu('games', detail=1)
-    context['maths'] = Menu.getMenu('maths', detail=1)
-    return render(request, 'intro.html', context=context)
-
-
 def infoView(request):
     # show info view
     context['submenu'] = Menu.getMenu('main')

@@ -51,7 +51,7 @@
             <div class="row pb-0 align-items-center mx-5">
                 <div class="col-md-5">
                     {% block title_box %}
-                        <div class="d-inline-block mx-0 my-2">
+                        <div class=" mx-2 my-2">
                             <p class="lpost_title">
                                 {% if title %} 
                                     {{ title }}
@@ -68,7 +68,7 @@
                     {% endblock %}
                     {% block title_center %}
                         {% if PB_Stories %}
-                            <div class="d-inline-block mx-0 my-2">
+                            <div class=" mx-0 my-2">
                                 {% for bubble in PB_Stories %}
                                     {% include 'NL_bubble3.html' %}
                                 {% endfor %}
@@ -127,7 +127,7 @@
                 <div class="col justify-content-center">
                     <div><a href="{% url 'forum' %}" class="font_nd footer2_font ">FORUM</a></div>
                     <br>
-                    <div><a href="{% url 'forum' %}" class="font_nd footer2_font">INFORMACJE</a></div>
+                    <div><a href="{% url 'info' %}#author" class="font_nd footer2_font">O AUTORCE</a></div>
                 </div>
                 <div class="col justify-content-center">
                     <div><a href="{% url 'contact' %}" class="font_nd footer2_font ">KONTAKT</a></div>

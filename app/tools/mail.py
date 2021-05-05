@@ -33,13 +33,6 @@ def moderatorInform():
         'html_message': render_to_string('mailing/to_moderate.html', context=context),
         'fail_silently': False
     }
-    print('email host', settings.EMAIL_HOST)
-    print('email port', settings.EMAIL_PORT)
-    print('email user', settings.EMAIL_HOST_USER)
-    print('email pass', settings.EMAIL_HOST_PASSWORD)
-    print('email default', settings.DEFAULT_FROM_EMAIL)
-    print('email SSL', settings.EMAIL_USE_SSL)
-    print('email TSL', settings.EMAIL_USE_TLS)
     send_mail(**mail)
     return True
     
@@ -63,13 +56,6 @@ def messageToAuthor(id):
         'html_message': render_to_string('mailing/user_message.html', context=context),
         'fail_silently': False
     }
-    print('email host', settings.EMAIL_HOST)
-    print('email port', settings.EMAIL_PORT)
-    print('email user', settings.EMAIL_HOST_USER)
-    print('email pass', settings.EMAIL_HOST_PASSWORD)
-    print('email default', settings.DEFAULT_FROM_EMAIL)
-    print('email SSL', settings.EMAIL_USE_SSL)
-    print('email TSL', settings.EMAIL_USE_TLS)
     send_mail(**mail)
 
 def encrypt_to_friend(post, user, path):
@@ -87,14 +73,14 @@ def encrypt_to_friend(post, user, path):
     }
     send_mail(**mail)
 
-def mail_to_DKK(title, libraries, test = True):
+def mail_to_DKK(title, subject,  libraries, test = True):
     
     for library in libraries:
         context = {
             'library': library, 
         }
         mail = {
-            'subject': 'Wiadomość dla DKK dla dzieci',
+            'subject': subject,
             'message': render_to_string('mailing/{}.txt'.format(title), context=context),
             'from_email': settings.DEFAULT_FROM_EMAIL, # user.email if user.email else
             'recipient_list': ['pjkalista@gmail.com'] if test else [library.email],

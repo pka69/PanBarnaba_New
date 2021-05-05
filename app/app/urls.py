@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from main.views import mainView, gamesView, contactView,\
-    introView, infoView, missingPage,\
+    infoView, missingPage,\
     LoginView, LogoutView, CreateUserView,\
     PasswordChangeView, bubbleSwitch, waitingView, PolitykaView
 
@@ -27,7 +27,6 @@ urlpatterns = [
     path('', mainView, name='main'),
     path('waiting/', waitingView, name='my_redirect_field'),
     path('info/', infoView, name='info'),
-    path('intro/', introView, name='info'),
     path('contact/', contactView.as_view(), name='contact'),
     path('games/', gamesView, name='games'),
     path('maths/', include('maths.urls')),

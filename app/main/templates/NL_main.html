@@ -126,19 +126,17 @@
                             <div class="carousel-item active">
                                     <img  src="{% static 'images/01-kamieniaca.png' %}"  class="d-block w-100" alt="Pan Barnaba" target="_blank">
                             </div>
-                            {% with static_folder='images/posts/' %}
-                                {% for item in carusel_add %}
-                                <div class="carousel-item">   
-                                    <a href="{{ item.external_link }}" target="_blank">   
-                                        {% if item.picture|web_adress %}
-                                        <img src="{{ item.picture }}" class="d-block w-100" alt="Puzzle">
-                                        {% else %}
-                                        <img src="{% static static_folder|add:item.picture %}" class="d-block w-100" alt="Action_img">
-                                        {% endif %}
-                                    </a>
-                                </div>
-                                {% endfor %}
-                            {% endwith %}
+                            {% for item in carusel_add %}
+                            <div class="carousel-item">   
+                                <a href="{{ item.external_link }}" target="_blank">   
+                                    {% if item.picture|web_adress %}
+                                    <img src="{{ item.picture }}" class="d-block w-100" alt="Puzzle">
+                                    {% else %}
+                                    <img src="{% static item.picture %}" class="d-block w-100" alt="Action_img">
+                                    {% endif %}
+                                </a>
+                            </div>
+                            {% endfor %}
                             {% with static_folder='images/carousel/' %}
                                 {% for item in puzzle %}
                                     <div class="carousel-item">   

@@ -25,11 +25,12 @@ from .forms import AnswerForm
 from library.models import Library
 from tools.mail import mail_to_DKK
 
-MAIL_LAYOUT = [
-    "DKK_invitation",
-    "Konkurs_1",
-    "Konkurs_2",
-]
+MAIL_LAYOUT = {
+    "DKK_invitation": 'Wiadomość dla DKK dla dzieci',
+    "DKK_coordinators": "Wiadomość dla koordynatorów DKK",
+    "Konkurs_1":'',
+    "Konkurs_2":'',
+}
 
 PAGE_RECORDS = 20
 PERMISSION = 'posts.moderate'
@@ -307,7 +308,7 @@ class libraryListView(PermissionRequiredMixin, View):
         context['title'] = 'Lista DKK'
         context['submenu'] = Menu.getMenu('moderate')
         context['akt_lib'] = libraries.count()
-        context['mail'] = MAIL_LAYOUT
+        context['mail'] = MAIL_LAYOUT.keys()
         context['url_next'] = request.get_full_path()
         return render(request, 'moderate/libraries.html', context=context)
 
@@ -350,7 +351,7 @@ def libraryMailSend(request, template, n1, n2):
     libraries = libraries.exclude(email__isnull=True)    
     if len(filtr_end) == 1: 
         filtr_end = ''
-    mail_to_DKK(template, libraries, False)
+    mail_to_DKK(template, MAIL_LAYOUT[template],libraries, False)
     messages.success(request, 'wysłano wiadomość {} do {} DKK'.format(template, libraries.count()))
     return redirect('/moderate/library_list/?area_filtr={}&name_filtr={}&moderator_filtr={}&email_filtr={}{}'.format(
         area_filtr, name_filtr, moderator_filtr, email_filtr, filtr_end
