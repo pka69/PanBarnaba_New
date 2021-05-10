@@ -15,7 +15,7 @@ context = {
 def memoView(request):
     context['title'] = 'Memo'
     context['PB_Stories'] = getBubbles(request)
-    context['logo'] = 'difference.png'
+    context['logo'] = 'memo.png'
     return render(request, 'memo/memo.html', context=context)
 
 def memoSolveView(request, level = 4):
