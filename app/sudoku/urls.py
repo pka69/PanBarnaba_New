@@ -7,3 +7,5 @@ urlpatterns = [
     path('<sudoku_type>', sudokuGameView.as_view(), name='sudoku_game'),
     # path('puzzle_selected/<puzzle_name>', sudokuSelected, name='puzzle_selected'),
 ]
+
+app_name = "sudoku"

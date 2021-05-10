@@ -11,3 +11,5 @@ urlpatterns = [
     path('forum-react/<react>/<int:post_id>/', forumReactView.as_view()),
     path('forum-react/<react>/<ftype>/<int:post_id>/', forumReactView.as_view()),
 ]
+
+app_name='posts'

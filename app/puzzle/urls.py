@@ -6,3 +6,5 @@ urlpatterns = [
     path('', puzzleView, name='puzzle'),
     path('puzzle_selected/<puzzle_name>', puzzleSolve, name='puzzle_selected'),
 ]
+
+app_name = "puzzle"

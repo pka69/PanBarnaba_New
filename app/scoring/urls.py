@@ -7,3 +7,5 @@ urlpatterns = [
     path('score_update/<game>/<game_id>/<s_result>/<int:hours>/<int:minutes>/<int:seconds>/', scoreUpdateView, name='scoreUpdate'),
     
 ]
+
+app_name = "scoring"

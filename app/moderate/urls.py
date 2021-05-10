@@ -16,3 +16,5 @@ urlpatterns = [
     
 
 ]
+
+app_name = "moderate"

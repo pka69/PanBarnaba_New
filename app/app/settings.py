@@ -45,6 +45,7 @@ INLINECSS_CSS_LOADER = 'django_inlinecss.css_loaders.StaticfilesFinderCSSLoader'
 ALLOWED_HOSTS = [] if DEBUG else ['panbarnaba.pl']
 
 LOGIN_URL = 'login'
+SITE_ID = 1
 
 # Application definition
 
@@ -56,6 +57,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
+    'django.contrib.sites', 
+    'django.contrib.sitemaps', 
     'django_inlinecss',
     'main',
     'tools',

@@ -22,3 +22,5 @@ urlpatterns = [
     # path('kaczor/', kaczorView, name='kaczor'),
     # path('kaczor/<int:level>/', kaczorView, name='kaczor_selected'),
 ]
+
+app_name = "encrypt"

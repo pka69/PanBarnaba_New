@@ -11,3 +11,4 @@ urlpatterns = [
     path('labirynth-go/', labirynthGoView.as_view(), name='labirynth_go'),
 
 ]   
+app_name = "maths"
